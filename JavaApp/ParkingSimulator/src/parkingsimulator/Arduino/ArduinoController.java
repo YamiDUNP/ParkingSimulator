@@ -14,6 +14,8 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -43,9 +45,16 @@ public class ArduinoController implements SerialPortEventListener {
         private static final int DATA_RATE = 9600;
         
         ArrayList<StringBuffer> messages=new ArrayList();
+        public ArrayList<String> getMessages(){
+            ArrayList<String> ls=new ArrayList();
+            messages.forEach(e->{
+                ls.add(e.toString());
+            });
+            return ls;
+        }
         public void initialize() {
-                for(int i=0;i<messages.size();i++){
-                    messages.add(new StringBuffer(""));
+                for(int i=0;i<4;i++){
+                    messages.add(new StringBuffer(i+"NE"));
                 }
                 portState=true;
                 CommPortIdentifier portId = null;
@@ -62,6 +71,24 @@ public class ArduinoController implements SerialPortEventListener {
                 }
                 if (portId == null) {
                         portState=false;
+                        Thread t=new Thread(){
+                            public void run(){
+                                while(true){
+                                    try {
+                                        for(int i=0;i<4;i++){
+                                            double a=Math.random();
+                                            messages.get(i).replace(0, messages.get(i).length(), a>0.5?i+"DA":i+"NE");
+                                            System.out.println(messages.get(i));
+                                        }
+                                        Thread.sleep(2000);   
+                                    } catch (InterruptedException ex) {
+                                        Logger.getLogger(ArduinoController.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
+                                }
+                            }
+                        };
+                       
+                        t.start();
                         System.out.println("Could not find COM port.");
                         return;
                 }
@@ -127,22 +154,25 @@ public class ArduinoController implements SerialPortEventListener {
 			try {
                             if(input.ready()){
 				String inputLine=(String)input.readLine();
-                                switch(inputLine.charAt(2)){
-                                    case '1': messages.get(1).replace(0, messages.get(1).length()-1, inputLine);
+                                switch(inputLine.charAt(0)){
+                                    case '0': messages.get(0).replace(0, messages.get(0).length(), inputLine);
                                         break;
-                                    case '2': messages.get(2).replace(0, messages.get(1).length()-1, inputLine);
+                                    case '1': messages.get(1).replace(0, messages.get(1).length(), inputLine);
                                         break;
-                                    case '3': messages.get(3).replace(0, messages.get(1).length()-1, inputLine);
+                                    case '2': messages.get(2).replace(0, messages.get(2).length(), inputLine);
                                         break;
-                                    case '4': messages.get(4).replace(0, messages.get(1).length()-1, inputLine);
+                                    case '3': messages.get(3).replace(0, messages.get(3).length(), inputLine);
                                         break;
                                     default:
                                         break;
                                 }
-				System.out.println(inputLine);
+                                messages.forEach(e->{
+                                    System.out.println("Poruka: "+e);
+                                });
                             }
                             } catch (Exception e) {
-                                System.out.println("There is noone close");
+                                  
+                                System.out.println("There is noone close"+e);
                         }
 		}
 		// Ignore all the other eventTypes, but you should consider the other ones.
