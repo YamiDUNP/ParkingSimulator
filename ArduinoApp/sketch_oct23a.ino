@@ -21,10 +21,13 @@ void loop() {
 
   
   cm=(duration/2)*(0.0343);
-  if(cm<5){
-    Serial.print(cm);
-    Serial.print("cm");
+  if(cm<10){
+    Serial.print("0DA");
     Serial.println();
+  }else{
+    Serial.print("0NE");
+    Serial.println();
+    
   }
   delay(250);
 }
