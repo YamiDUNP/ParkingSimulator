@@ -1,3 +1,4 @@
 /JavaApp/ParkingSimulator/build/
 /JavaApp/ParkingSimulator/dist/
 JavaApp/ParkingSimulator/nbproject/private/private.xml
+*.properties
