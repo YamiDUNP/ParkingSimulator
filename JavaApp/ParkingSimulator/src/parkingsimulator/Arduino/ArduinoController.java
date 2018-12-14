@@ -44,8 +44,8 @@ public class ArduinoController implements SerialPortEventListener {
         /** Default bits per second for COM port. */
         private static final int DATA_RATE = 9600;
         
-        ArrayList<StringBuffer> messages=new ArrayList();
-        public ArrayList<String> getMessages(){
+        static ArrayList<StringBuffer> messages=new ArrayList();
+        static public ArrayList<String> getMessages(){
             ArrayList<String> ls=new ArrayList();
             messages.forEach(e->{
                 ls.add(e.toString());
@@ -147,6 +147,26 @@ public class ArduinoController implements SerialPortEventListener {
 //		t.start();
 //		System.out.println("Started");
 //	}
+        
+        
+        // lista.forEach(e->{
+//                switch(e.charAt(0)){
+//                    case '0':
+//                        if(e.charAt(1)=='D' && e.charAt(2)=='A'){
+//                        LOgika za DA
+//                        }
+//                        else if(e.charAt(1)=='N' && e.charAt(2)=='E'){
+//                        logika za ne
+//                        }
+//                        break;
+//                    case '1':
+//                        break;
+//                    case '2':
+//                        break;
+//                    case '3':
+//                        break;
+//                }
+        // });
 
     @Override
     public void serialEvent(SerialPortEvent oEvent) {
