@@ -5,10 +5,93 @@
  */
 package parkingsimulator.Models;
 
+import java.io.File;
+import java.math.BigInteger;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.security.*;
+
 /**
  *
  * @author 1
  */
 public class DBController {
+    private static DBController instance=null; 
+    private Connection connection = null;
+    private Statement statement = null;
+    private ResultSet resultSet = null;
     
+    DBController() throws SQLException{
+        try {
+            Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+            String msAccDB = new File("").getAbsolutePath()+"/ParkingSimulator.accdb";
+            String dbURL = "jdbc:ucanaccess://" + msAccDB; 
+            connection = DriverManager.getConnection(dbURL); 
+        }
+        catch(ClassNotFoundException cnfex) {
+            System.out.println("Problem in loading or "
+                    + "registering MS Access JDBC driver");
+            cnfex.printStackTrace();
+        }
+    }
+    
+    public static DBController require() throws SQLException{
+        if(instance==null){
+            instance=new DBController();
+        }
+        return instance;
+    }
+    
+    public ResultSet submitQuery(String query){
+         try {
+            statement = (Statement) connection.createStatement();  
+            resultSet = statement.executeQuery(query);
+        }
+        catch(Exception E){
+            System.out.println(E);
+        }
+        finally {
+            try {
+                if(null != connection) {
+                    statement.close();
+                }
+            }
+            catch (SQLException sqlex) {
+                sqlex.printStackTrace();
+            }
+        }
+        return resultSet;
+    }
+    public Upravnik loginValid(String username,String password){
+      
+        resultSet = submitQuery("SELECT username,JMBG from Upravnik where username='"+username+"' and password='"+getMD5(password)+"';");
+
+        try {
+            if(resultSet.next())
+                return new Upravnik(resultSet.getString("username"),resultSet.getInt("JMBG"));                  
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        
+        return null;
+        }
+private static String getMD5(String a){
+    try{
+        MessageDigest md=MessageDigest.getInstance("MD5");
+        byte[] messageDigest=md.digest(a.getBytes());
+        BigInteger no=new BigInteger(1, messageDigest);
+        String hashtext=no.toString(16);
+        while(hashtext.length()<32){
+            hashtext="0"+hashtext;
+        }
+    return hashtext;
+    }
+    catch(NoSuchAlgorithmException e){
+        throw new RuntimeException(e);
+    }
 }
+}
+
