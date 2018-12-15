@@ -20,11 +20,16 @@ public class MainFrame extends javax.swing.JFrame {
     
     ArrayList<String> poruke;
     ArrayList<String> prethodne_poruke=new ArrayList();
+    ArrayList<StringBuffer> boje=new ArrayList();
     public MainFrame() {
         prethodne_poruke.add("0NE");
         prethodne_poruke.add("1NE");
         prethodne_poruke.add("2NE");
         prethodne_poruke.add("3NE");
+        boje.add(new StringBuffer("y"));
+        boje.add(new StringBuffer("y"));
+        boje.add(new StringBuffer("y"));
+        boje.add(new StringBuffer("y"));
         initComponents();
         Thread t=new Thread(){  
             public void run(){
@@ -41,7 +46,12 @@ public class MainFrame extends javax.swing.JFrame {
                             else{
                                 System.out.println("Ne radi nista");
                             }
-                            ParkingMesto1.setBackground(Color.yellow);
+                            System.out.println(boje.get(0).charAt(0));
+                            if(boje.get(0).charAt(0)=='y')
+                                ParkingMesto1.setBackground(Color.yellow);
+                            else{
+                                ParkingMesto1.setBackground(Color.red);    
+                            }
                         }
                         else if(e.charAt(1)=='N' && e.charAt(2)=='E'){
                             if(prethodne_poruke.get(0).charAt(1)=='D' && prethodne_poruke.get(0).charAt(2)=='A'){
@@ -50,6 +60,7 @@ public class MainFrame extends javax.swing.JFrame {
                             else{
                                 System.out.println("Ne radi nista");
                             }    
+                            boje.get(0).replace(0, boje.get(0).length(), "y");
                             ParkingMesto1.setBackground(Color.green);
                         }
                         break;
@@ -259,6 +270,11 @@ public class MainFrame extends javax.swing.JFrame {
         jButton2.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
         jButton2.setText("Plati");
         jButton2.setFocusPainted(false);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout ParkingMesto2Layout = new javax.swing.GroupLayout(ParkingMesto2);
         ParkingMesto2.setLayout(ParkingMesto2Layout);
@@ -302,6 +318,11 @@ public class MainFrame extends javax.swing.JFrame {
         jButton5.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
         jButton5.setText("Plati");
         jButton5.setFocusPainted(false);
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout ParkingMesto3Layout = new javax.swing.GroupLayout(ParkingMesto3);
         ParkingMesto3.setLayout(ParkingMesto3Layout);
@@ -345,6 +366,11 @@ public class MainFrame extends javax.swing.JFrame {
         jButton4.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
         jButton4.setText("Plati");
         jButton4.setFocusPainted(false);
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout ParkingMesto4Layout = new javax.swing.GroupLayout(ParkingMesto4);
         ParkingMesto4.setLayout(ParkingMesto4Layout);
@@ -488,7 +514,11 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-       
+        if(poruke.get(0).charAt(1)=='D' && poruke.get(0).charAt(2)=='A'){
+            this.boje.get(0).replace(0, boje.get(0).length(), "r");
+            System.out.println("KLIKNUT BUTTON : "+boje.get(0));
+            ParkingMesto1.setBackground(Color.red);
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseEntered
@@ -500,6 +530,30 @@ public class MainFrame extends javax.swing.JFrame {
        this.jButton1.setBackground(Color.decode("#006666"));
     this.jButton1.setForeground(Color.white);
     }//GEN-LAST:event_jButton1MouseExited
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        if(poruke.get(1).charAt(1)=='D' && poruke.get(1).charAt(2)=='A'){
+            this.boje.get(0).replace(0, boje.get(0).length(), "r");
+            ParkingMesto2.setBackground(Color.red);
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        if(poruke.get(2).charAt(1)=='D' && poruke.get(2).charAt(2)=='A'){
+            this.boje.get(0).replace(0, boje.get(0).length(), "r");
+            ParkingMesto3.setBackground(Color.red);
+        }
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        if(poruke.get(3).charAt(1)=='D' && poruke.get(3).charAt(2)=='A'){
+            this.boje.get(0).replace(0, boje.get(0).length(), "r");
+            ParkingMesto4.setBackground(Color.red);
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
