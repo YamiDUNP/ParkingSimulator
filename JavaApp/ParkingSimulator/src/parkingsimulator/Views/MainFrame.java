@@ -6,6 +6,9 @@
 package parkingsimulator.Views;
 
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import parkingsimulator.Arduino.ArduinoController;
 
 /**
@@ -14,18 +17,119 @@ import parkingsimulator.Arduino.ArduinoController;
  */
 public class MainFrame extends javax.swing.JFrame {
 
-    /**
-     * Creates new form MainFrame
-     */
+    
+    ArrayList<String> poruke;
+    ArrayList<String> prethodne_poruke=new ArrayList();
     public MainFrame() {
+        prethodne_poruke.add("0NE");
+        prethodne_poruke.add("1NE");
+        prethodne_poruke.add("2NE");
+        prethodne_poruke.add("3NE");
         initComponents();
+        Thread t=new Thread(){  
+            public void run(){
+                while(true){
+                    poruke=ArduinoController.getMessages();
+                    poruke.forEach(e->{
+                        System.out.println(e);
+                    switch(e.charAt(0)){
+                    case '0':
+                        if(e.charAt(1)=='D' && e.charAt(2)=='A'){
+                            if(prethodne_poruke.get(0).charAt(1)=='N' && prethodne_poruke.get(0).charAt(2)=='E'){
+                                System.out.println("Upisi u bazu za nulto mesto+vreme zauzimanja");
+                            }
+                            else{
+                                System.out.println("Ne radi nista");
+                            }
+                            ParkingMesto1.setBackground(Color.yellow);
+                        }
+                        else if(e.charAt(1)=='N' && e.charAt(2)=='E'){
+                            if(prethodne_poruke.get(0).charAt(1)=='D' && prethodne_poruke.get(0).charAt(2)=='A'){
+                                System.out.println("Upisi u bazu za nulto mest+VREME ODLASKA");
+                            }
+                            else{
+                                System.out.println("Ne radi nista");
+                            }    
+                            ParkingMesto1.setBackground(Color.green);
+                        }
+                        break;
+                    case '1':
+                        if(e.charAt(1)=='D' && e.charAt(2)=='A'){
+                            if(prethodne_poruke.get(1).charAt(1)=='N' && prethodne_poruke.get(1).charAt(2)=='E'){
+                                System.out.println("Upisi u bazu za nulto mesto+vreme zauzimanja");
+                            }
+                            else{
+                                System.out.println("Ne radi nista");
+                            }
+                            ParkingMesto2.setBackground(Color.yellow);
+                        }
+                        else if(e.charAt(1)=='N' && e.charAt(2)=='E'){
+                            if(prethodne_poruke.get(1).charAt(1)=='D' && prethodne_poruke.get(1).charAt(2)=='A'){
+                                System.out.println("Upisi u bazu za nulto mest+VREME ODLASKA");
+                            }
+                            else{
+                                System.out.println("Ne radi nista");
+                            }    
+                            ParkingMesto2.setBackground(Color.green);
+                        }
+                        break;
+                    case '2':
+                        if(e.charAt(1)=='D' && e.charAt(2)=='A'){
+                            if(prethodne_poruke.get(2).charAt(1)=='N' && prethodne_poruke.get(2).charAt(2)=='E'){
+                                System.out.println("Upisi u bazu za nulto mesto+vreme zauzimanja");
+                            }
+                            else{
+                                System.out.println("Ne radi nista");
+                            }
+                            ParkingMesto3.setBackground(Color.yellow);
+                        }
+                        else if(e.charAt(1)=='N' && e.charAt(2)=='E'){
+                            if(prethodne_poruke.get(2).charAt(1)=='D' && prethodne_poruke.get(2).charAt(2)=='A'){
+                                System.out.println("Upisi u bazu za nulto mest+VREME ODLASKA");
+                            }
+                            else{
+                                System.out.println("Ne radi nista");
+                            }    
+                            ParkingMesto3.setBackground(Color.green);
+                        }
+                        break;
+                    case '3':
+                        if(e.charAt(1)=='D' && e.charAt(2)=='A'){
+                            if(prethodne_poruke.get(3).charAt(1)=='N' && prethodne_poruke.get(3).charAt(2)=='E'){
+                                System.out.println("Upisi u bazu za nulto mesto+vreme zauzimanja");
+                            }
+                            else{
+                                System.out.println("Ne radi nista");
+                            }
+                            ParkingMesto4.setBackground(Color.yellow);
+                        }
+                        else if(e.charAt(1)=='N' && e.charAt(2)=='E'){
+                            if(prethodne_poruke.get(3).charAt(1)=='D' && prethodne_poruke.get(3).charAt(2)=='A'){
+                                System.out.println("Upisi u bazu za nulto mest+VREME ODLASKA");
+                            }
+                            else{
+                                System.out.println("Ne radi nista");
+                            }    
+                            ParkingMesto4.setBackground(Color.green);
+                        }
+                        break;
+                }
+                    
+                    });
+                    prethodne_poruke=poruke;
+                    try {
+                        Thread.sleep(4000);
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
+        };
+        
+        t.start();
+
     }
 
-    /**
-     * This method is called from within the constructor to initialize the form.
-     * WARNING: Do NOT modify this code. The content of this method is always
-     * regenerated by the Form Editor.
-     */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

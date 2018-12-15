@@ -78,7 +78,7 @@ public class ArduinoController implements SerialPortEventListener {
                                         for(int i=0;i<4;i++){
                                             double a=Math.random();
                                             messages.get(i).replace(0, messages.get(i).length(), a>0.5?i+"DA":i+"NE");
-                                            System.out.println(messages.get(i));
+                                          //  System.out.println(messages.get(i));
                                         }
                                         Thread.sleep(2000);   
                                     } catch (InterruptedException ex) {
