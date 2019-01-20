@@ -5,6 +5,7 @@
  */
 package parkingsimulator.Views;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -16,11 +17,12 @@ import parkingsimulator.Arduino.ArduinoController;
  * @author 1
  */
 public class MainFrame extends javax.swing.JFrame {
-
     
+                    
     ArrayList<String> poruke;
     ArrayList<String> prethodne_poruke=new ArrayList();
     ArrayList<StringBuffer> boje=new ArrayList();
+    int br_mesta=4;
     public MainFrame() {
         prethodne_poruke.add("0NE");
         prethodne_poruke.add("1NE");
@@ -31,9 +33,11 @@ public class MainFrame extends javax.swing.JFrame {
         boje.add(new StringBuffer("y"));
         boje.add(new StringBuffer("y"));
         initComponents();
+        
         Thread t=new Thread(){  
             public void run(){
                 while(true){
+                    br_mesta=4;
                     poruke=ArduinoController.getMessages();
                     poruke.forEach(e->{
                         System.out.println(e);
@@ -52,6 +56,7 @@ public class MainFrame extends javax.swing.JFrame {
                             else{
                                 ParkingMesto1.setBackground(Color.red);    
                             }
+                            br_mesta--;
                         }
                         else if(e.charAt(1)=='N' && e.charAt(2)=='E'){
                             if(prethodne_poruke.get(0).charAt(1)=='D' && prethodne_poruke.get(0).charAt(2)=='A'){
@@ -59,7 +64,8 @@ public class MainFrame extends javax.swing.JFrame {
                             }
                             else{
                                 System.out.println("Ne radi nista");
-                            }    
+                            }
+                            
                             boje.get(0).replace(0, boje.get(0).length(), "y");
                             ParkingMesto1.setBackground(Color.green);
                         }
@@ -72,7 +78,12 @@ public class MainFrame extends javax.swing.JFrame {
                             else{
                                 System.out.println("Ne radi nista");
                             }
-                            ParkingMesto2.setBackground(Color.yellow);
+                            if(boje.get(1).charAt(0)=='y')
+                                ParkingMesto2.setBackground(Color.yellow);
+                            else{
+                                ParkingMesto2.setBackground(Color.red);    
+                            }
+                            br_mesta--;
                         }
                         else if(e.charAt(1)=='N' && e.charAt(2)=='E'){
                             if(prethodne_poruke.get(1).charAt(1)=='D' && prethodne_poruke.get(1).charAt(2)=='A'){
@@ -80,7 +91,8 @@ public class MainFrame extends javax.swing.JFrame {
                             }
                             else{
                                 System.out.println("Ne radi nista");
-                            }    
+                            }
+                            boje.get(1).replace(0, boje.get(1).length(), "y");
                             ParkingMesto2.setBackground(Color.green);
                         }
                         break;
@@ -92,7 +104,12 @@ public class MainFrame extends javax.swing.JFrame {
                             else{
                                 System.out.println("Ne radi nista");
                             }
-                            ParkingMesto3.setBackground(Color.yellow);
+                            if(boje.get(2).charAt(0)=='y')
+                                ParkingMesto3.setBackground(Color.yellow);
+                            else{
+                                ParkingMesto3.setBackground(Color.red);    
+                            }
+                            br_mesta--;
                         }
                         else if(e.charAt(1)=='N' && e.charAt(2)=='E'){
                             if(prethodne_poruke.get(2).charAt(1)=='D' && prethodne_poruke.get(2).charAt(2)=='A'){
@@ -100,7 +117,8 @@ public class MainFrame extends javax.swing.JFrame {
                             }
                             else{
                                 System.out.println("Ne radi nista");
-                            }    
+                            }
+                            boje.get(2).replace(0, boje.get(2).length(), "y");
                             ParkingMesto3.setBackground(Color.green);
                         }
                         break;
@@ -112,7 +130,12 @@ public class MainFrame extends javax.swing.JFrame {
                             else{
                                 System.out.println("Ne radi nista");
                             }
-                            ParkingMesto4.setBackground(Color.yellow);
+                            if(boje.get(3).charAt(0)=='y')
+                                ParkingMesto4.setBackground(Color.yellow);
+                            else{
+                                ParkingMesto4.setBackground(Color.red);    
+                            }
+                            br_mesta--;
                         }
                         else if(e.charAt(1)=='N' && e.charAt(2)=='E'){
                             if(prethodne_poruke.get(3).charAt(1)=='D' && prethodne_poruke.get(3).charAt(2)=='A'){
@@ -120,7 +143,8 @@ public class MainFrame extends javax.swing.JFrame {
                             }
                             else{
                                 System.out.println("Ne radi nista");
-                            }    
+                            }
+                            boje.get(3).replace(0, boje.get(3).length(), "y");
                             ParkingMesto4.setBackground(Color.green);
                         }
                         break;
@@ -128,6 +152,7 @@ public class MainFrame extends javax.swing.JFrame {
                     
                     });
                     prethodne_poruke=poruke;
+                    lblBrMesta.setText(String.valueOf(br_mesta));
                     try {
                         Thread.sleep(4000);
                     } catch (InterruptedException ex) {
@@ -148,62 +173,88 @@ public class MainFrame extends javax.swing.JFrame {
         pnlBackground = new javax.swing.JPanel();
         pnlHeader = new javax.swing.JPanel();
         HeaderText = new javax.swing.JLabel();
+        btnPrijava = new javax.swing.JButton();
         jpanComponent = new javax.swing.JPanel();
         ParkingMesto1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        ParkingVreme1 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
+        lblVreme1 = new javax.swing.JLabel();
+        btnPlati1 = new javax.swing.JButton();
         ParkingMesto2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        ParkingVreme2 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        btnPlati2 = new javax.swing.JButton();
+        lblVreme2 = new javax.swing.JLabel();
         ParkingMesto3 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        ParkingVreme3 = new javax.swing.JLabel();
-        jButton5 = new javax.swing.JButton();
+        lblVreme3 = new javax.swing.JLabel();
+        btnPlati3 = new javax.swing.JButton();
         ParkingMesto4 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        ParkingVreme4 = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
+        lblVreme4 = new javax.swing.JLabel();
+        btnPlati4 = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
         pnlTabla = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        lblRadnoVreme = new javax.swing.JLabel();
+        lblBrMesta = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jSeparator2 = new javax.swing.JSeparator();
+        jSeparator3 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
+        setSize(new java.awt.Dimension(0, 0));
 
-        pnlBackground.setBackground(new java.awt.Color(107, 107, 162));
+        pnlBackground.setBackground(new java.awt.Color(255, 255, 255));
+        pnlBackground.setMaximumSize(new java.awt.Dimension(881, 541));
+        pnlBackground.setMinimumSize(new java.awt.Dimension(0, 0));
+        pnlBackground.setPreferredSize(new java.awt.Dimension(0, 0));
+        pnlBackground.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        pnlHeader.setBackground(new java.awt.Color(102, 102, 255));
+        pnlHeader.setBackground(new java.awt.Color(0, 71, 126));
+        pnlHeader.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         HeaderText.setBackground(new java.awt.Color(255, 255, 255));
         HeaderText.setFont(new java.awt.Font("Comic Sans MS", 0, 24)); // NOI18N
         HeaderText.setForeground(new java.awt.Color(255, 255, 255));
         HeaderText.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         HeaderText.setText("ParkingSimulator");
+        pnlHeader.add(HeaderText, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 0, 240, 50));
 
-        javax.swing.GroupLayout pnlHeaderLayout = new javax.swing.GroupLayout(pnlHeader);
-        pnlHeader.setLayout(pnlHeaderLayout);
-        pnlHeaderLayout.setHorizontalGroup(
-            pnlHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlHeaderLayout.createSequentialGroup()
-                .addComponent(HeaderText, javax.swing.GroupLayout.PREFERRED_SIZE, 511, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        pnlHeaderLayout.setVerticalGroup(
-            pnlHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlHeaderLayout.createSequentialGroup()
-                .addComponent(HeaderText, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        btnPrijava.setBackground(new java.awt.Color(0, 71, 126));
+        btnPrijava.setFont(new java.awt.Font("Comic Sans MS", 0, 20)); // NOI18N
+        btnPrijava.setForeground(new java.awt.Color(255, 255, 255));
+        btnPrijava.setText("Prijava");
+        btnPrijava.setBorder(null);
+        btnPrijava.setBorderPainted(false);
+        btnPrijava.setFocusPainted(false);
+        btnPrijava.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnPrijavaMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnPrijavaMouseExited(evt);
+            }
+        });
+        btnPrijava.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPrijavaActionPerformed(evt);
+            }
+        });
+        pnlHeader.add(btnPrijava, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 0, 110, 50));
 
-        jpanComponent.setBackground(new java.awt.Color(107, 107, 162));
-        jpanComponent.setLayout(new java.awt.GridLayout(2, 2, 25, 100));
+        pnlBackground.add(pnlHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 0, 600, 50));
+
+        jpanComponent.setBackground(new java.awt.Color(195, 195, 195));
+        jpanComponent.setPreferredSize(new java.awt.Dimension(630, 470));
+        jpanComponent.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         ParkingMesto1.setBackground(new java.awt.Color(255, 51, 51));
+        ParkingMesto1.setMaximumSize(new java.awt.Dimension(200, 150));
+        ParkingMesto1.setMinimumSize(new java.awt.Dimension(200, 150));
+        ParkingMesto1.setPreferredSize(new java.awt.Dimension(200, 150));
+        ParkingMesto1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Comic Sans MS", 0, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -213,45 +264,31 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel1.setMaximumSize(new java.awt.Dimension(50, 50));
         jLabel1.setMinimumSize(new java.awt.Dimension(50, 50));
         jLabel1.setPreferredSize(new java.awt.Dimension(50, 50));
+        ParkingMesto1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 70, 30, 40));
 
-        ParkingVreme1.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        ParkingVreme1.setForeground(new java.awt.Color(255, 255, 255));
-        ParkingVreme1.setText("Vreme 1");
+        lblVreme1.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        lblVreme1.setForeground(new java.awt.Color(255, 255, 255));
+        lblVreme1.setText("Vreme 1");
+        ParkingMesto1.add(lblVreme1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 0, 80, 30));
 
-        jButton3.setBackground(new java.awt.Color(255, 255, 255));
-        jButton3.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        jButton3.setText("Plati");
-        jButton3.setFocusPainted(false);
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnPlati1.setBackground(new java.awt.Color(204, 204, 204));
+        btnPlati1.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        btnPlati1.setText("Plati");
+        btnPlati1.setFocusPainted(false);
+        btnPlati1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnPlati1ActionPerformed(evt);
             }
         });
+        ParkingMesto1.add(btnPlati1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 90, 30));
 
-        javax.swing.GroupLayout ParkingMesto1Layout = new javax.swing.GroupLayout(ParkingMesto1);
-        ParkingMesto1.setLayout(ParkingMesto1Layout);
-        ParkingMesto1Layout.setHorizontalGroup(
-            ParkingMesto1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ParkingMesto1Layout.createSequentialGroup()
-                .addGap(0, 145, Short.MAX_VALUE)
-                .addGroup(ParkingMesto1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ParkingVreme1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
-        );
-        ParkingMesto1Layout.setVerticalGroup(
-            ParkingMesto1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ParkingMesto1Layout.createSequentialGroup()
-                .addComponent(ParkingVreme1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        jpanComponent.add(ParkingMesto1);
+        jpanComponent.add(ParkingMesto1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 275, 175));
 
         ParkingMesto2.setBackground(new java.awt.Color(255, 204, 51));
+        ParkingMesto2.setMaximumSize(new java.awt.Dimension(200, 150));
+        ParkingMesto2.setMinimumSize(new java.awt.Dimension(200, 150));
+        ParkingMesto2.setPreferredSize(new java.awt.Dimension(200, 150));
+        ParkingMesto2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setFont(new java.awt.Font("Comic Sans MS", 0, 36)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -261,45 +298,31 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel3.setMaximumSize(new java.awt.Dimension(50, 50));
         jLabel3.setMinimumSize(new java.awt.Dimension(50, 50));
         jLabel3.setPreferredSize(new java.awt.Dimension(50, 50));
+        ParkingMesto2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 70, 30, 40));
 
-        ParkingVreme2.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        ParkingVreme2.setForeground(new java.awt.Color(255, 255, 255));
-        ParkingVreme2.setText("Vreme 2");
-
-        jButton2.setBackground(new java.awt.Color(255, 255, 255));
-        jButton2.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        jButton2.setText("Plati");
-        jButton2.setFocusPainted(false);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnPlati2.setBackground(new java.awt.Color(204, 204, 204));
+        btnPlati2.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        btnPlati2.setText("Plati");
+        btnPlati2.setFocusPainted(false);
+        btnPlati2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnPlati2ActionPerformed(evt);
             }
         });
+        ParkingMesto2.add(btnPlati2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 80, 30));
 
-        javax.swing.GroupLayout ParkingMesto2Layout = new javax.swing.GroupLayout(ParkingMesto2);
-        ParkingMesto2.setLayout(ParkingMesto2Layout);
-        ParkingMesto2Layout.setHorizontalGroup(
-            ParkingMesto2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ParkingMesto2Layout.createSequentialGroup()
-                .addGap(0, 145, Short.MAX_VALUE)
-                .addGroup(ParkingMesto2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ParkingVreme2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
-        );
-        ParkingMesto2Layout.setVerticalGroup(
-            ParkingMesto2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ParkingMesto2Layout.createSequentialGroup()
-                .addComponent(ParkingVreme2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
+        lblVreme2.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        lblVreme2.setForeground(new java.awt.Color(255, 255, 255));
+        lblVreme2.setText("Vreme 2");
+        ParkingMesto2.add(lblVreme2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 0, 80, 27));
 
-        jpanComponent.add(ParkingMesto2);
+        jpanComponent.add(ParkingMesto2, new org.netbeans.lib.awtextra.AbsoluteConstraints(325, 0, 275, 175));
 
         ParkingMesto3.setBackground(new java.awt.Color(0, 153, 0));
+        ParkingMesto3.setMaximumSize(new java.awt.Dimension(200, 150));
+        ParkingMesto3.setMinimumSize(new java.awt.Dimension(200, 150));
+        ParkingMesto3.setPreferredSize(new java.awt.Dimension(200, 150));
+        ParkingMesto3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel4.setFont(new java.awt.Font("Comic Sans MS", 0, 36)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -309,251 +332,169 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel4.setMaximumSize(new java.awt.Dimension(50, 50));
         jLabel4.setMinimumSize(new java.awt.Dimension(50, 50));
         jLabel4.setPreferredSize(new java.awt.Dimension(50, 50));
+        ParkingMesto3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 70, 30, 40));
 
-        ParkingVreme3.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        ParkingVreme3.setForeground(new java.awt.Color(255, 255, 255));
-        ParkingVreme3.setText("Vreme 3");
+        lblVreme3.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        lblVreme3.setForeground(new java.awt.Color(255, 255, 255));
+        lblVreme3.setText("Vreme 3");
+        ParkingMesto3.add(lblVreme3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 0, 80, 27));
 
-        jButton5.setBackground(new java.awt.Color(255, 255, 255));
-        jButton5.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        jButton5.setText("Plati");
-        jButton5.setFocusPainted(false);
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        btnPlati3.setBackground(new java.awt.Color(204, 204, 204));
+        btnPlati3.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        btnPlati3.setText("Plati");
+        btnPlati3.setFocusPainted(false);
+        btnPlati3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                btnPlati3ActionPerformed(evt);
             }
         });
+        ParkingMesto3.add(btnPlati3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 70, 30));
 
-        javax.swing.GroupLayout ParkingMesto3Layout = new javax.swing.GroupLayout(ParkingMesto3);
-        ParkingMesto3.setLayout(ParkingMesto3Layout);
-        ParkingMesto3Layout.setHorizontalGroup(
-            ParkingMesto3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ParkingMesto3Layout.createSequentialGroup()
-                .addGap(0, 145, Short.MAX_VALUE)
-                .addGroup(ParkingMesto3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ParkingVreme3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
-        );
-        ParkingMesto3Layout.setVerticalGroup(
-            ParkingMesto3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ParkingMesto3Layout.createSequentialGroup()
-                .addComponent(ParkingVreme3, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        jpanComponent.add(ParkingMesto3);
+        jpanComponent.add(ParkingMesto3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 275, 275, 175));
 
         ParkingMesto4.setBackground(new java.awt.Color(0, 0, 204));
+        ParkingMesto4.setMaximumSize(new java.awt.Dimension(200, 150));
+        ParkingMesto4.setMinimumSize(new java.awt.Dimension(200, 150));
+        ParkingMesto4.setPreferredSize(new java.awt.Dimension(200, 150));
+        ParkingMesto4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("Comic Sans MS", 0, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         jLabel2.setText("4");
         jLabel2.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         jLabel2.setMaximumSize(new java.awt.Dimension(50, 50));
         jLabel2.setMinimumSize(new java.awt.Dimension(50, 50));
         jLabel2.setPreferredSize(new java.awt.Dimension(50, 50));
+        ParkingMesto4.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 60, 30, 50));
 
-        ParkingVreme4.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        ParkingVreme4.setForeground(new java.awt.Color(255, 255, 255));
-        ParkingVreme4.setText("Vreme 4");
+        lblVreme4.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        lblVreme4.setForeground(new java.awt.Color(255, 255, 255));
+        lblVreme4.setText("Vreme 4");
+        ParkingMesto4.add(lblVreme4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 0, 80, 27));
 
-        jButton4.setBackground(new java.awt.Color(255, 255, 255));
-        jButton4.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        jButton4.setText("Plati");
-        jButton4.setFocusPainted(false);
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btnPlati4.setBackground(new java.awt.Color(204, 204, 204));
+        btnPlati4.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        btnPlati4.setText("Plati");
+        btnPlati4.setFocusPainted(false);
+        btnPlati4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btnPlati4ActionPerformed(evt);
             }
         });
+        ParkingMesto4.add(btnPlati4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 70, 30));
 
-        javax.swing.GroupLayout ParkingMesto4Layout = new javax.swing.GroupLayout(ParkingMesto4);
-        ParkingMesto4.setLayout(ParkingMesto4Layout);
-        ParkingMesto4Layout.setHorizontalGroup(
-            ParkingMesto4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ParkingMesto4Layout.createSequentialGroup()
-                .addGap(0, 145, Short.MAX_VALUE)
-                .addGroup(ParkingMesto4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ParkingVreme4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
-        );
-        ParkingMesto4Layout.setVerticalGroup(
-            ParkingMesto4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ParkingMesto4Layout.createSequentialGroup()
-                .addComponent(ParkingVreme4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
+        jpanComponent.add(ParkingMesto4, new org.netbeans.lib.awtextra.AbsoluteConstraints(325, 275, 275, 175));
 
-        jpanComponent.add(ParkingMesto4);
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/parkingsimulator/Views/Slike/Untitled.png"))); // NOI18N
+        jpanComponent.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 600, 90));
 
-        pnlTabla.setBackground(new java.awt.Color(0, 102, 102));
+        pnlBackground.add(jpanComponent, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 50, 600, 450));
 
-        jLabel7.setBackground(new java.awt.Color(0, 102, 102));
-        jLabel7.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        pnlTabla.setBackground(new java.awt.Color(51, 102, 255));
+        pnlTabla.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel7.setBackground(new java.awt.Color(51, 102, 255));
+        jLabel7.setFont(new java.awt.Font("Comic Sans MS", 0, 20)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Tabla");
+        pnlTabla.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 240, 50));
 
-        jButton1.setBackground(new java.awt.Color(0, 102, 102));
-        jButton1.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Upravnik");
-        jButton1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(204, 204, 204)));
-        jButton1.setFocusPainted(false);
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButton1MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButton1MouseExited(evt);
-            }
-        });
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        jLabel8.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Radno vreme:");
+        pnlTabla.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 90, 20));
 
-        jLabel9.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Broj slobodnih mesta:");
+        pnlTabla.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 150, 20));
 
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("get Radnog ");
+        lblRadnoVreme.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        lblRadnoVreme.setForeground(new java.awt.Color(255, 255, 255));
+        lblRadnoVreme.setText("get Radnog ");
+        pnlTabla.add(lblRadnoVreme, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 150, 90, 20));
 
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Get br mesta");
+        lblBrMesta.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        lblBrMesta.setForeground(new java.awt.Color(255, 255, 255));
+        pnlTabla.add(lblBrMesta, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 100, 90, 20));
 
-        javax.swing.GroupLayout pnlTablaLayout = new javax.swing.GroupLayout(pnlTabla);
-        pnlTabla.setLayout(pnlTablaLayout);
-        pnlTablaLayout.setHorizontalGroup(
-            pnlTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(pnlTablaLayout.createSequentialGroup()
-                .addGroup(pnlTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlTablaLayout.createSequentialGroup()
-                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlTablaLayout.createSequentialGroup()
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        pnlTablaLayout.setVerticalGroup(
-            pnlTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlTablaLayout.createSequentialGroup()
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(pnlTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, 0)
-                .addGroup(pnlTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, 0)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0))
-        );
+        jSeparator1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        pnlTabla.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 240, -1));
+        pnlTabla.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 240, 20));
+        pnlTabla.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 240, 10));
 
-        javax.swing.GroupLayout pnlBackgroundLayout = new javax.swing.GroupLayout(pnlBackground);
-        pnlBackground.setLayout(pnlBackgroundLayout);
-        pnlBackgroundLayout.setHorizontalGroup(
-            pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlBackgroundLayout.createSequentialGroup()
-                .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(pnlHeader, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jpanComponent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, 0)
-                .addComponent(pnlTabla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(0, 0, 0))
-        );
-        pnlBackgroundLayout.setVerticalGroup(
-            pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlBackgroundLayout.createSequentialGroup()
-                .addComponent(pnlHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(jpanComponent, javax.swing.GroupLayout.DEFAULT_SIZE, 375, Short.MAX_VALUE))
-            .addGroup(pnlBackgroundLayout.createSequentialGroup()
-                .addComponent(pnlTabla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
+        pnlBackground.add(pnlTabla, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 240, 500));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlBackground, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(pnlBackground, javax.swing.GroupLayout.PREFERRED_SIZE, 840, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlBackground, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnlBackground, javax.swing.GroupLayout.PREFERRED_SIZE, 498, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
+
+        getAccessibleContext().setAccessibleDescription("");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Prijava i=new Prijava();
+    private void btnPrijavaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrijavaActionPerformed
+      
+        Prijava i=new Prijava(this.pnlBackground);
         i.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+        this.dispose();
+        
+    }//GEN-LAST:event_btnPrijavaActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        if(poruke.get(0).charAt(1)=='D' && poruke.get(0).charAt(2)=='A'){
+    private void btnPlati1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlati1ActionPerformed
+
+ /*       if(poruke.get(0).charAt(1)=='D' && poruke.get(0).charAt(2)=='A'){
             this.boje.get(0).replace(0, boje.get(0).length(), "r");
             System.out.println("KLIKNUT BUTTON : "+boje.get(0));
             ParkingMesto1.setBackground(Color.red);
-        }
-    }//GEN-LAST:event_jButton3ActionPerformed
+        }*/
+        Plati p=new Plati();
+        p.setVisible(true);
+    }//GEN-LAST:event_btnPlati1ActionPerformed
 
-    private void jButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseEntered
-    this.jButton1.setBackground(Color.white);
-    this.jButton1.setForeground(Color.decode("#006666"));
-    }//GEN-LAST:event_jButton1MouseEntered
+    private void btnPrijavaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPrijavaMouseEntered
+    this.btnPrijava.setBackground(Color.decode("#3366FF"));
+    this.btnPrijava.setForeground(Color.white);
+    }//GEN-LAST:event_btnPrijavaMouseEntered
 
-    private void jButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseExited
-       this.jButton1.setBackground(Color.decode("#006666"));
-    this.jButton1.setForeground(Color.white);
-    }//GEN-LAST:event_jButton1MouseExited
+    private void btnPrijavaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPrijavaMouseExited
+    this.btnPrijava.setBackground(Color.decode("#00477E"));
+    this.btnPrijava.setForeground(Color.white);
+    }//GEN-LAST:event_btnPrijavaMouseExited
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        if(poruke.get(1).charAt(1)=='D' && poruke.get(1).charAt(2)=='A'){
-            this.boje.get(0).replace(0, boje.get(0).length(), "r");
+    private void btnPlati2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlati2ActionPerformed
+         if(poruke.get(1).charAt(1)=='D' && poruke.get(1).charAt(2)=='A'){
+            this.boje.get(1).replace(0, boje.get(1).length(), "r");
             ParkingMesto2.setBackground(Color.red);
-        }
-    }//GEN-LAST:event_jButton2ActionPerformed
+         }
+    }//GEN-LAST:event_btnPlati2ActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-        if(poruke.get(2).charAt(1)=='D' && poruke.get(2).charAt(2)=='A'){
-            this.boje.get(0).replace(0, boje.get(0).length(), "r");
-            ParkingMesto3.setBackground(Color.red);
-        }
-    }//GEN-LAST:event_jButton5ActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-        if(poruke.get(3).charAt(1)=='D' && poruke.get(3).charAt(2)=='A'){
-            this.boje.get(0).replace(0, boje.get(0).length(), "r");
+    private void btnPlati4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlati4ActionPerformed
+         
+          if(poruke.get(3).charAt(1)=='D' && poruke.get(3).charAt(2)=='A'){
+            this.boje.get(3).replace(0, boje.get(3).length(), "r");
             ParkingMesto4.setBackground(Color.red);
         }
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_btnPlati4ActionPerformed
+
+    private void btnPlati3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlati3ActionPerformed
+        if(poruke.get(2).charAt(1)=='D' && poruke.get(2).charAt(2)=='A'){
+            this.boje.get(2).replace(0, boje.get(2).length(), "r");
+            ParkingMesto3.setBackground(Color.red);
+        }
+    }//GEN-LAST:event_btnPlati3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -596,25 +537,29 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel ParkingMesto2;
     private javax.swing.JPanel ParkingMesto3;
     private javax.swing.JPanel ParkingMesto4;
-    private javax.swing.JLabel ParkingVreme1;
-    private javax.swing.JLabel ParkingVreme2;
-    private javax.swing.JLabel ParkingVreme3;
-    private javax.swing.JLabel ParkingVreme4;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JButton btnPlati1;
+    private javax.swing.JButton btnPlati2;
+    private javax.swing.JButton btnPlati3;
+    private javax.swing.JButton btnPlati4;
+    private javax.swing.JButton btnPrijava;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
     private javax.swing.JPanel jpanComponent;
+    private javax.swing.JLabel lblBrMesta;
+    private javax.swing.JLabel lblRadnoVreme;
+    private javax.swing.JLabel lblVreme1;
+    private javax.swing.JLabel lblVreme2;
+    private javax.swing.JLabel lblVreme3;
+    private javax.swing.JLabel lblVreme4;
     private javax.swing.JPanel pnlBackground;
     private javax.swing.JPanel pnlHeader;
     private javax.swing.JPanel pnlTabla;
