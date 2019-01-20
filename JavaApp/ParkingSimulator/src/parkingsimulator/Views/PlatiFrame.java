@@ -5,6 +5,8 @@
  */
 package parkingsimulator.Views;
 
+import java.awt.Color;
+import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
@@ -13,18 +15,27 @@ import javax.swing.WindowConstants;
  *
  * @author Amar
  */
-public class Plati extends javax.swing.JFrame {
+public class PlatiFrame extends javax.swing.JFrame {
 
     /**
      * Creates new form Plati
      */
-    public Plati() {
+    private ArrayList<String> poruke;
+    private ArrayList<StringBuffer> boje;
+    private JPanel panelKojiMenjam;
+    private int redniBroj;
+    public PlatiFrame(){initComponents();}
+    public PlatiFrame(ArrayList<String> poruke1,ArrayList<StringBuffer> boje1,JPanel panelKojiMenjam1,int redniBroj) {
         initComponents();
         Random r=new Random();  
-        this.lblIDVozila2.setText(String.valueOf(r.nextInt(9999))); // Saljemo kad se zauzme mesto
+        this.lblIDVozila2.setText(String.valueOf("NP-"+r.nextInt(9)+r.nextInt(9)+r.nextInt(9))); // Saljemo kad se zauzme mesto
         this.slldCena.setValue(1);
         this.lblCena2.setText("100din");
         this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+        this.poruke=poruke1;
+        this.boje=boje1;
+        this.panelKojiMenjam=panelKojiMenjam1;
+        this.redniBroj=redniBroj;
     }
 
     /**
@@ -64,6 +75,11 @@ public class Plati extends javax.swing.JFrame {
         lblIDVozila.setText("ID vozila:");
 
         btnUplati.setText("Uplati");
+        btnUplati.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUplatiActionPerformed(evt);
+            }
+        });
 
         lblCena.setText("Vreme zadrzavanja:");
 
@@ -135,10 +151,17 @@ public class Plati extends javax.swing.JFrame {
         lblCena2.setText(String.valueOf(this.slldCena.getValue()*100+"din"));
     }//GEN-LAST:event_slldCenaStateChanged
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
+    private void btnUplatiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUplatiActionPerformed
+        if(poruke.get(redniBroj).charAt(1)=='D' && poruke.get(redniBroj).charAt(2)=='A'){
+            System.out.println(redniBroj);
+            this.boje.get(redniBroj).replace(0, boje.get(redniBroj).length(), "r");
+            panelKojiMenjam.setBackground(Color.red);
+    }//GEN-LAST:event_btnUplatiActionPerformed
+
+    }
+        
+
+public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -152,20 +175,21 @@ public class Plati extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Plati.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PlatiFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Plati.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PlatiFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Plati.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PlatiFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Plati.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PlatiFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Plati().setVisible(true);
+                new PlatiFrame().setVisible(true);
             }
         });
     }

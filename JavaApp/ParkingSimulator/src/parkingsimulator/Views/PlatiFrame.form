@@ -116,6 +116,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Uplati"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUplatiActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lblCena">
           <Properties>

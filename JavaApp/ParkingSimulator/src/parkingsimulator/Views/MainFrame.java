@@ -7,10 +7,13 @@ package parkingsimulator.Views;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import parkingsimulator.Arduino.ArduinoController;
+import parkingsimulator.Models.DBController;
 
 /**
  *
@@ -37,6 +40,7 @@ public class MainFrame extends javax.swing.JFrame {
         Thread t=new Thread(){  
             public void run(){
                 while(true){
+                    //lblRadnoVreme.setText(DBController.require());
                     br_mesta=4;
                     poruke=ArduinoController.getMessages();
                     poruke.forEach(e->{
@@ -57,6 +61,7 @@ public class MainFrame extends javax.swing.JFrame {
                                 ParkingMesto1.setBackground(Color.red);    
                             }
                             br_mesta--;
+                            btnPlati1.setEnabled(true);
                         }
                         else if(e.charAt(1)=='N' && e.charAt(2)=='E'){
                             if(prethodne_poruke.get(0).charAt(1)=='D' && prethodne_poruke.get(0).charAt(2)=='A'){
@@ -67,6 +72,7 @@ public class MainFrame extends javax.swing.JFrame {
                             }
                             
                             boje.get(0).replace(0, boje.get(0).length(), "y");
+                            btnPlati1.setEnabled(false);
                             ParkingMesto1.setBackground(Color.green);
                         }
                         break;
@@ -83,7 +89,8 @@ public class MainFrame extends javax.swing.JFrame {
                             else{
                                 ParkingMesto2.setBackground(Color.red);    
                             }
-                            br_mesta--;
+                                br_mesta--;
+                                btnPlati2.setEnabled(true);
                         }
                         else if(e.charAt(1)=='N' && e.charAt(2)=='E'){
                             if(prethodne_poruke.get(1).charAt(1)=='D' && prethodne_poruke.get(1).charAt(2)=='A'){
@@ -94,6 +101,7 @@ public class MainFrame extends javax.swing.JFrame {
                             }
                             boje.get(1).replace(0, boje.get(1).length(), "y");
                             ParkingMesto2.setBackground(Color.green);
+                            btnPlati2.setEnabled(false);
                         }
                         break;
                     case '2':
@@ -110,6 +118,7 @@ public class MainFrame extends javax.swing.JFrame {
                                 ParkingMesto3.setBackground(Color.red);    
                             }
                             br_mesta--;
+                            btnPlati3.setEnabled(true);
                         }
                         else if(e.charAt(1)=='N' && e.charAt(2)=='E'){
                             if(prethodne_poruke.get(2).charAt(1)=='D' && prethodne_poruke.get(2).charAt(2)=='A'){
@@ -120,6 +129,7 @@ public class MainFrame extends javax.swing.JFrame {
                             }
                             boje.get(2).replace(0, boje.get(2).length(), "y");
                             ParkingMesto3.setBackground(Color.green);
+                            btnPlati3.setEnabled(false);
                         }
                         break;
                     case '3':
@@ -136,6 +146,7 @@ public class MainFrame extends javax.swing.JFrame {
                                 ParkingMesto4.setBackground(Color.red);    
                             }
                             br_mesta--;
+                            btnPlati4.setEnabled(true);
                         }
                         else if(e.charAt(1)=='N' && e.charAt(2)=='E'){
                             if(prethodne_poruke.get(3).charAt(1)=='D' && prethodne_poruke.get(3).charAt(2)=='A'){
@@ -146,6 +157,7 @@ public class MainFrame extends javax.swing.JFrame {
                             }
                             boje.get(3).replace(0, boje.get(3).length(), "y");
                             ParkingMesto4.setBackground(Color.green);
+                            btnPlati4.setEnabled(false);
                         }
                         break;
                 }
@@ -460,7 +472,7 @@ public class MainFrame extends javax.swing.JFrame {
             System.out.println("KLIKNUT BUTTON : "+boje.get(0));
             ParkingMesto1.setBackground(Color.red);
         }*/
-        Plati p=new Plati();
+        PlatiFrame p=new PlatiFrame(this.poruke,this.boje,this.ParkingMesto1,0);
         p.setVisible(true);
     }//GEN-LAST:event_btnPlati1ActionPerformed
 
@@ -475,25 +487,31 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPrijavaMouseExited
 
     private void btnPlati2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlati2ActionPerformed
-         if(poruke.get(1).charAt(1)=='D' && poruke.get(1).charAt(2)=='A'){
-            this.boje.get(1).replace(0, boje.get(1).length(), "r");
-            ParkingMesto2.setBackground(Color.red);
-         }
-    }//GEN-LAST:event_btnPlati2ActionPerformed
-
-    private void btnPlati4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlati4ActionPerformed
+//        if(poruke.get(1).charAt(1)=='D' && poruke.get(1).charAt(2)=='A'){
+//            this.boje.get(1).replace(0, boje.get(1).length(), "r");
+//            ParkingMesto2.setBackground(Color.red);
+//        }
+        PlatiFrame p=new PlatiFrame(this.poruke,this.boje,this.ParkingMesto2,1);
+        p.setVisible(true);
          
-          if(poruke.get(3).charAt(1)=='D' && poruke.get(3).charAt(2)=='A'){
-            this.boje.get(3).replace(0, boje.get(3).length(), "r");
-            ParkingMesto4.setBackground(Color.red);
-        }
+    }//GEN-LAST:event_btnPlati2ActionPerformed
+    private void btnPlati4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlati4ActionPerformed
+//        if(poruke.get(3).charAt(1)=='D' && poruke.get(3).charAt(2)=='A'){
+//            this.boje.get(3).replace(0, boje.get(3).length(), "r");
+//            ParkingMesto4.setBackground(Color.red);
+//        }
+        PlatiFrame p=new PlatiFrame(this.poruke,this.boje,this.ParkingMesto4,3);
+        p.setVisible(true);
     }//GEN-LAST:event_btnPlati4ActionPerformed
 
     private void btnPlati3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlati3ActionPerformed
-        if(poruke.get(2).charAt(1)=='D' && poruke.get(2).charAt(2)=='A'){
-            this.boje.get(2).replace(0, boje.get(2).length(), "r");
-            ParkingMesto3.setBackground(Color.red);
-        }
+//        if(poruke.get(2).charAt(1)=='D' && poruke.get(2).charAt(2)=='A'){
+//            this.boje.get(2).replace(0, boje.get(2).length(), "r");
+//            ParkingMesto3.setBackground(Color.red);
+//        }
+//        
+        PlatiFrame p=new PlatiFrame(this.poruke,this.boje,this.ParkingMesto3,2);
+        p.setVisible(true);
     }//GEN-LAST:event_btnPlati3ActionPerformed
 
     /**
