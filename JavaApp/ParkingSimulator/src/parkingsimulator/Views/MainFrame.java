@@ -7,6 +7,8 @@ package parkingsimulator.Views;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -31,12 +33,13 @@ public class MainFrame extends javax.swing.JFrame {
         prethodne_poruke.add("1NE");
         prethodne_poruke.add("2NE");
         prethodne_poruke.add("3NE");
+        Dimension d=Toolkit.getDefaultToolkit().getScreenSize();
         boje.add(new StringBuffer("y"));
         boje.add(new StringBuffer("y"));
         boje.add(new StringBuffer("y"));
         boje.add(new StringBuffer("y"));
         initComponents();
-        
+        this.setSize(d.width, d.height-60);
         Thread t=new Thread(){  
             public void run(){
                 while(true){
@@ -183,9 +186,6 @@ public class MainFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         pnlBackground = new javax.swing.JPanel();
-        pnlHeader = new javax.swing.JPanel();
-        HeaderText = new javax.swing.JLabel();
-        btnPrijava = new javax.swing.JButton();
         jpanComponent = new javax.swing.JPanel();
         ParkingMesto1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -213,6 +213,7 @@ public class MainFrame extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
+        btnPrijava = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -222,45 +223,9 @@ public class MainFrame extends javax.swing.JFrame {
         pnlBackground.setMaximumSize(new java.awt.Dimension(881, 541));
         pnlBackground.setMinimumSize(new java.awt.Dimension(0, 0));
         pnlBackground.setPreferredSize(new java.awt.Dimension(0, 0));
-        pnlBackground.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        pnlHeader.setBackground(new java.awt.Color(0, 71, 126));
-        pnlHeader.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        HeaderText.setBackground(new java.awt.Color(255, 255, 255));
-        HeaderText.setFont(new java.awt.Font("Comic Sans MS", 0, 24)); // NOI18N
-        HeaderText.setForeground(new java.awt.Color(255, 255, 255));
-        HeaderText.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        HeaderText.setText("ParkingSimulator");
-        pnlHeader.add(HeaderText, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 0, 240, 50));
-
-        btnPrijava.setBackground(new java.awt.Color(0, 71, 126));
-        btnPrijava.setFont(new java.awt.Font("Comic Sans MS", 0, 20)); // NOI18N
-        btnPrijava.setForeground(new java.awt.Color(255, 255, 255));
-        btnPrijava.setText("Prijava");
-        btnPrijava.setBorder(null);
-        btnPrijava.setBorderPainted(false);
-        btnPrijava.setFocusPainted(false);
-        btnPrijava.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnPrijavaMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnPrijavaMouseExited(evt);
-            }
-        });
-        btnPrijava.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPrijavaActionPerformed(evt);
-            }
-        });
-        pnlHeader.add(btnPrijava, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 0, 110, 50));
-
-        pnlBackground.add(pnlHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 0, 600, 50));
 
         jpanComponent.setBackground(new java.awt.Color(195, 195, 195));
         jpanComponent.setPreferredSize(new java.awt.Dimension(630, 470));
-        jpanComponent.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         ParkingMesto1.setBackground(new java.awt.Color(255, 51, 51));
         ParkingMesto1.setMaximumSize(new java.awt.Dimension(200, 150));
@@ -294,8 +259,6 @@ public class MainFrame extends javax.swing.JFrame {
         });
         ParkingMesto1.add(btnPlati1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 90, 30));
 
-        jpanComponent.add(ParkingMesto1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 275, 175));
-
         ParkingMesto2.setBackground(new java.awt.Color(255, 204, 51));
         ParkingMesto2.setMaximumSize(new java.awt.Dimension(200, 150));
         ParkingMesto2.setMinimumSize(new java.awt.Dimension(200, 150));
@@ -327,8 +290,6 @@ public class MainFrame extends javax.swing.JFrame {
         lblVreme2.setForeground(new java.awt.Color(255, 255, 255));
         lblVreme2.setText("Vreme 2");
         ParkingMesto2.add(lblVreme2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 0, 80, 27));
-
-        jpanComponent.add(ParkingMesto2, new org.netbeans.lib.awtextra.AbsoluteConstraints(325, 0, 275, 175));
 
         ParkingMesto3.setBackground(new java.awt.Color(0, 153, 0));
         ParkingMesto3.setMaximumSize(new java.awt.Dimension(200, 150));
@@ -362,8 +323,6 @@ public class MainFrame extends javax.swing.JFrame {
         });
         ParkingMesto3.add(btnPlati3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 70, 30));
 
-        jpanComponent.add(ParkingMesto3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 275, 275, 175));
-
         ParkingMesto4.setBackground(new java.awt.Color(0, 0, 204));
         ParkingMesto4.setMaximumSize(new java.awt.Dimension(200, 150));
         ParkingMesto4.setMinimumSize(new java.awt.Dimension(200, 150));
@@ -396,14 +355,38 @@ public class MainFrame extends javax.swing.JFrame {
         });
         ParkingMesto4.add(btnPlati4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 70, 30));
 
-        jpanComponent.add(ParkingMesto4, new org.netbeans.lib.awtextra.AbsoluteConstraints(325, 275, 275, 175));
-
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/parkingsimulator/Views/Slike/Untitled.png"))); // NOI18N
-        jpanComponent.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 600, 90));
 
-        pnlBackground.add(jpanComponent, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 50, 600, 450));
+        javax.swing.GroupLayout jpanComponentLayout = new javax.swing.GroupLayout(jpanComponent);
+        jpanComponent.setLayout(jpanComponentLayout);
+        jpanComponentLayout.setHorizontalGroup(
+            jpanComponentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpanComponentLayout.createSequentialGroup()
+                .addComponent(ParkingMesto1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(50, 50, 50)
+                .addComponent(ParkingMesto2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 716, Short.MAX_VALUE)
+            .addGroup(jpanComponentLayout.createSequentialGroup()
+                .addComponent(ParkingMesto3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(50, 50, 50)
+                .addComponent(ParkingMesto4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jpanComponentLayout.setVerticalGroup(
+            jpanComponentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpanComponentLayout.createSequentialGroup()
+                .addGroup(jpanComponentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ParkingMesto1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ParkingMesto2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(5, 5, 5)
+                .addComponent(jLabel5)
+                .addGap(5, 5, 5)
+                .addGroup(jpanComponentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ParkingMesto3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ParkingMesto4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
 
-        pnlTabla.setBackground(new java.awt.Color(51, 102, 255));
+        pnlTabla.setBackground(new java.awt.Color(30, 38, 44));
         pnlTabla.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel7.setBackground(new java.awt.Color(51, 102, 255));
@@ -437,19 +420,54 @@ public class MainFrame extends javax.swing.JFrame {
         pnlTabla.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 240, 20));
         pnlTabla.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 240, 10));
 
-        pnlBackground.add(pnlTabla, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 240, 500));
+        btnPrijava.setBackground(new java.awt.Color(0, 71, 126));
+        btnPrijava.setFont(new java.awt.Font("Comic Sans MS", 0, 20)); // NOI18N
+        btnPrijava.setForeground(new java.awt.Color(255, 255, 255));
+        btnPrijava.setText("Prijava");
+        btnPrijava.setBorder(null);
+        btnPrijava.setBorderPainted(false);
+        btnPrijava.setFocusPainted(false);
+        btnPrijava.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnPrijavaMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnPrijavaMouseExited(evt);
+            }
+        });
+        btnPrijava.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPrijavaActionPerformed(evt);
+            }
+        });
+        pnlTabla.add(btnPrijava, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 570, 290, 50));
+
+        javax.swing.GroupLayout pnlBackgroundLayout = new javax.swing.GroupLayout(pnlBackground);
+        pnlBackground.setLayout(pnlBackgroundLayout);
+        pnlBackgroundLayout.setHorizontalGroup(
+            pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlBackgroundLayout.createSequentialGroup()
+                .addComponent(pnlTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jpanComponent, javax.swing.GroupLayout.DEFAULT_SIZE, 716, Short.MAX_VALUE))
+        );
+        pnlBackgroundLayout.setVerticalGroup(
+            pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(pnlTabla, javax.swing.GroupLayout.DEFAULT_SIZE, 640, Short.MAX_VALUE)
+            .addComponent(jpanComponent, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 640, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(pnlBackground, javax.swing.GroupLayout.PREFERRED_SIZE, 840, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pnlBackground, javax.swing.GroupLayout.DEFAULT_SIZE, 1059, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlBackground, javax.swing.GroupLayout.PREFERRED_SIZE, 498, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(pnlBackground, javax.swing.GroupLayout.DEFAULT_SIZE, 640, Short.MAX_VALUE)
         );
 
         getAccessibleContext().setAccessibleDescription("");
@@ -550,7 +568,6 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel HeaderText;
     private javax.swing.JPanel ParkingMesto1;
     private javax.swing.JPanel ParkingMesto2;
     private javax.swing.JPanel ParkingMesto3;
@@ -579,7 +596,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel lblVreme3;
     private javax.swing.JLabel lblVreme4;
     private javax.swing.JPanel pnlBackground;
-    private javax.swing.JPanel pnlHeader;
     private javax.swing.JPanel pnlTabla;
     // End of variables declaration//GEN-END:variables
 }

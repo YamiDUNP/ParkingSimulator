@@ -8,6 +8,8 @@ package parkingsimulator.Views;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Random;
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
@@ -156,6 +158,9 @@ public class PlatiFrame extends javax.swing.JFrame {
             System.out.println(redniBroj);
             this.boje.get(redniBroj).replace(0, boje.get(redniBroj).length(), "r");
             panelKojiMenjam.setBackground(Color.red);
+            JOptionPane.showMessageDialog(null, "Uspesno ste uplatili!");
+            this.setVisible(false);
+            this.dispose();
     }//GEN-LAST:event_btnUplatiActionPerformed
 
     }
