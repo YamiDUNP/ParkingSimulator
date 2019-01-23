@@ -95,7 +95,6 @@ public class Prijava extends javax.swing.JFrame {
         jPanel4.add(btnPrijava, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 280, 240, 40));
 
         txtUsername.setForeground(new java.awt.Color(204, 204, 204));
-        txtUsername.setText("Korisnicko ime");
         txtUsername.setBorder(null);
         txtUsername.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -118,7 +117,6 @@ public class Prijava extends javax.swing.JFrame {
         jPanel4.add(txtUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, 240, 20));
 
         txtPassword.setForeground(new java.awt.Color(204, 204, 204));
-        txtPassword.setText("Lozinka");
         txtPassword.setBorder(null);
         txtPassword.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -234,14 +232,10 @@ this.btnPrijava.setForeground(Color.white);
 
     private void txtUsernameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtUsernameMouseClicked
         // TODO add your handling code here:
-         this.txtUsername.setText("");
-        this.txtUsername.setForeground(Color.black);
     }//GEN-LAST:event_txtUsernameMouseClicked
 
     private void txtPasswordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPasswordMouseClicked
         // TODO add your handling code here:
-        this.txtPassword.setText("");
-        this.txtPassword.setForeground(Color.black);
     }//GEN-LAST:event_txtPasswordMouseClicked
 
     private void txtUsernameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsernameKeyPressed
