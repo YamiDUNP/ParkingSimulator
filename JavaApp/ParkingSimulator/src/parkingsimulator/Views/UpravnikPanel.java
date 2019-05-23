@@ -579,8 +579,7 @@ public class UpravnikPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         this.pnlBackground.setVisible(false);
         Prijava i=new Prijava();
-        i.setVisible(true);
-        
+        i.setVisible(true);        
     }//GEN-LAST:event_btnOdjavaActionPerformed
 
     private void btnIzmenaCeneMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnIzmenaCeneMouseEntered

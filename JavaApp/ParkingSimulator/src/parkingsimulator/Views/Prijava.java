@@ -313,7 +313,7 @@ this.btnPrijava.setForeground(Color.white);
         Upravnik tr=DBController.require().loginValid(this.txtUsername.getText(),this.txtPassword.getText());
         if(tr!=null){
             System.out.println("Uspesno logovanje");
-            AdminFrame af= new AdminFrame();
+            MainFrame af= new MainFrame("Admin");
             af.setVisible(true);
             this.dispose();
             

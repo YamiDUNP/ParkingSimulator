@@ -12,6 +12,7 @@ import java.awt.Toolkit;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import parkingsimulator.Arduino.ArduinoController;
@@ -23,12 +24,11 @@ import parkingsimulator.Models.DBController;
  */
 public class MainFrame extends javax.swing.JFrame {
     
-                    
-    ArrayList<String> poruke;
-    ArrayList<String> prethodne_poruke=new ArrayList();
-    ArrayList<StringBuffer> boje=new ArrayList();
-    int br_mesta=4;
-    public MainFrame() {
+    MainFrame(String s){
+        ids.add(new StringBuffer(""));
+        ids.add(new StringBuffer(""));
+        ids.add(new StringBuffer(""));
+        ids.add(new StringBuffer(""));
         prethodne_poruke.add("0NE");
         prethodne_poruke.add("1NE");
         prethodne_poruke.add("2NE");
@@ -39,7 +39,15 @@ public class MainFrame extends javax.swing.JFrame {
         boje.add(new StringBuffer("y"));
         boje.add(new StringBuffer("y"));
         initComponents();
+        Random r=new Random();
         this.setSize(d.width, d.height-60);
+        //---------------------------------------------------------
+        OpcijePanel1 newPnl = new OpcijePanel1();
+        this.pnlOpcijeGlavni.removeAll();
+        this.pnlOpcijeGlavni.revalidate();
+        this.pnlOpcijeGlavni.setLayout(new BorderLayout());
+        this.pnlOpcijeGlavni.add(newPnl);
+        //---------------------------------------------------------
         Thread t=new Thread(){  
             public void run(){
                 while(true){
@@ -51,6 +59,8 @@ public class MainFrame extends javax.swing.JFrame {
                     switch(e.charAt(0)){
                     case '0':
                         if(e.charAt(1)=='D' && e.charAt(2)=='A'){
+                            if(ids.get(0).toString().equals(""))
+                                ids.set(0,new StringBuffer(String.valueOf("NP-"+r.nextInt(9)+r.nextInt(9)+r.nextInt(9))) );
                             if(prethodne_poruke.get(0).charAt(1)=='N' && prethodne_poruke.get(0).charAt(2)=='E'){
                                 System.out.println("Upisi u bazu za nulto mesto+vreme zauzimanja");
                             }
@@ -61,12 +71,13 @@ public class MainFrame extends javax.swing.JFrame {
                             if(boje.get(0).charAt(0)=='y')
                                 ParkingMesto1.setBackground(Color.yellow);
                             else{
-                                ParkingMesto1.setBackground(Color.red);    
+                                ParkingMesto1.setBackground(Color.red);
                             }
                             br_mesta--;
                             btnPlati1.setEnabled(true);
                         }
                         else if(e.charAt(1)=='N' && e.charAt(2)=='E'){
+                            ids.set(0,new StringBuffer(""));
                             if(prethodne_poruke.get(0).charAt(1)=='D' && prethodne_poruke.get(0).charAt(2)=='A'){
                                 System.out.println("Upisi u bazu za nulto mest+VREME ODLASKA");
                             }
@@ -81,6 +92,9 @@ public class MainFrame extends javax.swing.JFrame {
                         break;
                     case '1':
                         if(e.charAt(1)=='D' && e.charAt(2)=='A'){
+                            if(ids.get(1).toString().equals(""))
+                                ids.set(1,new StringBuffer(String.valueOf("NP-"+r.nextInt(9)+r.nextInt(9)+r.nextInt(9))) );
+                            
                             if(prethodne_poruke.get(1).charAt(1)=='N' && prethodne_poruke.get(1).charAt(2)=='E'){
                                 System.out.println("Upisi u bazu za nulto mesto+vreme zauzimanja");
                             }
@@ -96,6 +110,7 @@ public class MainFrame extends javax.swing.JFrame {
                                 btnPlati2.setEnabled(true);
                         }
                         else if(e.charAt(1)=='N' && e.charAt(2)=='E'){
+                            ids.set(1,new StringBuffer(""));
                             if(prethodne_poruke.get(1).charAt(1)=='D' && prethodne_poruke.get(1).charAt(2)=='A'){
                                 System.out.println("Upisi u bazu za nulto mest+VREME ODLASKA");
                             }
@@ -109,6 +124,9 @@ public class MainFrame extends javax.swing.JFrame {
                         break;
                     case '2':
                         if(e.charAt(1)=='D' && e.charAt(2)=='A'){
+                            if(ids.get(2).toString().equals(""))
+                                ids.set(2,new StringBuffer(String.valueOf("NP-"+r.nextInt(9)+r.nextInt(9)+r.nextInt(9))) );
+                            
                             if(prethodne_poruke.get(2).charAt(1)=='N' && prethodne_poruke.get(2).charAt(2)=='E'){
                                 System.out.println("Upisi u bazu za nulto mesto+vreme zauzimanja");
                             }
@@ -124,6 +142,7 @@ public class MainFrame extends javax.swing.JFrame {
                             btnPlati3.setEnabled(true);
                         }
                         else if(e.charAt(1)=='N' && e.charAt(2)=='E'){
+                            ids.set(2,new StringBuffer(""));
                             if(prethodne_poruke.get(2).charAt(1)=='D' && prethodne_poruke.get(2).charAt(2)=='A'){
                                 System.out.println("Upisi u bazu za nulto mest+VREME ODLASKA");
                             }
@@ -137,6 +156,9 @@ public class MainFrame extends javax.swing.JFrame {
                         break;
                     case '3':
                         if(e.charAt(1)=='D' && e.charAt(2)=='A'){
+                            if(ids.get(3).toString().equals(""))
+                                ids.set(3,new StringBuffer(String.valueOf("NP-"+r.nextInt(9)+r.nextInt(9)+r.nextInt(9))) );
+                            
                             if(prethodne_poruke.get(3).charAt(1)=='N' && prethodne_poruke.get(3).charAt(2)=='E'){
                                 System.out.println("Upisi u bazu za nulto mesto+vreme zauzimanja");
                             }
@@ -152,6 +174,7 @@ public class MainFrame extends javax.swing.JFrame {
                             btnPlati4.setEnabled(true);
                         }
                         else if(e.charAt(1)=='N' && e.charAt(2)=='E'){
+                            ids.set(3,new StringBuffer(""));
                             if(prethodne_poruke.get(3).charAt(1)=='D' && prethodne_poruke.get(3).charAt(2)=='A'){
                                 System.out.println("Upisi u bazu za nulto mest+VREME ODLASKA");
                             }
@@ -169,7 +192,184 @@ public class MainFrame extends javax.swing.JFrame {
                     prethodne_poruke=poruke;
                     lblBrMesta.setText(String.valueOf(br_mesta));
                     try {
-                        Thread.sleep(4000);
+                        Thread.sleep(5000);
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
+        };
+        
+        t.start();
+
+    }                
+    ArrayList<String> poruke;
+    ArrayList<String> prethodne_poruke=new ArrayList();
+    ArrayList<StringBuffer> boje=new ArrayList();
+    ArrayList<StringBuffer> ids=new ArrayList();
+    int br_mesta=4;
+    public MainFrame() {
+        ids.add(new StringBuffer(""));
+        ids.add(new StringBuffer(""));
+        ids.add(new StringBuffer(""));
+        ids.add(new StringBuffer(""));
+        prethodne_poruke.add("0NE");
+        prethodne_poruke.add("1NE");
+        prethodne_poruke.add("2NE");
+        prethodne_poruke.add("3NE");
+        Dimension d=Toolkit.getDefaultToolkit().getScreenSize();
+        boje.add(new StringBuffer("y"));
+        boje.add(new StringBuffer("y"));
+        boje.add(new StringBuffer("y"));
+        boje.add(new StringBuffer("y"));
+        initComponents();
+        Random r=new Random();
+        this.setSize(d.width, d.height-60);
+        Thread t=new Thread(){  
+            public void run(){
+                while(true){
+                    //lblRadnoVreme.setText(DBController.require());
+                    br_mesta=4;
+                    poruke=ArduinoController.getMessages();
+                    poruke.forEach(e->{
+                        System.out.println(e);
+                    switch(e.charAt(0)){
+                    case '0':
+                        if(e.charAt(1)=='D' && e.charAt(2)=='A'){
+                            if(ids.get(0).toString().equals(""))
+                                ids.set(0,new StringBuffer(String.valueOf("NP-"+r.nextInt(9)+r.nextInt(9)+r.nextInt(9))) );
+                            if(prethodne_poruke.get(0).charAt(1)=='N' && prethodne_poruke.get(0).charAt(2)=='E'){
+                                System.out.println("Upisi u bazu za nulto mesto+vreme zauzimanja");
+                            }
+                            else{
+                                System.out.println("Ne radi nista");
+                            }
+                            System.out.println(boje.get(0).charAt(0));
+                            if(boje.get(0).charAt(0)=='y')
+                                ParkingMesto1.setBackground(Color.yellow);
+                            else{
+                                ParkingMesto1.setBackground(Color.red);    
+                            }
+                            br_mesta--;
+                            btnPlati1.setEnabled(true);
+                        }
+                        else if(e.charAt(1)=='N' && e.charAt(2)=='E'){
+                            ids.set(0,new StringBuffer(""));
+                            if(prethodne_poruke.get(0).charAt(1)=='D' && prethodne_poruke.get(0).charAt(2)=='A'){
+                                System.out.println("Upisi u bazu za nulto mest+VREME ODLASKA");
+                            }
+                            else{
+                                System.out.println("Ne radi nista");
+                            }
+                            
+                            boje.get(0).replace(0, boje.get(0).length(), "y");
+                            btnPlati1.setEnabled(false);
+                            ParkingMesto1.setBackground(Color.green);
+                        }
+                        break;
+                    case '1':
+                        if(e.charAt(1)=='D' && e.charAt(2)=='A'){
+                            if(ids.get(1).toString().equals(""))
+                                ids.set(1,new StringBuffer(String.valueOf("NP-"+r.nextInt(9)+r.nextInt(9)+r.nextInt(9))) );
+                            
+                            if(prethodne_poruke.get(1).charAt(1)=='N' && prethodne_poruke.get(1).charAt(2)=='E'){
+                                System.out.println("Upisi u bazu za nulto mesto+vreme zauzimanja");
+                            }
+                            else{
+                                System.out.println("Ne radi nista");
+                            }
+                            if(boje.get(1).charAt(0)=='y')
+                                ParkingMesto2.setBackground(Color.yellow);
+                            else{
+                                ParkingMesto2.setBackground(Color.red);    
+                            }
+                                br_mesta--;
+                                btnPlati2.setEnabled(true);
+                        }
+                        else if(e.charAt(1)=='N' && e.charAt(2)=='E'){
+                            ids.set(1,new StringBuffer(""));
+                            if(prethodne_poruke.get(1).charAt(1)=='D' && prethodne_poruke.get(1).charAt(2)=='A'){
+                                System.out.println("Upisi u bazu za nulto mest+VREME ODLASKA");
+                            }
+                            else{
+                                System.out.println("Ne radi nista");
+                            }
+                            boje.get(1).replace(0, boje.get(1).length(), "y");
+                            ParkingMesto2.setBackground(Color.green);
+                            btnPlati2.setEnabled(false);
+                        }
+                        break;
+                    case '2':
+                        if(e.charAt(1)=='D' && e.charAt(2)=='A'){
+                            if(ids.get(2).toString().equals(""))
+                                ids.set(2,new StringBuffer(String.valueOf("NP-"+r.nextInt(9)+r.nextInt(9)+r.nextInt(9))) );
+                            
+                            if(prethodne_poruke.get(2).charAt(1)=='N' && prethodne_poruke.get(2).charAt(2)=='E'){
+                                System.out.println("Upisi u bazu za nulto mesto+vreme zauzimanja");
+                            }
+                            else{
+                                System.out.println("Ne radi nista");
+                            }
+                            if(boje.get(2).charAt(0)=='y')
+                                ParkingMesto3.setBackground(Color.yellow);
+                            else{
+                                ParkingMesto3.setBackground(Color.red);    
+                            }
+                            br_mesta--;
+                            btnPlati3.setEnabled(true);
+                        }
+                        else if(e.charAt(1)=='N' && e.charAt(2)=='E'){
+                            ids.set(2,new StringBuffer(""));
+                            if(prethodne_poruke.get(2).charAt(1)=='D' && prethodne_poruke.get(2).charAt(2)=='A'){
+                                System.out.println("Upisi u bazu za nulto mest+VREME ODLASKA");
+                            }
+                            else{
+                                System.out.println("Ne radi nista");
+                            }
+                            boje.get(2).replace(0, boje.get(2).length(), "y");
+                            ParkingMesto3.setBackground(Color.green);
+                            btnPlati3.setEnabled(false);
+                        }
+                        break;
+                    case '3':
+                        if(e.charAt(1)=='D' && e.charAt(2)=='A'){
+                            if(ids.get(3).toString().equals(""))
+                                ids.set(3,new StringBuffer(String.valueOf("NP-"+r.nextInt(9)+r.nextInt(9)+r.nextInt(9))) );
+                            
+                            if(prethodne_poruke.get(3).charAt(1)=='N' && prethodne_poruke.get(3).charAt(2)=='E'){
+                                System.out.println("Upisi u bazu za nulto mesto+vreme zauzimanja");
+                            }
+                            else{
+                                System.out.println("Ne radi nista");
+                            }
+                            if(boje.get(3).charAt(0)=='y')
+                                ParkingMesto4.setBackground(Color.yellow);
+                            else{
+                                ParkingMesto4.setBackground(Color.red);    
+                            }
+                            br_mesta--;
+                            btnPlati4.setEnabled(true);
+                        }
+                        else if(e.charAt(1)=='N' && e.charAt(2)=='E'){
+                            ids.set(3,new StringBuffer(""));
+                            if(prethodne_poruke.get(3).charAt(1)=='D' && prethodne_poruke.get(3).charAt(2)=='A'){
+                                System.out.println("Upisi u bazu za nulto mest+VREME ODLASKA");
+                            }
+                            else{
+                                System.out.println("Ne radi nista");
+                            }
+                            boje.get(3).replace(0, boje.get(3).length(), "y");
+                            ParkingMesto4.setBackground(Color.green);
+                            btnPlati4.setEnabled(false);
+                        }
+                        break;
+                }
+                    
+                    });
+                    prethodne_poruke=poruke;
+                    lblBrMesta.setText(String.valueOf(br_mesta));
+                    try {
+                        Thread.sleep(5000);
                     } catch (InterruptedException ex) {
                         Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -213,6 +413,7 @@ public class MainFrame extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
+        pnlOpcijeGlavni = new javax.swing.JPanel();
         btnPrijava = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -420,6 +621,8 @@ public class MainFrame extends javax.swing.JFrame {
         pnlTabla.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 240, 20));
         pnlTabla.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 240, 10));
 
+        pnlOpcijeGlavni.setBackground(new java.awt.Color(30, 38, 44));
+
         btnPrijava.setBackground(new java.awt.Color(0, 71, 126));
         btnPrijava.setFont(new java.awt.Font("Comic Sans MS", 0, 20)); // NOI18N
         btnPrijava.setForeground(new java.awt.Color(255, 255, 255));
@@ -440,7 +643,25 @@ public class MainFrame extends javax.swing.JFrame {
                 btnPrijavaActionPerformed(evt);
             }
         });
-        pnlTabla.add(btnPrijava, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 570, 290, 50));
+
+        javax.swing.GroupLayout pnlOpcijeGlavniLayout = new javax.swing.GroupLayout(pnlOpcijeGlavni);
+        pnlOpcijeGlavni.setLayout(pnlOpcijeGlavniLayout);
+        pnlOpcijeGlavniLayout.setHorizontalGroup(
+            pnlOpcijeGlavniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlOpcijeGlavniLayout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(btnPrijava, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(26, Short.MAX_VALUE))
+        );
+        pnlOpcijeGlavniLayout.setVerticalGroup(
+            pnlOpcijeGlavniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlOpcijeGlavniLayout.createSequentialGroup()
+                .addContainerGap(381, Short.MAX_VALUE)
+                .addComponent(btnPrijava, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30))
+        );
+
+        pnlTabla.add(pnlOpcijeGlavni, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 340, 460));
 
         javax.swing.GroupLayout pnlBackgroundLayout = new javax.swing.GroupLayout(pnlBackground);
         pnlBackground.setLayout(pnlBackgroundLayout);
@@ -449,12 +670,12 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(pnlBackgroundLayout.createSequentialGroup()
                 .addComponent(pnlTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jpanComponent, javax.swing.GroupLayout.DEFAULT_SIZE, 716, Short.MAX_VALUE))
+                .addComponent(jpanComponent, javax.swing.GroupLayout.DEFAULT_SIZE, 715, Short.MAX_VALUE))
         );
         pnlBackgroundLayout.setVerticalGroup(
             pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlTabla, javax.swing.GroupLayout.DEFAULT_SIZE, 640, Short.MAX_VALUE)
-            .addComponent(jpanComponent, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 640, Short.MAX_VALUE)
+            .addComponent(pnlTabla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jpanComponent, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 650, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -490,7 +711,7 @@ public class MainFrame extends javax.swing.JFrame {
             System.out.println("KLIKNUT BUTTON : "+boje.get(0));
             ParkingMesto1.setBackground(Color.red);
         }*/
-        PlatiFrame p=new PlatiFrame(this.poruke,this.boje,this.ParkingMesto1,0);
+        PlatiFrame p=new PlatiFrame(this.poruke,this.boje,this.ParkingMesto1,0,this.ids);
         p.setVisible(true);
     }//GEN-LAST:event_btnPlati1ActionPerformed
 
@@ -509,7 +730,7 @@ public class MainFrame extends javax.swing.JFrame {
 //            this.boje.get(1).replace(0, boje.get(1).length(), "r");
 //            ParkingMesto2.setBackground(Color.red);
 //        }
-        PlatiFrame p=new PlatiFrame(this.poruke,this.boje,this.ParkingMesto2,1);
+        PlatiFrame p=new PlatiFrame(this.poruke,this.boje,this.ParkingMesto2,1,this.ids);
         p.setVisible(true);
          
     }//GEN-LAST:event_btnPlati2ActionPerformed
@@ -518,7 +739,7 @@ public class MainFrame extends javax.swing.JFrame {
 //            this.boje.get(3).replace(0, boje.get(3).length(), "r");
 //            ParkingMesto4.setBackground(Color.red);
 //        }
-        PlatiFrame p=new PlatiFrame(this.poruke,this.boje,this.ParkingMesto4,3);
+        PlatiFrame p=new PlatiFrame(this.poruke,this.boje,this.ParkingMesto4,3,this.ids);
         p.setVisible(true);
     }//GEN-LAST:event_btnPlati4ActionPerformed
 
@@ -528,7 +749,7 @@ public class MainFrame extends javax.swing.JFrame {
 //            ParkingMesto3.setBackground(Color.red);
 //        }
 //        
-        PlatiFrame p=new PlatiFrame(this.poruke,this.boje,this.ParkingMesto3,2);
+        PlatiFrame p=new PlatiFrame(this.poruke,this.boje,this.ParkingMesto3,2,this.ids);
         p.setVisible(true);
     }//GEN-LAST:event_btnPlati3ActionPerformed
 
@@ -596,6 +817,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel lblVreme3;
     private javax.swing.JLabel lblVreme4;
     private javax.swing.JPanel pnlBackground;
+    private javax.swing.JPanel pnlOpcijeGlavni;
     private javax.swing.JPanel pnlTabla;
     // End of variables declaration//GEN-END:variables
 }

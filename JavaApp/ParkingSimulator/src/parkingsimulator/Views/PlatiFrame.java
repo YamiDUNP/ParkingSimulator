@@ -27,10 +27,10 @@ public class PlatiFrame extends javax.swing.JFrame {
     private JPanel panelKojiMenjam;
     private int redniBroj;
     public PlatiFrame(){initComponents();}
-    public PlatiFrame(ArrayList<String> poruke1,ArrayList<StringBuffer> boje1,JPanel panelKojiMenjam1,int redniBroj) {
+    public PlatiFrame(ArrayList<String> poruke1,ArrayList<StringBuffer> boje1,JPanel panelKojiMenjam1,int redniBroj,ArrayList<StringBuffer> ids1) {
         initComponents();
         Random r=new Random();  
-        this.lblIDVozila2.setText(String.valueOf("NP-"+r.nextInt(9)+r.nextInt(9)+r.nextInt(9))); // Saljemo kad se zauzme mesto
+        this.lblIDVozila2.setText(ids1.get(redniBroj).toString()); // Saljemo kad se zauzme mesto
         this.slldCena.setValue(1);
         this.lblCena2.setText("100din");
         this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
