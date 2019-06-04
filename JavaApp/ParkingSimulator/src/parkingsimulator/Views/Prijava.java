@@ -313,8 +313,14 @@ this.btnPrijava.setForeground(Color.white);
         Upravnik tr=DBController.require().loginValid(this.txtUsername.getText(),this.txtPassword.getText());
         if(tr!=null){
             System.out.println("Uspesno logovanje");
-            MainFrame af= new MainFrame("Admin");
-            af.setVisible(true);
+            OpcijePanel1 opc=new OpcijePanel1(main);
+           // MainFrame af= new MainFrame("Admin");
+            main.removeAll();
+            main.revalidate();
+            main.setLayout(new BorderLayout());
+            main.add(opc);
+            main.revalidate();
+            //af.setVisible(true);
             this.dispose();
             
         }

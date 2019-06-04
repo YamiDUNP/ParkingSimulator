@@ -29,7 +29,7 @@ public class ArduinoController implements SerialPortEventListener {
                         "/dev/tty.usbserial-A9007UX1", // Mac OS X
                         "/dev/ttyACM0", // Raspberry Pi
                         "/dev/ttyUSB0", // Linux
-                        "COM1", // Windows
+                        "COM2", // Windows
         };
         /**
         * A BufferedReader which will be fed by a InputStreamReader 
@@ -59,12 +59,14 @@ public class ArduinoController implements SerialPortEventListener {
                 portState=true;
                 CommPortIdentifier portId = null;
                 Enumeration portEnum = CommPortIdentifier.getPortIdentifiers();
+                System.out.println(portEnum.toString());
                 //First, Find an instance of serial port as set in PORT_NAMES.
                 while (portEnum.hasMoreElements()) {
                         CommPortIdentifier currPortId = (CommPortIdentifier) portEnum.nextElement();
                         for (String portName : PORT_NAMES) {
                                 if (currPortId.getName().equals(portName)) {
                                         portId = currPortId;
+                                        System.out.println(portId);
                                         break;
                                 }
                         }

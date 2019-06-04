@@ -5,6 +5,9 @@
  */
 package parkingsimulator.Views;
 
+import java.awt.BorderLayout;
+import javax.swing.JPanel;
+
 /**
  *
  * @author Amar
@@ -14,7 +17,12 @@ public class OpcijePanel1 extends javax.swing.JPanel {
     /**
      * Creates new form OpcijePanel
      */
+    JPanel main;
     public OpcijePanel1() {
+        initComponents();
+    }
+    public OpcijePanel1(JPanel p) {
+        main=p;
         initComponents();
     }
 
@@ -52,24 +60,23 @@ public class OpcijePanel1 extends javax.swing.JPanel {
         pnlOpcije1.setLayout(pnlOpcije1Layout);
         pnlOpcije1Layout.setHorizontalGroup(
             pnlOpcije1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlOpcije1Layout.createSequentialGroup()
-                .addContainerGap(25, Short.MAX_VALUE)
+            .addGroup(pnlOpcije1Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
                 .addGroup(pnlOpcije1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         pnlOpcije1Layout.setVerticalGroup(
             pnlOpcije1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlOpcije1Layout.createSequentialGroup()
-                .addContainerGap(226, Short.MAX_VALUE)
+                .addGap(0, 288, Short.MAX_VALUE)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(70, 70, 70))
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -85,7 +92,10 @@ public class OpcijePanel1 extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        main.removeAll();
+        main.revalidate();
+        main.setLayout(new BorderLayout());
+        main.add(new OpcijePanelPreLogina(main));
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
