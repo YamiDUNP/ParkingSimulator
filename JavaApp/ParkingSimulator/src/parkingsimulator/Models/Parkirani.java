@@ -6,19 +6,19 @@ package parkingsimulator.Models;
  * @author Amar
  */
 public class Parkirani {
-    private int ID_vozila;
+    private String ID_vozila;
     private String Vreme_dolaska;
     private String Vreme_odlaska;
     private boolean Placeno;
 
-    public Parkirani(int ID_vozila, String Vreme_dolaska, String Vreme_odlaska, boolean Placeno) {
+    public Parkirani(String ID_vozila, String Vreme_dolaska, String Vreme_odlaska, boolean Placeno) {
         this.ID_vozila = ID_vozila;
         this.Vreme_dolaska = Vreme_dolaska;
         this.Vreme_odlaska = Vreme_odlaska;
         this.Placeno = Placeno;
     }
 
-    public int getID_vozila() {
+    public String getID_vozila() {
         return ID_vozila;
     }
 
@@ -34,7 +34,7 @@ public class Parkirani {
         return Placeno;
     }
 
-    public void setID_vozila(int ID_vozila) {
+    public void setID_vozila(String ID_vozila) {
         this.ID_vozila = ID_vozila;
     }
 
@@ -50,4 +50,8 @@ public class Parkirani {
         this.Placeno = Placeno;
     }
     
+    @Override
+    public String toString(){
+        return this.ID_vozila+" "+this.Vreme_dolaska+" "+this.Vreme_odlaska;
+    }
 }

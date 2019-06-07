@@ -12,13 +12,17 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import parkingsimulator.Models.DBController;
 
 /**
  *
  * @author Amar
  */
 public class PlatiFrame extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form Plati
      */

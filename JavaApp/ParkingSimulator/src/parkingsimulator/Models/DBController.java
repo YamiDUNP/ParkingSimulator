@@ -13,6 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.security.*;
+import java.util.ArrayList;
 
 /**
  *
@@ -78,6 +79,39 @@ public class DBController {
         
         return null;
         }
+    
+    public ArrayList<Parkirani> getKorisnike(){
+        ArrayList<Parkirani> lista=new ArrayList();
+        
+        try {
+            statement = (Statement) connection.createStatement();  
+            resultSet = statement.executeQuery("select * from parkirani");
+            while(resultSet.next()){
+                lista.add(new Parkirani(
+                    resultSet.getString("ID_VOZILA"),
+                    resultSet.getString("vreme_dolaska"),
+                    resultSet.getString("vreme_odlaska"),
+                    resultSet.getBoolean("placeno")
+                ));
+            }
+        }
+        catch(Exception E){
+            System.out.println(E);
+        }
+        finally {
+            try {
+                if(null != connection) {
+                    statement.close();
+                }
+            }
+            catch (SQLException sqlex) {
+                sqlex.printStackTrace();
+            }
+        }
+        //System.out.println(lista);
+        return lista;
+    }
+    
 private static String getMD5(String a){
     try{
         MessageDigest md=MessageDigest.getInstance("MD5");

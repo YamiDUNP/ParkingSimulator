@@ -6,6 +6,9 @@
 package parkingsimulator.Views;
 
 import java.awt.BorderLayout;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JPanel;
 
 /**
@@ -46,6 +49,11 @@ public class OpcijePanel1 extends javax.swing.JPanel {
         pnlOpcije1.setBackground(new java.awt.Color(30, 38, 44));
 
         jButton3.setText("Dnevni izveštaj");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Izmena cene");
 
@@ -97,6 +105,17 @@ public class OpcijePanel1 extends javax.swing.JPanel {
         main.setLayout(new BorderLayout());
         main.add(new OpcijePanelPreLogina(main));
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        DnevniIzvestaj di=null;
+        try {
+            di = new DnevniIzvestaj();
+        } catch (SQLException ex) {
+            Logger.getLogger(OpcijePanel1.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        di.setVisible(true);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

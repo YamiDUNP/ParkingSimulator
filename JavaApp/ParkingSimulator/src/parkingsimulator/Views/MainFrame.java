@@ -61,14 +61,14 @@ public class MainFrame extends javax.swing.JFrame {
                     br_mesta=4;
                     poruke=ArduinoController.getMessages();
                     poruke.forEach(e->{
-                        System.out.println(e);
+                        //System.out.println(e);
                     switch(e.charAt(0)){
                     case '0':
                         if(e.charAt(1)=='D' && e.charAt(2)=='A'){
                             if(ids.get(0).toString().equals(""))
                                 ids.set(0,new StringBuffer(String.valueOf("NP-"+r.nextInt(9)+r.nextInt(9)+r.nextInt(9))) );
                             if(prethodne_poruke.get(0).charAt(1)=='N' && prethodne_poruke.get(0).charAt(2)=='E'){
-                                System.out.println("Upisi u bazu za nulto mesto+vreme zauzimanja");
+                          //      System.out.println("Upisi u bazu za nulto mesto+vreme zauzimanja");
                             }
                             else{
                                 System.out.println("Ne radi nista");
@@ -85,7 +85,7 @@ public class MainFrame extends javax.swing.JFrame {
                         else if(e.charAt(1)=='N' && e.charAt(2)=='E'){
                             ids.set(0,new StringBuffer(""));
                             if(prethodne_poruke.get(0).charAt(1)=='D' && prethodne_poruke.get(0).charAt(2)=='A'){
-                                System.out.println("Upisi u bazu za nulto mest+VREME ODLASKA");
+                            //    System.out.println("Upisi u bazu za nulto mest+VREME ODLASKA");
                             }
                             else{
                                 System.out.println("Ne radi nista");
@@ -102,10 +102,10 @@ public class MainFrame extends javax.swing.JFrame {
                                 ids.set(1,new StringBuffer(String.valueOf("NP-"+r.nextInt(9)+r.nextInt(9)+r.nextInt(9))) );
                             
                             if(prethodne_poruke.get(1).charAt(1)=='N' && prethodne_poruke.get(1).charAt(2)=='E'){
-                                System.out.println("Upisi u bazu za nulto mesto+vreme zauzimanja");
+                              //  System.out.println("Upisi u bazu za nulto mesto+vreme zauzimanja");
                             }
                             else{
-                                System.out.println("Ne radi nista");
+                             //   System.out.println("Ne radi nista");
                             }
                             if(boje.get(1).charAt(0)=='y')
                                 ParkingMesto2.setBackground(Color.yellow);
@@ -118,10 +118,10 @@ public class MainFrame extends javax.swing.JFrame {
                         else if(e.charAt(1)=='N' && e.charAt(2)=='E'){
                             ids.set(1,new StringBuffer(""));
                             if(prethodne_poruke.get(1).charAt(1)=='D' && prethodne_poruke.get(1).charAt(2)=='A'){
-                                System.out.println("Upisi u bazu za nulto mest+VREME ODLASKA");
+                             //   System.out.println("Upisi u bazu za nulto mest+VREME ODLASKA");
                             }
                             else{
-                                System.out.println("Ne radi nista");
+                            //    System.out.println("Ne radi nista");
                             }
                             boje.get(1).replace(0, boje.get(1).length(), "y");
                             ParkingMesto2.setBackground(Color.green);
@@ -134,10 +134,10 @@ public class MainFrame extends javax.swing.JFrame {
                                 ids.set(2,new StringBuffer(String.valueOf("NP-"+r.nextInt(9)+r.nextInt(9)+r.nextInt(9))) );
                             
                             if(prethodne_poruke.get(2).charAt(1)=='N' && prethodne_poruke.get(2).charAt(2)=='E'){
-                                System.out.println("Upisi u bazu za nulto mesto+vreme zauzimanja");
+                            //    System.out.println("Upisi u bazu za nulto mesto+vreme zauzimanja");
                             }
                             else{
-                                System.out.println("Ne radi nista");
+                             //   System.out.println("Ne radi nista");
                             }
                             if(boje.get(2).charAt(0)=='y')
                                 ParkingMesto3.setBackground(Color.yellow);
@@ -150,10 +150,10 @@ public class MainFrame extends javax.swing.JFrame {
                         else if(e.charAt(1)=='N' && e.charAt(2)=='E'){
                             ids.set(2,new StringBuffer(""));
                             if(prethodne_poruke.get(2).charAt(1)=='D' && prethodne_poruke.get(2).charAt(2)=='A'){
-                                System.out.println("Upisi u bazu za nulto mest+VREME ODLASKA");
+                             //   System.out.println("Upisi u bazu za nulto mest+VREME ODLASKA");
                             }
                             else{
-                                System.out.println("Ne radi nista");
+                             //   System.out.println("Ne radi nista");
                             }
                             boje.get(2).replace(0, boje.get(2).length(), "y");
                             ParkingMesto3.setBackground(Color.green);
@@ -166,10 +166,10 @@ public class MainFrame extends javax.swing.JFrame {
                                 ids.set(3,new StringBuffer(String.valueOf("NP-"+r.nextInt(9)+r.nextInt(9)+r.nextInt(9))) );
                             
                             if(prethodne_poruke.get(3).charAt(1)=='N' && prethodne_poruke.get(3).charAt(2)=='E'){
-                                System.out.println("Upisi u bazu za nulto mesto+vreme zauzimanja");
+                            //    System.out.println("Upisi u bazu za nulto mesto+vreme zauzimanja");
                             }
                             else{
-                                System.out.println("Ne radi nista");
+                            //    System.out.println("Ne radi nista");
                             }
                             if(boje.get(3).charAt(0)=='y')
                                 ParkingMesto4.setBackground(Color.yellow);
@@ -182,10 +182,10 @@ public class MainFrame extends javax.swing.JFrame {
                         else if(e.charAt(1)=='N' && e.charAt(2)=='E'){
                             ids.set(3,new StringBuffer(""));
                             if(prethodne_poruke.get(3).charAt(1)=='D' && prethodne_poruke.get(3).charAt(2)=='A'){
-                                System.out.println("Upisi u bazu za nulto mest+VREME ODLASKA");
+                             //   System.out.println("Upisi u bazu za nulto mest+VREME ODLASKA");
                             }
                             else{
-                                System.out.println("Ne radi nista");
+                             //   System.out.println("Ne radi nista");
                             }
                             boje.get(3).replace(0, boje.get(3).length(), "y");
                             ParkingMesto4.setBackground(Color.green);

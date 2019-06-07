@@ -94,7 +94,6 @@ public class Prijava extends javax.swing.JFrame {
         });
         jPanel4.add(btnPrijava, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 280, 240, 40));
 
-        txtUsername.setForeground(new java.awt.Color(204, 204, 204));
         txtUsername.setBorder(null);
         txtUsername.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
