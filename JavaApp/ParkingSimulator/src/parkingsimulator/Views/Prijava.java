@@ -115,7 +115,6 @@ public class Prijava extends javax.swing.JFrame {
         });
         jPanel4.add(txtUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, 240, 20));
 
-        txtPassword.setForeground(new java.awt.Color(204, 204, 204));
         txtPassword.setBorder(null);
         txtPassword.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

@@ -6,6 +6,8 @@
 package parkingsimulator.Views;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,23 +29,30 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
     public DnevniIzvestaj() throws SQLException {
         listaParkiranih=DBController.require().getKorisnike();
         System.out.println(listaParkiranih.size());
-    
         
-//    DefaultTableModel model=(DefaultTableModel)TableDnevni.getModel();
-       
         initComponents();
-    //System.out.println(TableDnevni.getModel());
-    for(int i=0; i<listaParkiranih.size(); i++){
+        
+        int DBV=0;
+        for(int i=0;i<listaParkiranih.size();i++){
+            String j="";
+            String a="";
+            LocalDate date = LocalDate.now();    
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                a=date.format(formatter);
+                j=listaParkiranih.get(i).getVreme_odlaska().substring(0, 10);
+                    if(a.equals(j))
+                    DBV++;
+        }
+        
+        this.lblBrojVozilaDanas.setText(Integer.toString(DBV));
+        
+        
+        for(int i=0; i<listaParkiranih.size(); i++){
          Object[] row = {listaParkiranih.get(i).getID_vozila(), listaParkiranih.get(i).getVreme_dolaska(),listaParkiranih.get(i).getVreme_odlaska()};
                ((DefaultTableModel) TableDnevni.getModel()).insertRow(i, row);
     }
     
-     
-     /*listaParkiranih.forEach(item->{
-            System.out.println("POYY"+item.getID_vozila());
-        });
-     */
-        this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+         this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
     }
 
     /**
@@ -61,7 +70,7 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         TableDnevni = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        lblBrojVozilaDanas = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
 
@@ -91,7 +100,7 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
 
         jLabel1.setText("Broj parkiranih vozila u toku dana:");
 
-        jLabel2.setText("jLabel2");
+        lblBrojVozilaDanas.setText("jLabel2");
 
         jLabel3.setText("Ukupna dnevna zarada:");
 
@@ -105,21 +114,21 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblBrojVozilaDanas, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton2)
                 .addGap(88, 88, 88))
             .addGroup(DnevniizvestajPNLLayout.createSequentialGroup()
-                .addGroup(DnevniizvestajPNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(DnevniizvestajPNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(DnevniizvestajPNLLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(332, 332, 332)
                         .addComponent(jLabel3)
                         .addGap(31, 31, 31)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, DnevniizvestajPNLLayout.createSequentialGroup()
+                    .addGroup(DnevniizvestajPNLLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 544, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(204, Short.MAX_VALUE))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 726, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
         DnevniizvestajPNLLayout.setVerticalGroup(
             DnevniizvestajPNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -138,7 +147,7 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
                 .addGroup(DnevniizvestajPNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblBrojVozilaDanas, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28))
         );
 
@@ -201,9 +210,9 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lblBrojVozilaDanas;
     // End of variables declaration//GEN-END:variables
 }
