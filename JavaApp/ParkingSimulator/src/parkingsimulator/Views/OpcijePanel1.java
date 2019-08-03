@@ -56,6 +56,11 @@ public class OpcijePanel1 extends javax.swing.JPanel {
         });
 
         jButton2.setText("Izmena cene");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("Odjava");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -116,6 +121,18 @@ public class OpcijePanel1 extends javax.swing.JPanel {
         di.setVisible(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        CenaPoSatu cps=null;
+        try {
+            cps = new CenaPoSatu();
+        } catch (SQLException ex) {
+            Logger.getLogger(OpcijePanel1.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        cps.setVisible(true);
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

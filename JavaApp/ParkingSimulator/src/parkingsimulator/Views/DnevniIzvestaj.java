@@ -5,6 +5,7 @@
  */
 package parkingsimulator.Views;
 
+import java.awt.Desktop;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -27,28 +28,29 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
      */
     ArrayList<Parkirani> listaParkiranih;
     public DnevniIzvestaj() throws SQLException {
-        listaParkiranih=DBController.require().getKorisnike();
-        System.out.println(listaParkiranih.size());
-        
+        listaParkiranih=DBController.require().getKorisnike();    
         initComponents();
         
+        float ukupnazarada=0;
         int DBV=0;
         for(int i=0;i<listaParkiranih.size();i++){
+            
             String j="";
             String a="";
             LocalDate date = LocalDate.now();    
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
                 a=date.format(formatter);
                 j=listaParkiranih.get(i).getVreme_odlaska().substring(0, 10);
-                    if(a.equals(j))
+                    if(a.equals(j)){
                     DBV++;
-        }
+                    ukupnazarada=ukupnazarada+Float.parseFloat(listaParkiranih.get(i).getPlaceno());
+        }}
         
         this.lblBrojVozilaDanas.setText(Integer.toString(DBV));
-        
+        this.lblUkupnaZarada.setText(Float.toString(ukupnazarada));
         
         for(int i=0; i<listaParkiranih.size(); i++){
-         Object[] row = {listaParkiranih.get(i).getID_vozila(), listaParkiranih.get(i).getVreme_dolaska(),listaParkiranih.get(i).getVreme_odlaska()};
+         Object[] row = {listaParkiranih.get(i).getID_vozila(), listaParkiranih.get(i).getVreme_dolaska(),listaParkiranih.get(i).getVreme_odlaska(),listaParkiranih.get(i).getPlaceno()};
                ((DefaultTableModel) TableDnevni.getModel()).insertRow(i, row);
     }
     
@@ -72,13 +74,18 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         lblBrojVozilaDanas = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        lblUkupnaZarada = new javax.swing.JLabel();
 
         jButton1.setText("jButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jButton2.setText("Stampaj");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         TableDnevni.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -89,7 +96,7 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -104,7 +111,7 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
 
         jLabel3.setText("Ukupna dnevna zarada:");
 
-        jLabel4.setText("jLabel4");
+        lblUkupnaZarada.setText("jLabel4");
 
         javax.swing.GroupLayout DnevniizvestajPNLLayout = new javax.swing.GroupLayout(DnevniizvestajPNL);
         DnevniizvestajPNL.setLayout(DnevniizvestajPNLLayout);
@@ -124,7 +131,7 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
                         .addGap(332, 332, 332)
                         .addComponent(jLabel3)
                         .addGap(31, 31, 31)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(lblUkupnaZarada, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(DnevniizvestajPNLLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 726, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -142,7 +149,7 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(DnevniizvestajPNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblUkupnaZarada, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(166, 166, 166)))
                 .addGroup(DnevniizvestajPNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -164,6 +171,14 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        try{
+            Desktop.getDesktop().open(new java.io.File("pdf/pdf.pdf"));
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -211,8 +226,8 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblBrojVozilaDanas;
+    private javax.swing.JLabel lblUkupnaZarada;
     // End of variables declaration//GEN-END:variables
 }

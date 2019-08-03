@@ -22,38 +22,32 @@ void setup() {
   pinMode(echoPin2,INPUT);
   pinMode(trigPin3,OUTPUT);
   pinMode(echoPin3,INPUT);
+
 }
 
 void loop() {
   digitalWrite(trigPin,LOW);
-  digitalWrite(trigPin1,LOW);
-  digitalWrite(trigPin2,LOW);
-  digitalWrite(trigPin3,LOW);
   delayMicroseconds(5);
   digitalWrite(trigPin,HIGH);
-  digitalWrite(trigPin1,HIGH);
-  digitalWrite(trigPin2,HIGH);
-  digitalWrite(trigPin3,HIGH);
   delayMicroseconds(10);
   digitalWrite(trigPin,LOW);
-  digitalWrite(trigPin1,LOW);
-  digitalWrite(trigPin2,LOW);
-  digitalWrite(trigPin3,LOW);
 
-  pinMode(echoPin,INPUT);
-  pinMode(echoPin1,INPUT);
-  pinMode(echoPin2,INPUT);
-  pinMode(echoPin3,INPUT);
   duration=pulseIn(echoPin,HIGH);
   cm=(duration/2)*(0.0343);
   if(cm<10){
-    Serial.print("0DA");
+    Serial.print("0DA ");
+    Serial.print(duration);
     Serial.println();
   }else{
     Serial.print("0NE");
     Serial.println();
   }
   
+  digitalWrite(trigPin1,LOW);
+  delayMicroseconds(5);
+  digitalWrite(trigPin1,HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin1,LOW);
   duration=pulseIn(echoPin1,HIGH);
   cm=(duration/2)*(0.0343);
   if(cm<10){
@@ -63,6 +57,13 @@ void loop() {
     Serial.print("1NE");
     Serial.println();
   }
+
+
+  digitalWrite(trigPin2,LOW);
+  delayMicroseconds(5);
+  digitalWrite(trigPin2,HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin2,LOW);
   
   duration=pulseIn(echoPin2,HIGH);
   cm=(duration/2)*(0.0343);
@@ -73,6 +74,12 @@ void loop() {
     Serial.print("2NE");
     Serial.println();
   }
+  
+  digitalWrite(trigPin3,LOW);
+  delayMicroseconds(5);
+  digitalWrite(trigPin3,HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin3,LOW);
   
   duration=pulseIn(echoPin3,HIGH);
   cm=(duration/2)*(0.0343);

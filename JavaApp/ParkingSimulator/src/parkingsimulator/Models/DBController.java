@@ -91,7 +91,7 @@ public class DBController {
                     resultSet.getString("ID_VOZILA"),
                     resultSet.getString("vreme_dolaska"),
                     resultSet.getString("vreme_odlaska"),
-                    resultSet.getBoolean("placeno")
+                    resultSet.getString("placeno")
                 ));
             }
         }
@@ -111,6 +111,7 @@ public class DBController {
         //System.out.println(lista);
         return lista;
     }
+    
     
 private static String getMD5(String a){
     try{

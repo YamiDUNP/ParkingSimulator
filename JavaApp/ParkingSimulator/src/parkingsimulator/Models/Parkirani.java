@@ -9,9 +9,9 @@ public class Parkirani {
     private String ID_vozila;
     private String Vreme_dolaska;
     private String Vreme_odlaska;
-    private boolean Placeno;
+    private String Placeno;
 
-    public Parkirani(String ID_vozila, String Vreme_dolaska, String Vreme_odlaska, boolean Placeno) {
+    public Parkirani(String ID_vozila, String Vreme_dolaska, String Vreme_odlaska, String Placeno) {
         this.ID_vozila = ID_vozila;
         this.Vreme_dolaska = Vreme_dolaska;
         this.Vreme_odlaska = Vreme_odlaska;
@@ -30,7 +30,7 @@ public class Parkirani {
         return Vreme_odlaska;
     }
 
-    public boolean isPlaceno() {
+    public String getPlaceno() {
         return Placeno;
     }
 
@@ -46,7 +46,7 @@ public class Parkirani {
         this.Vreme_odlaska = Vreme_odlaska;
     }
 
-    public void setPlaceno(boolean Placeno) {
+    public void setPlaceno(String Placeno) {
         this.Placeno = Placeno;
     }
     
