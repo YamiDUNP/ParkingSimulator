@@ -64,14 +64,14 @@ public class Prijava extends javax.swing.JFrame {
             }
         });
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBackground(new java.awt.Color(248, 193, 30));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED, new java.awt.Color(0, 71, 126), new java.awt.Color(0, 102, 255), new java.awt.Color(0, 102, 255), new java.awt.Color(0, 71, 126)));
+        jPanel4.setBackground(new java.awt.Color(0, 40, 43));
+        jPanel4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(248, 193, 30), new java.awt.Color(248, 193, 30), new java.awt.Color(248, 193, 30), new java.awt.Color(248, 193, 30)));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnPrijava.setBackground(new java.awt.Color(51, 102, 255));
+        btnPrijava.setBackground(new java.awt.Color(248, 193, 30));
         btnPrijava.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
         btnPrijava.setForeground(new java.awt.Color(255, 255, 255));
         btnPrijava.setText("Prijava");
@@ -94,6 +94,8 @@ public class Prijava extends javax.swing.JFrame {
         });
         jPanel4.add(btnPrijava, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 280, 240, 40));
 
+        txtUsername.setBackground(new java.awt.Color(0, 40, 43));
+        txtUsername.setForeground(new java.awt.Color(248, 193, 30));
         txtUsername.setBorder(null);
         txtUsername.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -115,6 +117,8 @@ public class Prijava extends javax.swing.JFrame {
         });
         jPanel4.add(txtUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, 240, 20));
 
+        txtPassword.setBackground(new java.awt.Color(0, 40, 43));
+        txtPassword.setForeground(new java.awt.Color(248, 193, 30));
         txtPassword.setBorder(null);
         txtPassword.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -134,33 +138,34 @@ public class Prijava extends javax.swing.JFrame {
         jPanel4.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 210, 240, 20));
 
         jLabel3.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(51, 102, 255));
+        jLabel3.setForeground(new java.awt.Color(248, 193, 30));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel3.setText("Korisničko ime:");
         jPanel4.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 150, 90, -1));
 
         jLabel4.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(51, 102, 255));
+        jLabel4.setForeground(new java.awt.Color(248, 193, 30));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel4.setText("Lozinka:");
         jPanel4.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 90, 20));
 
-        jSeparator1.setBackground(new java.awt.Color(51, 102, 255));
-        jSeparator1.setForeground(new java.awt.Color(51, 102, 255));
+        jSeparator1.setBackground(new java.awt.Color(248, 193, 30));
+        jSeparator1.setForeground(new java.awt.Color(248, 193, 30));
         jPanel4.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 170, 240, -1));
 
-        jSeparator2.setBackground(new java.awt.Color(51, 102, 255));
-        jSeparator2.setForeground(new java.awt.Color(51, 102, 255));
+        jSeparator2.setBackground(new java.awt.Color(248, 193, 30));
+        jSeparator2.setForeground(new java.awt.Color(248, 193, 30));
         jPanel4.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 230, 240, -1));
 
-        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel5.setBackground(new java.awt.Color(0, 40, 43));
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel2.setBackground(new java.awt.Color(0, 40, 43));
         jLabel2.setFont(new java.awt.Font("Comic Sans MS", 0, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(51, 102, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("PRIJAVITE SE");
-        jPanel5.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 440, 60));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/parkingsimulator/Views/Slike/Logo 24.png"))); // NOI18N
+        jPanel5.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 420, 140));
 
         jPanel4.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 2, 440, -1));
 
@@ -168,7 +173,7 @@ public class Prijava extends javax.swing.JFrame {
 
         jLabel1.setBackground(new java.awt.Color(102, 102, 255));
         jLabel1.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setForeground(new java.awt.Color(248, 193, 30));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Dobrodosli u administratorski mod");
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 870, 41));
@@ -209,13 +214,13 @@ public class Prijava extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPrijavaActionPerformed
 
     private void btnPrijavaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPrijavaMouseEntered
-this.btnPrijava.setBackground(Color.decode("#00477E"));
-this.btnPrijava.setForeground(Color.white);
+this.btnPrijava.setBackground(Color.decode("#DCB42F"));
+this.btnPrijava.setForeground(Color.decode("#00282B"));
     }//GEN-LAST:event_btnPrijavaMouseEntered
 
     private void btnPrijavaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPrijavaMouseExited
-this.btnPrijava.setBackground(Color.decode("#3366FF"));
-this.btnPrijava.setForeground(Color.white);
+this.btnPrijava.setBackground(Color.decode("#F8C11E"));
+this.btnPrijava.setForeground(Color.decode("#00282B"));
     }//GEN-LAST:event_btnPrijavaMouseExited
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
