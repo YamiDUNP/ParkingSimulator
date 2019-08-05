@@ -65,8 +65,11 @@ public class MainFrame extends javax.swing.JFrame {
                     switch(e.charAt(0)){
                     case '0':
                         if(e.charAt(1)=='D' && e.charAt(2)=='A'){
+                            Random randomSlovo = new Random();
+                            char prvoSlovo = (char)(randomSlovo.nextInt(26) + 'A');
+                            char drugoSlovo = (char)(randomSlovo.nextInt(26) + 'A');
                             if(ids.get(0).toString().equals(""))
-                                ids.set(0,new StringBuffer(String.valueOf("NP-"+r.nextInt(9)+r.nextInt(9)+r.nextInt(9))) );
+                                ids.set(0,new StringBuffer(String.valueOf("NP-"+r.nextInt(9)+r.nextInt(9)+r.nextInt(9)+"-"+prvoSlovo+drugoSlovo)) );
                             if(prethodne_poruke.get(0).charAt(1)=='N' && prethodne_poruke.get(0).charAt(2)=='E'){
                           //      System.out.println("Upisi u bazu za nulto mesto+vreme zauzimanja");
                             }
@@ -98,8 +101,11 @@ public class MainFrame extends javax.swing.JFrame {
                         break;
                     case '1':
                         if(e.charAt(1)=='D' && e.charAt(2)=='A'){
+                            Random randomSlovo = new Random();
+                            char prvoSlovo = (char)(randomSlovo.nextInt(26) + 'A');
+                            char drugoSlovo = (char)(randomSlovo.nextInt(26) + 'A');
                             if(ids.get(1).toString().equals(""))
-                                ids.set(1,new StringBuffer(String.valueOf("NP-"+r.nextInt(9)+r.nextInt(9)+r.nextInt(9))) );
+                                ids.set(1,new StringBuffer(String.valueOf("NP-"+r.nextInt(9)+r.nextInt(9)+r.nextInt(9)+"-"+prvoSlovo+drugoSlovo)) );
                             
                             if(prethodne_poruke.get(1).charAt(1)=='N' && prethodne_poruke.get(1).charAt(2)=='E'){
                               //  System.out.println("Upisi u bazu za nulto mesto+vreme zauzimanja");
@@ -130,8 +136,11 @@ public class MainFrame extends javax.swing.JFrame {
                         break;
                     case '2':
                         if(e.charAt(1)=='D' && e.charAt(2)=='A'){
+                            Random randomSlovo = new Random();
+                            char prvoSlovo = (char)(randomSlovo.nextInt(26) + 'A');
+                            char drugoSlovo = (char)(randomSlovo.nextInt(26) + 'A');
                             if(ids.get(2).toString().equals(""))
-                                ids.set(2,new StringBuffer(String.valueOf("NP-"+r.nextInt(9)+r.nextInt(9)+r.nextInt(9))) );
+                                ids.set(2,new StringBuffer(String.valueOf("NP-"+r.nextInt(9)+r.nextInt(9)+r.nextInt(9)+"-"+prvoSlovo+drugoSlovo)) );
                             
                             if(prethodne_poruke.get(2).charAt(1)=='N' && prethodne_poruke.get(2).charAt(2)=='E'){
                             //    System.out.println("Upisi u bazu za nulto mesto+vreme zauzimanja");
@@ -162,8 +171,12 @@ public class MainFrame extends javax.swing.JFrame {
                         break;
                     case '3':
                         if(e.charAt(1)=='D' && e.charAt(2)=='A'){
+                            //ISPROBAVAAAAAAAAAAAAAM
+                            Random randomSlovo = new Random();
+                            char prvoSlovo = (char)(randomSlovo.nextInt(26) + 'A');
+                            char drugoSlovo = (char)(randomSlovo.nextInt(26) + 'A');
                             if(ids.get(3).toString().equals(""))
-                                ids.set(3,new StringBuffer(String.valueOf("NP-"+r.nextInt(9)+r.nextInt(9)+r.nextInt(9))) );
+                                ids.set(3,new StringBuffer(String.valueOf("NP-"+r.nextInt(9)+r.nextInt(9)+r.nextInt(9)+"-"+prvoSlovo+drugoSlovo)) );
                             
                             if(prethodne_poruke.get(3).charAt(1)=='N' && prethodne_poruke.get(3).charAt(2)=='E'){
                             //    System.out.println("Upisi u bazu za nulto mesto+vreme zauzimanja");

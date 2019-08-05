@@ -13,7 +13,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.security.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
@@ -45,6 +48,80 @@ public class DBController {
         }
         return instance;
     }
+    
+    public void setCena(float cena){
+        try {
+            Date d=new Date();
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            String stringDate = dateFormat.format(d);
+            statement = (Statement) connection.createStatement();  
+            statement.executeUpdate("insert into CENA(Datum, vrednost) Values(#"+stringDate+"# , "+cena+"   );");
+        }
+        catch(Exception E){
+            System.out.println(E);
+        }
+        finally {
+            try {
+                if(null != connection) {
+                    statement.close();
+                }
+            }
+            catch (SQLException sqlex) {
+                sqlex.printStackTrace();
+            }
+        }
+    }
+    
+    
+    public float getCena(){
+        float cena=0;
+         try {
+            statement = (Statement) connection.createStatement();  
+            resultSet = statement.executeQuery("SELECT Vrednost from CENA where cena.id_cene=(select max(id_cene) from cena)");
+            if(resultSet.next())
+                cena=resultSet.getFloat("Vrednost");
+            System.out.println(cena);
+         }
+        catch(Exception E){
+            System.out.println(E);
+        }
+        finally {
+            try {
+                if(null != connection) {
+                    statement.close();
+                }
+            }
+            catch (SQLException sqlex) {
+                sqlex.printStackTrace();
+            }
+        }
+        return cena;
+    }
+    
+    
+    public void setParkirani(String id , float placeno){
+        try {
+            Date d=new Date();
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            String stringDate = dateFormat.format(d);
+            statement = (Statement) connection.createStatement();  
+            statement.executeUpdate("insert into PARKIRANI(ID_vozila, Vreme_dolaska, Vreme_odlaska, Placeno) Values('"+id+"' , #"+stringDate+"# , #"+stringDate+"# , "+placeno+" );");
+        }
+        catch(Exception E){
+            System.out.println(E);
+        }
+        finally {
+            try {
+                if(null != connection) {
+                    statement.close();
+                }
+            }
+            catch (SQLException sqlex) {
+                sqlex.printStackTrace();
+            }
+        }
+    }
+    
     
     public ResultSet submitQuery(String query){
          try {

@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.WindowConstants;
@@ -30,6 +31,11 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
     public DnevniIzvestaj() throws SQLException {
         listaParkiranih=DBController.require().getKorisnike();    
         initComponents();
+
+        
+        ArrayList<Date> tekucaGodina = new ArrayList<Date>();
+        tekucaGodina.add(new Date(1,1,1996));
+        System.out.println(tekucaGodina);
         
         float ukupnazarada=0;
         int DBV=0;

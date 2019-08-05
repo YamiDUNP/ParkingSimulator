@@ -15,6 +15,9 @@ import javax.swing.WindowConstants;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import parkingsimulator.Models.DBController;
 
 /**
@@ -30,13 +33,13 @@ public class PlatiFrame extends javax.swing.JFrame {
     private ArrayList<StringBuffer> boje;
     private JPanel panelKojiMenjam;
     private int redniBroj;
+    float naplatnaCena;
     public PlatiFrame(){initComponents();}
     public PlatiFrame(ArrayList<String> poruke1,ArrayList<StringBuffer> boje1,JPanel panelKojiMenjam1,int redniBroj,ArrayList<StringBuffer> ids1) {
         initComponents();
         Random r=new Random();  
         this.lblIDVozila2.setText(ids1.get(redniBroj).toString()); // Saljemo kad se zauzme mesto
         this.slldCena.setValue(1);
-        this.lblCena2.setText("100din");
         this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         this.poruke=poruke1;
         this.boje=boje1;
@@ -153,12 +156,23 @@ public class PlatiFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosing
 
     private void slldCenaStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_slldCenaStateChanged
-        // TODO add your handling code here:
-        lblCena2.setText(String.valueOf(this.slldCena.getValue()*100+"din"));
+        try {
+            // TODO add your handling code here:
+            lblCena2.setText(String.valueOf(this.slldCena.getValue()*(DBController.require().getCena()))+"din");
+            naplatnaCena=this.slldCena.getValue()*(DBController.require().getCena());
+        } catch (SQLException ex) {
+            Logger.getLogger(PlatiFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_slldCenaStateChanged
 
     private void btnUplatiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUplatiActionPerformed
+        String idvozila=lblIDVozila2.getText();
         if(poruke.get(redniBroj).charAt(1)=='D' && poruke.get(redniBroj).charAt(2)=='A'){
+            try {
+                DBController.require().setParkirani(idvozila , naplatnaCena);
+            } catch (SQLException ex) {
+                Logger.getLogger(PlatiFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
             System.out.println(redniBroj);
             this.boje.get(redniBroj).replace(0, boje.get(redniBroj).length(), "r");
             panelKojiMenjam.setBackground(Color.red);
@@ -168,6 +182,7 @@ public class PlatiFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnUplatiActionPerformed
 
     }
+    
         
 
 public static void main(String args[]) {

@@ -9,8 +9,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
-import parkingsimulator.Models.Cena;
+import static net.ucanaccess.converters.Functions.string;
 import parkingsimulator.Models.DBController;
 
 
@@ -23,9 +24,7 @@ public class CenaPoSatu extends javax.swing.JFrame {
     /**
      * Creates new form CenaPoSatu
      */
-    
-    ArrayList<Cena> listaCenaa;
-    
+        
     public CenaPoSatu() throws SQLException {
         
         initComponents();
@@ -51,6 +50,11 @@ public class CenaPoSatu extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         btnSacuvaj.setText("Sacuvaj");
+        btnSacuvaj.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSacuvajActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Cena po satu:");
 
@@ -105,6 +109,19 @@ public class CenaPoSatu extends javax.swing.JFrame {
     private void txtCenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCenaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCenaActionPerformed
+
+    private void btnSacuvajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSacuvajActionPerformed
+        float vrednost=Float.parseFloat(txtCena.getText());
+        
+        
+        try{
+            DBController.require().setCena(vrednost);
+            JOptionPane.showMessageDialog(null, "Uspešno ste promenili cenu po satu.");
+            this.dispose();
+        }catch(Exception ex){
+             System.out.println(""+ex);
+        }
+    }//GEN-LAST:event_btnSacuvajActionPerformed
 
     /**
      * @param args the command line arguments
