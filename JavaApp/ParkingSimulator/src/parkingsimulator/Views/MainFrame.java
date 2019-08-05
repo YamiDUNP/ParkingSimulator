@@ -256,17 +256,18 @@ public class MainFrame extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
         pnlOpcijeGlavni = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
         setSize(new java.awt.Dimension(0, 0));
 
-        pnlBackground.setBackground(new java.awt.Color(255, 255, 255));
+        pnlBackground.setBackground(new java.awt.Color(0, 40, 43));
         pnlBackground.setMaximumSize(new java.awt.Dimension(881, 541));
         pnlBackground.setMinimumSize(new java.awt.Dimension(0, 0));
         pnlBackground.setPreferredSize(new java.awt.Dimension(0, 0));
 
-        jpanComponent.setBackground(new java.awt.Color(195, 195, 195));
+        jpanComponent.setBackground(new java.awt.Color(0, 40, 43));
         jpanComponent.setPreferredSize(new java.awt.Dimension(630, 470));
 
         ParkingMesto1.setBackground(new java.awt.Color(255, 51, 51));
@@ -398,21 +399,21 @@ public class MainFrame extends javax.swing.JFrame {
         ParkingMesto4.add(btnPlati4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 70, 30));
 
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/parkingsimulator/Views/Slike/Untitled.png"))); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/parkingsimulator/Views/Slike/PUTTTTT-01.png"))); // NOI18N
 
         javax.swing.GroupLayout jpanComponentLayout = new javax.swing.GroupLayout(jpanComponent);
         jpanComponent.setLayout(jpanComponentLayout);
         jpanComponentLayout.setHorizontalGroup(
             jpanComponentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpanComponentLayout.createSequentialGroup()
-                .addComponent(ParkingMesto1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(ParkingMesto1, javax.swing.GroupLayout.DEFAULT_SIZE, 333, Short.MAX_VALUE)
                 .addGap(50, 50, 50)
-                .addComponent(ParkingMesto2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 716, Short.MAX_VALUE)
+                .addComponent(ParkingMesto2, javax.swing.GroupLayout.DEFAULT_SIZE, 333, Short.MAX_VALUE))
             .addGroup(jpanComponentLayout.createSequentialGroup()
                 .addComponent(ParkingMesto3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(50, 50, 50)
                 .addComponent(ParkingMesto4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
         jpanComponentLayout.setVerticalGroup(
             jpanComponentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -421,58 +422,71 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(ParkingMesto1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(ParkingMesto2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(5, 5, 5)
-                .addComponent(jLabel5)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(5, 5, 5)
                 .addGroup(jpanComponentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(ParkingMesto3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(ParkingMesto4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
-        pnlTabla.setBackground(new java.awt.Color(30, 38, 44));
+        pnlTabla.setBackground(new java.awt.Color(0, 40, 43));
         pnlTabla.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel7.setBackground(new java.awt.Color(51, 102, 255));
         jLabel7.setFont(new java.awt.Font("Comic Sans MS", 0, 20)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setForeground(new java.awt.Color(248, 193, 30));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Tabla");
         pnlTabla.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 240, 50));
 
         jLabel8.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setForeground(new java.awt.Color(248, 193, 30));
         jLabel8.setText("Radno vreme:");
         pnlTabla.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 90, 20));
 
         jLabel9.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setForeground(new java.awt.Color(248, 193, 30));
         jLabel9.setText("Broj slobodnih mesta:");
         pnlTabla.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 150, 20));
 
         lblRadnoVreme.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        lblRadnoVreme.setForeground(new java.awt.Color(255, 255, 255));
+        lblRadnoVreme.setForeground(new java.awt.Color(248, 193, 30));
         lblRadnoVreme.setText("get Radnog ");
         pnlTabla.add(lblRadnoVreme, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 150, 90, 20));
 
         lblBrMesta.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        lblBrMesta.setForeground(new java.awt.Color(255, 255, 255));
+        lblBrMesta.setForeground(new java.awt.Color(248, 193, 30));
         pnlTabla.add(lblBrMesta, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 100, 90, 20));
 
+        jSeparator1.setForeground(new java.awt.Color(248, 193, 30));
         jSeparator1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        pnlTabla.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 240, -1));
-        pnlTabla.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 240, 20));
-        pnlTabla.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 240, 10));
+        pnlTabla.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 340, -1));
 
-        pnlOpcijeGlavni.setBackground(new java.awt.Color(30, 38, 44));
+        jSeparator2.setForeground(new java.awt.Color(248, 193, 30));
+        pnlTabla.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 340, 20));
+
+        jSeparator3.setForeground(new java.awt.Color(248, 193, 30));
+        pnlTabla.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 340, 10));
+
+        pnlOpcijeGlavni.setBackground(new java.awt.Color(0, 40, 43));
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/parkingsimulator/Views/Slike/Logo 24.png"))); // NOI18N
 
         javax.swing.GroupLayout pnlOpcijeGlavniLayout = new javax.swing.GroupLayout(pnlOpcijeGlavni);
         pnlOpcijeGlavni.setLayout(pnlOpcijeGlavniLayout);
         pnlOpcijeGlavniLayout.setHorizontalGroup(
             pnlOpcijeGlavniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 340, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlOpcijeGlavniLayout.createSequentialGroup()
+                .addContainerGap(32, Short.MAX_VALUE)
+                .addComponent(jLabel6)
+                .addGap(27, 27, 27))
         );
         pnlOpcijeGlavniLayout.setVerticalGroup(
             pnlOpcijeGlavniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 450, Short.MAX_VALUE)
+            .addGroup(pnlOpcijeGlavniLayout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(jLabel6)
+                .addContainerGap(248, Short.MAX_VALUE))
         );
 
         pnlTabla.add(pnlOpcijeGlavni, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 340, 450));
@@ -598,6 +612,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;

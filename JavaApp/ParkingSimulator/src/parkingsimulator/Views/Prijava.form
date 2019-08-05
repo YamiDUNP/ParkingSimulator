@@ -42,7 +42,7 @@
     <Container class="javax.swing.JPanel" name="jPanel2">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+          <Color blue="1e" green="c1" red="f8" type="rgb"/>
         </Property>
       </Properties>
 
@@ -53,15 +53,15 @@
         <Container class="javax.swing.JPanel" name="jPanel4">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+              <Color blue="2b" green="28" red="0" type="rgb"/>
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
-                <BevelBorder bevelType="1">
-                  <Color PropertyName="highlightOuter" blue="7e" green="47" red="0" type="rgb"/>
-                  <Color PropertyName="highlightInner" blue="ff" green="66" red="0" type="rgb"/>
-                  <Color PropertyName="shadowOuter" blue="ff" green="66" red="0" type="rgb"/>
-                  <Color PropertyName="shadowInner" blue="7e" green="47" red="0" type="rgb"/>
+                <BevelBorder>
+                  <Color PropertyName="highlightOuter" blue="1e" green="c1" red="f8" type="rgb"/>
+                  <Color PropertyName="highlightInner" blue="1e" green="c1" red="f8" type="rgb"/>
+                  <Color PropertyName="shadowOuter" blue="1e" green="c1" red="f8" type="rgb"/>
+                  <Color PropertyName="shadowInner" blue="1e" green="c1" red="f8" type="rgb"/>
                 </BevelBorder>
               </Border>
             </Property>
@@ -79,7 +79,7 @@
             <Component class="javax.swing.JButton" name="btnPrijava">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="66" red="33" type="rgb"/>
+                  <Color blue="1e" green="c1" red="f8" type="rgb"/>
                 </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Comic Sans MS" size="12" style="0"/>
@@ -108,6 +108,12 @@
             </Component>
             <Component class="javax.swing.JTextField" name="txtUsername">
               <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="2b" green="28" red="0" type="rgb"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="1e" green="c1" red="f8" type="rgb"/>
+                </Property>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="null"/>
                 </Property>
@@ -126,6 +132,12 @@
             </Component>
             <Component class="javax.swing.JPasswordField" name="txtPassword">
               <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="2b" green="28" red="0" type="rgb"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="1e" green="c1" red="f8" type="rgb"/>
+                </Property>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="null"/>
                 </Property>
@@ -147,7 +159,7 @@
                   <Font name="Comic Sans MS" size="12" style="0"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="66" red="33" type="rgb"/>
+                  <Color blue="1e" green="c1" red="f8" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="4"/>
                 <Property name="text" type="java.lang.String" value="Korisni&#x10d;ko ime:"/>
@@ -164,7 +176,7 @@
                   <Font name="Comic Sans MS" size="12" style="0"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="66" red="33" type="rgb"/>
+                  <Color blue="1e" green="c1" red="f8" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="4"/>
                 <Property name="text" type="java.lang.String" value="Lozinka:"/>
@@ -178,10 +190,10 @@
             <Component class="javax.swing.JSeparator" name="jSeparator1">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="66" red="33" type="rgb"/>
+                  <Color blue="1e" green="c1" red="f8" type="rgb"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="66" red="33" type="rgb"/>
+                  <Color blue="1e" green="c1" red="f8" type="rgb"/>
                 </Property>
               </Properties>
               <Constraints>
@@ -193,10 +205,10 @@
             <Component class="javax.swing.JSeparator" name="jSeparator2">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="66" red="33" type="rgb"/>
+                  <Color blue="1e" green="c1" red="f8" type="rgb"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="66" red="33" type="rgb"/>
+                  <Color blue="1e" green="c1" red="f8" type="rgb"/>
                 </Property>
               </Properties>
               <Constraints>
@@ -208,7 +220,7 @@
             <Container class="javax.swing.JPanel" name="jPanel5">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                  <Color blue="2b" green="28" red="0" type="rgb"/>
                 </Property>
               </Properties>
               <Constraints>
@@ -223,6 +235,9 @@
               <SubComponents>
                 <Component class="javax.swing.JLabel" name="jLabel2">
                   <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="2b" green="28" red="0" type="rgb"/>
+                    </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Comic Sans MS" size="36" style="0"/>
                     </Property>
@@ -230,11 +245,13 @@
                       <Color blue="ff" green="66" red="33" type="rgb"/>
                     </Property>
                     <Property name="horizontalAlignment" type="int" value="0"/>
-                    <Property name="text" type="java.lang.String" value="PRIJAVITE SE"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/parkingsimulator/Views/Slike/Logo 24.png"/>
+                    </Property>
                   </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="0" y="10" width="440" height="60"/>
+                      <AbsoluteConstraints x="20" y="0" width="420" height="140"/>
                     </Constraint>
                   </Constraints>
                 </Component>
@@ -251,7 +268,7 @@
               <Font name="Comic Sans MS" size="18" style="0"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+              <Color blue="1e" green="c1" red="f8" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="Dobrodosli u administratorski mod"/>
