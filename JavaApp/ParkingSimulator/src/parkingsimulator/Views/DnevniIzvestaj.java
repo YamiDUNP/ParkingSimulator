@@ -5,6 +5,7 @@
  */
 package parkingsimulator.Views;
 
+import java.awt.Color;
 import java.awt.Desktop;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -38,11 +39,7 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
         
         TableModel myModel = this.TableDnevni.getModel();
         TableDnevni.setRowSorter(new TableRowSorter(myModel));
-        
-        ArrayList<Date> tekucaGodina = new ArrayList<Date>();
-        tekucaGodina.add(new Date(1,1,1996));
-        System.out.println(tekucaGodina);
-        
+                
         float ukupnazarada=0;
         int DBV=0;
         for(int i=0;i<listaParkiranih.size();i++){
@@ -134,6 +131,11 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
             }
         });
 
+        TFSearch.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TFSearchMouseClicked(evt);
+            }
+        });
         TFSearch.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 TFSearchKeyPressed(evt);
@@ -219,24 +221,45 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void CBSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CBSearchActionPerformed
-        
-        String pamtiOznaceni = CBSearch.getSelectedItem().toString();
+
+        String pamtiOznaceni = "Trazite po "+CBSearch.getSelectedItem().toString();
         TFSearch.setText(pamtiOznaceni);
+        TFSearch.setForeground(Color.getHSBColor(200, 200, 200));
     }//GEN-LAST:event_CBSearchActionPerformed
 
+    private void izaberiKolonu(int brojKolone){
+                    DefaultTableModel table = (DefaultTableModel)TableDnevni.getModel();
+                    String search = TFSearch.getText().toUpperCase();
+                    TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(table);
+                    TableDnevni.setRowSorter(tr);
+                    tr.setRowFilter(RowFilter.regexFilter(search, brojKolone));
+            }
     
     private void TFSearchKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TFSearchKeyPressed
+             TFSearch.setForeground(Color.getHSBColor(0, 0, 0));
+   
         
-     
         if(evt.getKeyCode()==10){
-            DefaultTableModel table = (DefaultTableModel)TableDnevni.getModel();
-          String search = TFSearch.getText().toUpperCase();
-            TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(table);
-            TableDnevni.setRowSorter(tr);
-            tr.setRowFilter(RowFilter.regexFilter(search, 0));
+            if(CBSearch.getSelectedIndex() == 0){
+                izaberiKolonu(0);
+            }
+            else if(CBSearch.getSelectedIndex() == 1){
+                izaberiKolonu(1);
+            }
+            else if(CBSearch.getSelectedIndex() == 2){
+                izaberiKolonu(2);
+            }
+            else if(CBSearch.getSelectedIndex() == 3){
+                izaberiKolonu(3);
+            }
         }
         
     }//GEN-LAST:event_TFSearchKeyPressed
+
+    private void TFSearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TFSearchMouseClicked
+        if(TFSearch.getText().equals("Trazite po "+CBSearch.getSelectedItem().toString()))
+        TFSearch.setText(null);
+    }//GEN-LAST:event_TFSearchMouseClicked
 
     /**
      * @param args the command line arguments
