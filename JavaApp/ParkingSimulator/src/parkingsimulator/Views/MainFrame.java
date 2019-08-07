@@ -9,12 +9,16 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import parkingsimulator.Arduino.ArduinoController;
 import parkingsimulator.Models.DBController;
 
@@ -29,6 +33,7 @@ public class MainFrame extends javax.swing.JFrame {
     ArrayList<String> prethodne_poruke=new ArrayList();
     ArrayList<StringBuffer> boje=new ArrayList();
     ArrayList<StringBuffer> ids=new ArrayList();
+    String path = new File("").getAbsolutePath()+"\\src\\parkingsimulator\\Views\\Slike";
     int br_mesta=4;
     public MainFrame() {
         ids.add(new StringBuffer(""));
@@ -78,9 +83,22 @@ public class MainFrame extends javax.swing.JFrame {
                             }
                             System.out.println(boje.get(0).charAt(0));
                             if(boje.get(0).charAt(0)=='y')
-                                ParkingMesto1.setBackground(Color.yellow);
+                               //KOM ParkingMesto1.setBackground(Color.yellow);
+                                 try{
+                             BufferedImage myPicture = ImageIO.read(new File(path+"\\WoziloJeStiglo.png"));
+                              pkLabel0.setIcon(new ImageIcon(myPicture));
+                            }catch(Exception ecc){
+                                ecc.printStackTrace();
+                            }
+                                        
                             else{
-                                ParkingMesto1.setBackground(Color.red);    
+                               //KOM ParkingMesto1.setBackground(Color.red); 
+                                 try{
+                             BufferedImage myPicture = ImageIO.read(new File(path+"\\MestoZauzeto.png"));
+                              pkLabel0.setIcon(new ImageIcon(myPicture));
+                            }catch(Exception ect){
+                                ect.printStackTrace();
+                            }
                             }
                             br_mesta--;
                             btnPlati1.setEnabled(true);
@@ -96,7 +114,14 @@ public class MainFrame extends javax.swing.JFrame {
                             
                             boje.get(0).replace(0, boje.get(0).length(), "y");
                             btnPlati1.setEnabled(false);
-                            ParkingMesto1.setBackground(Color.green);
+                            System.out.println(path);
+                            try{
+                             BufferedImage myPicture = ImageIO.read(new File(path+"\\mestoSlobodno.png"));
+                              pkLabel0.setIcon(new ImageIcon(myPicture));
+                            }catch(Exception ec){
+                                ec.printStackTrace();
+                            } 
+                           //KOM ParkingMesto1.setBackground(Color.green);
                         }
                         break;
                     case '1':
@@ -114,9 +139,21 @@ public class MainFrame extends javax.swing.JFrame {
                              //   System.out.println("Ne radi nista");
                             }
                             if(boje.get(1).charAt(0)=='y')
-                                ParkingMesto2.setBackground(Color.yellow);
+                                try{
+                             BufferedImage myPicture = ImageIO.read(new File(path+"\\WoziloJeStiglo.png"));
+                              pkLabel1.setIcon(new ImageIcon(myPicture));
+                            }catch(Exception ecc){
+                                ecc.printStackTrace();
+                            }
+                                //ParkingMesto2.setBackground(Color.yellow);
                             else{
-                                ParkingMesto2.setBackground(Color.red);    
+                                try{
+                             BufferedImage myPicture = ImageIO.read(new File(path+"\\MestoZauzeto.png"));
+                              pkLabel1.setIcon(new ImageIcon(myPicture));
+                            }catch(Exception ecc){
+                                ecc.printStackTrace();
+                            }
+                                //ParkingMesto2.setBackground(Color.red);    
                             }
                                 br_mesta--;
                                 btnPlati2.setEnabled(true);
@@ -130,7 +167,13 @@ public class MainFrame extends javax.swing.JFrame {
                             //    System.out.println("Ne radi nista");
                             }
                             boje.get(1).replace(0, boje.get(1).length(), "y");
-                            ParkingMesto2.setBackground(Color.green);
+                            try{
+                             BufferedImage myPicture = ImageIO.read(new File(path+"\\mestoSlobodno.png"));
+                              pkLabel1.setIcon(new ImageIcon(myPicture));
+                            }catch(Exception ecc){
+                                ecc.printStackTrace();
+                            }
+                            //ParkingMesto2.setBackground(Color.green);
                             btnPlati2.setEnabled(false);
                         }
                         break;
@@ -149,9 +192,21 @@ public class MainFrame extends javax.swing.JFrame {
                              //   System.out.println("Ne radi nista");
                             }
                             if(boje.get(2).charAt(0)=='y')
-                                ParkingMesto3.setBackground(Color.yellow);
+                           try{
+                             BufferedImage myPicture = ImageIO.read(new File(path+"\\WoziloJeStiglo.png"));
+                              pkLabel2.setIcon(new ImageIcon(myPicture));
+                            }catch(Exception ecc){
+                                ecc.printStackTrace();
+                            }   
+                            //  ParkingMesto3.setBackground(Color.yellow);
                             else{
-                                ParkingMesto3.setBackground(Color.red);    
+                                try{
+                             BufferedImage myPicture = ImageIO.read(new File(path+"\\MestoZauzeto.png"));
+                              pkLabel2.setIcon(new ImageIcon(myPicture));
+                            }catch(Exception ecc){
+                                ecc.printStackTrace();
+                            }
+                               // ParkingMesto3.setBackground(Color.red);    
                             }
                             br_mesta--;
                             btnPlati3.setEnabled(true);
@@ -165,7 +220,13 @@ public class MainFrame extends javax.swing.JFrame {
                              //   System.out.println("Ne radi nista");
                             }
                             boje.get(2).replace(0, boje.get(2).length(), "y");
-                            ParkingMesto3.setBackground(Color.green);
+                           try{
+                             BufferedImage myPicture = ImageIO.read(new File(path+"\\mestoSlobodno.png"));
+                              pkLabel2.setIcon(new ImageIcon(myPicture));
+                            }catch(Exception ecc){
+                                ecc.printStackTrace();
+                            }
+                            // ParkingMesto3.setBackground(Color.green);
                             btnPlati3.setEnabled(false);
                         }
                         break;
@@ -185,8 +246,20 @@ public class MainFrame extends javax.swing.JFrame {
                             //    System.out.println("Ne radi nista");
                             }
                             if(boje.get(3).charAt(0)=='y')
-                                ParkingMesto4.setBackground(Color.yellow);
+                                try{
+                             BufferedImage myPicture = ImageIO.read(new File(path+"\\WoziloJeStiglo.png"));
+                              pkLabel3.setIcon(new ImageIcon(myPicture));
+                            }catch(Exception ecc){
+                                ecc.printStackTrace();
+                            }
+                                //ParkingMesto4.setBackground(Color.yellow);
                             else{
+                                try{
+                             BufferedImage myPicture = ImageIO.read(new File(path+"\\MestoZauzeto.png"));
+                              pkLabel3.setIcon(new ImageIcon(myPicture));
+                            }catch(Exception ecc){
+                                ecc.printStackTrace();
+                            }
                                 ParkingMesto4.setBackground(Color.red);    
                             }
                             br_mesta--;
@@ -201,7 +274,13 @@ public class MainFrame extends javax.swing.JFrame {
                              //   System.out.println("Ne radi nista");
                             }
                             boje.get(3).replace(0, boje.get(3).length(), "y");
-                            ParkingMesto4.setBackground(Color.green);
+                            try{
+                             BufferedImage myPicture = ImageIO.read(new File(path+"\\mestoSlobodno.png"));
+                              pkLabel3.setIcon(new ImageIcon(myPicture));
+                            }catch(Exception ecc){
+                                ecc.printStackTrace();
+                            }
+                            //ParkingMesto4.setBackground(Color.green);
                             btnPlati4.setEnabled(false);
                         }
                         break;
@@ -233,18 +312,22 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         lblVreme1 = new javax.swing.JLabel();
         btnPlati1 = new javax.swing.JButton();
+        pkLabel0 = new javax.swing.JLabel();
         ParkingMesto2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         btnPlati2 = new javax.swing.JButton();
         lblVreme2 = new javax.swing.JLabel();
+        pkLabel1 = new javax.swing.JLabel();
         ParkingMesto3 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         lblVreme3 = new javax.swing.JLabel();
         btnPlati3 = new javax.swing.JButton();
+        pkLabel2 = new javax.swing.JLabel();
         ParkingMesto4 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         lblVreme4 = new javax.swing.JLabel();
         btnPlati4 = new javax.swing.JButton();
+        pkLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         pnlTabla = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
@@ -270,7 +353,7 @@ public class MainFrame extends javax.swing.JFrame {
         jpanComponent.setBackground(new java.awt.Color(0, 40, 43));
         jpanComponent.setPreferredSize(new java.awt.Dimension(630, 470));
 
-        ParkingMesto1.setBackground(new java.awt.Color(255, 51, 51));
+        ParkingMesto1.setBackground(new java.awt.Color(0, 40, 43));
         ParkingMesto1.setMaximumSize(new java.awt.Dimension(200, 150));
         ParkingMesto1.setMinimumSize(new java.awt.Dimension(200, 150));
         ParkingMesto1.setPreferredSize(new java.awt.Dimension(200, 150));
@@ -284,7 +367,7 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel1.setMaximumSize(new java.awt.Dimension(50, 50));
         jLabel1.setMinimumSize(new java.awt.Dimension(50, 50));
         jLabel1.setPreferredSize(new java.awt.Dimension(50, 50));
-        ParkingMesto1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 70, 30, 40));
+        ParkingMesto1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 230, 30, 40));
 
         lblVreme1.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         lblVreme1.setForeground(new java.awt.Color(255, 255, 255));
@@ -302,7 +385,12 @@ public class MainFrame extends javax.swing.JFrame {
         });
         ParkingMesto1.add(btnPlati1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 90, 30));
 
-        ParkingMesto2.setBackground(new java.awt.Color(255, 204, 51));
+        pkLabel0.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pkLabel0.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        pkLabel0.setPreferredSize(new java.awt.Dimension(330, 270));
+        ParkingMesto1.add(pkLabel0, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 330, 270));
+
+        ParkingMesto2.setBackground(new java.awt.Color(0, 40, 43));
         ParkingMesto2.setMaximumSize(new java.awt.Dimension(200, 150));
         ParkingMesto2.setMinimumSize(new java.awt.Dimension(200, 150));
         ParkingMesto2.setPreferredSize(new java.awt.Dimension(200, 150));
@@ -316,7 +404,7 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel3.setMaximumSize(new java.awt.Dimension(50, 50));
         jLabel3.setMinimumSize(new java.awt.Dimension(50, 50));
         jLabel3.setPreferredSize(new java.awt.Dimension(50, 50));
-        ParkingMesto2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 70, 30, 40));
+        ParkingMesto2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 230, 30, 40));
 
         btnPlati2.setBackground(new java.awt.Color(204, 204, 204));
         btnPlati2.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
@@ -333,8 +421,9 @@ public class MainFrame extends javax.swing.JFrame {
         lblVreme2.setForeground(new java.awt.Color(255, 255, 255));
         lblVreme2.setText("Vreme 2");
         ParkingMesto2.add(lblVreme2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 0, 80, 27));
+        ParkingMesto2.add(pkLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 330, 290));
 
-        ParkingMesto3.setBackground(new java.awt.Color(0, 153, 0));
+        ParkingMesto3.setBackground(new java.awt.Color(0, 40, 43));
         ParkingMesto3.setMaximumSize(new java.awt.Dimension(200, 150));
         ParkingMesto3.setMinimumSize(new java.awt.Dimension(200, 150));
         ParkingMesto3.setPreferredSize(new java.awt.Dimension(200, 150));
@@ -348,7 +437,7 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel4.setMaximumSize(new java.awt.Dimension(50, 50));
         jLabel4.setMinimumSize(new java.awt.Dimension(50, 50));
         jLabel4.setPreferredSize(new java.awt.Dimension(50, 50));
-        ParkingMesto3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 70, 30, 40));
+        ParkingMesto3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 230, 30, 40));
 
         lblVreme3.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         lblVreme3.setForeground(new java.awt.Color(255, 255, 255));
@@ -365,8 +454,9 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
         ParkingMesto3.add(btnPlati3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 70, 30));
+        ParkingMesto3.add(pkLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 340, 270));
 
-        ParkingMesto4.setBackground(new java.awt.Color(0, 0, 204));
+        ParkingMesto4.setBackground(new java.awt.Color(0, 40, 43));
         ParkingMesto4.setMaximumSize(new java.awt.Dimension(200, 150));
         ParkingMesto4.setMinimumSize(new java.awt.Dimension(200, 150));
         ParkingMesto4.setPreferredSize(new java.awt.Dimension(200, 150));
@@ -380,7 +470,7 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel2.setMaximumSize(new java.awt.Dimension(50, 50));
         jLabel2.setMinimumSize(new java.awt.Dimension(50, 50));
         jLabel2.setPreferredSize(new java.awt.Dimension(50, 50));
-        ParkingMesto4.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 60, 30, 50));
+        ParkingMesto4.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 220, 30, 50));
 
         lblVreme4.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         lblVreme4.setForeground(new java.awt.Color(255, 255, 255));
@@ -397,6 +487,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
         ParkingMesto4.add(btnPlati4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 70, 30));
+        ParkingMesto4.add(pkLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 330, 270));
 
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/parkingsimulator/Views/Slike/PUTTTTT-01.png"))); // NOI18N
@@ -626,6 +717,10 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel lblVreme2;
     private javax.swing.JLabel lblVreme3;
     private javax.swing.JLabel lblVreme4;
+    private javax.swing.JLabel pkLabel0;
+    private javax.swing.JLabel pkLabel1;
+    private javax.swing.JLabel pkLabel2;
+    private javax.swing.JLabel pkLabel3;
     private javax.swing.JPanel pnlBackground;
     private javax.swing.JPanel pnlOpcijeGlavni;
     private javax.swing.JPanel pnlTabla;
