@@ -174,7 +174,7 @@ public class PlatiFrame extends javax.swing.JFrame {
                 Logger.getLogger(PlatiFrame.class.getName()).log(Level.SEVERE, null, ex);
             }
             this.boje.get(redniBroj).replace(0, boje.get(redniBroj).length(), "r");
-            panelKojiMenjam.setBackground(Color.red);
+            //panelKojiMenjam.setBackground(Color.red);
             JOptionPane.showMessageDialog(null, "Uspesno ste uplatili!");
             this.setVisible(false);
             this.dispose();
