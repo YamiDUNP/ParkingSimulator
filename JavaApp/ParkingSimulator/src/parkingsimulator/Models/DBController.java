@@ -80,7 +80,6 @@ public class DBController {
             resultSet = statement.executeQuery("SELECT Vrednost from CENA where cena.id_cene=(select max(id_cene) from cena)");
             if(resultSet.next())
                 cena=resultSet.getFloat("Vrednost");
-            System.out.println(cena);
          }
         catch(Exception E){
             System.out.println(E);
@@ -185,7 +184,6 @@ public class DBController {
                 sqlex.printStackTrace();
             }
         }
-        //System.out.println(lista);
         return lista;
     }
     

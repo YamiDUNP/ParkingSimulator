@@ -79,9 +79,7 @@ public class MainFrame extends javax.swing.JFrame {
                           //      System.out.println("Upisi u bazu za nulto mesto+vreme zauzimanja");
                             }
                             else{
-                                System.out.println("Ne radi nista");
                             }
-                            System.out.println(boje.get(0).charAt(0));
                             if(boje.get(0).charAt(0)=='y')
                                //KOM ParkingMesto1.setBackground(Color.yellow);
                                  try{
@@ -109,7 +107,7 @@ public class MainFrame extends javax.swing.JFrame {
                             //    System.out.println("Upisi u bazu za nulto mest+VREME ODLASKA");
                             }
                             else{
-                                System.out.println("Ne radi nista");
+                            
                             }
                             
                             boje.get(0).replace(0, boje.get(0).length(), "y");
@@ -136,7 +134,6 @@ public class MainFrame extends javax.swing.JFrame {
                               //  System.out.println("Upisi u bazu za nulto mesto+vreme zauzimanja");
                             }
                             else{
-                             //   System.out.println("Ne radi nista");
                             }
                             if(boje.get(1).charAt(0)=='y')
                                 try{
@@ -164,7 +161,6 @@ public class MainFrame extends javax.swing.JFrame {
                              //   System.out.println("Upisi u bazu za nulto mest+VREME ODLASKA");
                             }
                             else{
-                            //    System.out.println("Ne radi nista");
                             }
                             boje.get(1).replace(0, boje.get(1).length(), "y");
                             try{
@@ -189,7 +185,6 @@ public class MainFrame extends javax.swing.JFrame {
                             //    System.out.println("Upisi u bazu za nulto mesto+vreme zauzimanja");
                             }
                             else{
-                             //   System.out.println("Ne radi nista");
                             }
                             if(boje.get(2).charAt(0)=='y')
                            try{
@@ -217,7 +212,6 @@ public class MainFrame extends javax.swing.JFrame {
                              //   System.out.println("Upisi u bazu za nulto mest+VREME ODLASKA");
                             }
                             else{
-                             //   System.out.println("Ne radi nista");
                             }
                             boje.get(2).replace(0, boje.get(2).length(), "y");
                            try{
@@ -243,7 +237,6 @@ public class MainFrame extends javax.swing.JFrame {
                             //    System.out.println("Upisi u bazu za nulto mesto+vreme zauzimanja");
                             }
                             else{
-                            //    System.out.println("Ne radi nista");
                             }
                             if(boje.get(3).charAt(0)=='y')
                                 try{
@@ -271,7 +264,6 @@ public class MainFrame extends javax.swing.JFrame {
                              //   System.out.println("Upisi u bazu za nulto mest+VREME ODLASKA");
                             }
                             else{
-                             //   System.out.println("Ne radi nista");
                             }
                             boje.get(3).replace(0, boje.get(3).length(), "y");
                             try{
