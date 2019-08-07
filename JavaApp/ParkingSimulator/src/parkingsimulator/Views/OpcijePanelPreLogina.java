@@ -33,64 +33,57 @@ public class OpcijePanelPreLogina extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        btnPrijava = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(0, 40, 43));
 
-        jButton1.setBackground(new java.awt.Color(0, 40, 43));
-        jButton1.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/parkingsimulator/Views/Slike/btnPrijava.png"))); // NOI18N
-        jButton1.setAlignmentY(0.0F);
-        jButton1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(248, 193, 30), 1, true));
-        jButton1.setBorderPainted(false);
-        jButton1.setFocusPainted(false);
-        jButton1.setPreferredSize(new java.awt.Dimension(67, 23));
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnPrijava.setBackground(new java.awt.Color(0, 40, 43));
+        btnPrijava.setFont(new java.awt.Font("Comic Sans MS", 0, 20)); // NOI18N
+        btnPrijava.setForeground(new java.awt.Color(248, 193, 30));
+        btnPrijava.setIcon(new javax.swing.ImageIcon(getClass().getResource("/parkingsimulator/Views/Slike/btnPrijava.png"))); // NOI18N
+        btnPrijava.setAlignmentY(0.0F);
+        btnPrijava.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(248, 193, 30), 1, true));
+        btnPrijava.setFocusPainted(false);
+        btnPrijava.setPreferredSize(new java.awt.Dimension(67, 23));
+        btnPrijava.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                btnPrijavaMouseClicked(evt);
             }
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                jButton1MousePressed(evt);
+                btnPrijavaMousePressed(evt);
             }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
-                jButton1MouseReleased(evt);
+                btnPrijavaMouseReleased(evt);
             }
         });
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnPrijava.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnPrijavaActionPerformed(evt);
             }
         });
-        jButton1.addKeyListener(new java.awt.event.KeyAdapter() {
+        btnPrijava.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jButton1KeyPressed(evt);
+                btnPrijavaKeyPressed(evt);
             }
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                jButton1KeyReleased(evt);
+                btnPrijavaKeyReleased(evt);
             }
         });
-
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/parkingsimulator/Views/Slike/Logo 24.png"))); // NOI18N
-        jLabel1.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(94, 94, 94)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(106, Short.MAX_VALUE)
+                .addComponent(btnPrijava, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(105, 105, 105))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 283, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(382, Short.MAX_VALUE)
+                .addComponent(btnPrijava, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -105,44 +98,45 @@ public class OpcijePanelPreLogina extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnPrijavaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrijavaActionPerformed
         Prijava i=new Prijava(main);
         i.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnPrijavaActionPerformed
 
-    private void jButton1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton1KeyPressed
+    private void btnPrijavaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnPrijavaKeyPressed
         // TODO add your handling code here:
         
-    }//GEN-LAST:event_jButton1KeyPressed
+    }//GEN-LAST:event_btnPrijavaKeyPressed
 
-    private void jButton1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton1KeyReleased
+    private void btnPrijavaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnPrijavaKeyReleased
         // TODO add your handling code here:
            
 
-    }//GEN-LAST:event_jButton1KeyReleased
+    }//GEN-LAST:event_btnPrijavaKeyReleased
 
-    private void jButton1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MousePressed
+    private void btnPrijavaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPrijavaMousePressed
         // TODO add your handling code here:       
-        this.jButton1.setForeground(Color.decode("#00282B"));
+        this.btnPrijava.setForeground(Color.decode("#00282b"));
+        this.btnPrijava.setBackground(Color.decode("#f8c11e"));
 
-    }//GEN-LAST:event_jButton1MousePressed
+    }//GEN-LAST:event_btnPrijavaMousePressed
 
-    private void jButton1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseReleased
+    private void btnPrijavaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPrijavaMouseReleased
         // TODO add your handling code here:
-                this.jButton1.setForeground(Color.decode("#00282B"));
+                this.btnPrijava.setForeground(Color.decode("#f8c11e"));
+                this.btnPrijava.setBackground(Color.decode("#00282b"));
 
-    }//GEN-LAST:event_jButton1MouseReleased
+    }//GEN-LAST:event_btnPrijavaMouseReleased
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+    private void btnPrijavaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPrijavaMouseClicked
         // TODO add your handling code here:
-               this.jButton1.setForeground(Color.decode("#00282B"));
+               
 
-    }//GEN-LAST:event_jButton1MouseClicked
+    }//GEN-LAST:event_btnPrijavaMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton btnPrijava;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

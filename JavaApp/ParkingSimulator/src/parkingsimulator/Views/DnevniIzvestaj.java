@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import static javafx.scene.paint.Color.color;
 import javax.swing.JComboBox;
 import javax.swing.RowFilter;
 import javax.swing.WindowConstants;
@@ -61,6 +62,9 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
         for(int i=0; i<listaParkiranih.size(); i++){
          Object[] row = {listaParkiranih.get(i).getID_vozila(), listaParkiranih.get(i).getVreme_dolaska(),listaParkiranih.get(i).getVreme_odlaska(),listaParkiranih.get(i).getPlaceno()};
                ((DefaultTableModel) TableDnevni.getModel()).insertRow(i, row);
+               
+                   
+               
         }
            
          this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -84,20 +88,27 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
         lblBrojVozilaDanas = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         lblUkupnaZarada = new javax.swing.JLabel();
-        CBSearch = new javax.swing.JComboBox<>();
+        CBSearch = new javax.swing.JComboBox<String>();
         TFSearch = new javax.swing.JTextField();
 
         jButton1.setText("jButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        DnevniizvestajPNL.setBackground(new java.awt.Color(0, 40, 43));
+
+        jButton2.setBackground(new java.awt.Color(0, 40, 43));
+        jButton2.setForeground(new java.awt.Color(248, 193, 30));
         jButton2.setText("Stampaj");
+        jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(248, 193, 30)));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
 
+        TableDnevni.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
+        TableDnevni.setForeground(new java.awt.Color(248, 193, 30));
         TableDnevni.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -114,23 +125,42 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
+        TableDnevni.setGridColor(new java.awt.Color(255, 255, 255));
         jScrollPane2.setViewportView(TableDnevni);
 
+        jLabel1.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(248, 193, 30));
         jLabel1.setText("Broj parkiranih vozila u toku dana:");
 
+        lblBrojVozilaDanas.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
+        lblBrojVozilaDanas.setForeground(new java.awt.Color(248, 193, 30));
         lblBrojVozilaDanas.setText("jLabel2");
 
+        jLabel3.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(248, 193, 30));
         jLabel3.setText("Ukupna dnevna zarada:");
 
+        lblUkupnaZarada.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
+        lblUkupnaZarada.setForeground(new java.awt.Color(248, 193, 30));
         lblUkupnaZarada.setText("jLabel4");
 
-        CBSearch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID vozila", "Vreme dolaska", "Vreme odlaska", "Uplata" }));
+        CBSearch.setBackground(new java.awt.Color(0, 40, 43));
+        CBSearch.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
+        CBSearch.setForeground(new java.awt.Color(248, 193, 30));
+        CBSearch.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ID vozila", "Vreme dolaska", "Vreme odlaska", "Uplata" }));
+        CBSearch.setAlignmentX(0.0F);
+        CBSearch.setAlignmentY(0.0F);
+        CBSearch.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(248, 193, 30)));
         CBSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CBSearchActionPerformed(evt);
             }
         });
 
+        TFSearch.setBackground(new java.awt.Color(0, 40, 43));
+        TFSearch.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        TFSearch.setForeground(new java.awt.Color(248, 193, 30));
+        TFSearch.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(248, 193, 30)));
         TFSearch.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 TFSearchMouseClicked(evt);

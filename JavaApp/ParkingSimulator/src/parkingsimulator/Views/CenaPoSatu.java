@@ -49,15 +49,25 @@ public class CenaPoSatu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(0, 40, 43));
+
+        btnSacuvaj.setBackground(new java.awt.Color(0, 40, 43));
+        btnSacuvaj.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        btnSacuvaj.setForeground(new java.awt.Color(248, 193, 30));
         btnSacuvaj.setText("Sacuvaj");
+        btnSacuvaj.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(248, 193, 30)));
         btnSacuvaj.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSacuvajActionPerformed(evt);
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(248, 193, 30));
         jLabel1.setText("Cena po satu:");
 
+        txtCena.setBackground(new java.awt.Color(0, 40, 43));
+        txtCena.setForeground(new java.awt.Color(248, 193, 30));
         txtCena.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCenaActionPerformed(evt);
@@ -77,8 +87,8 @@ public class CenaPoSatu extends javax.swing.JFrame {
                         .addComponent(txtCena, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(141, 141, 141)
-                        .addComponent(btnSacuvaj)))
-                .addContainerGap(157, Short.MAX_VALUE))
+                        .addComponent(btnSacuvaj, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(129, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

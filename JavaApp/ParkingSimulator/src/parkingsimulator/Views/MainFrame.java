@@ -330,16 +330,15 @@ public class MainFrame extends javax.swing.JFrame {
         pkLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         pnlTabla = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         lblRadnoVreme = new javax.swing.JLabel();
         lblBrMesta = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
         pnlOpcijeGlavni = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
+        jSeparator4 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -350,7 +349,7 @@ public class MainFrame extends javax.swing.JFrame {
         pnlBackground.setMinimumSize(new java.awt.Dimension(0, 0));
         pnlBackground.setPreferredSize(new java.awt.Dimension(0, 0));
 
-        jpanComponent.setBackground(new java.awt.Color(0, 40, 43));
+        jpanComponent.setBackground(new java.awt.Color(248, 193, 30));
         jpanComponent.setPreferredSize(new java.awt.Dimension(630, 470));
 
         ParkingMesto1.setBackground(new java.awt.Color(0, 40, 43));
@@ -360,7 +359,7 @@ public class MainFrame extends javax.swing.JFrame {
         ParkingMesto1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Comic Sans MS", 0, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setForeground(new java.awt.Color(248, 193, 30));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("1");
         jLabel1.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
@@ -370,14 +369,24 @@ public class MainFrame extends javax.swing.JFrame {
         ParkingMesto1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 230, 30, 40));
 
         lblVreme1.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        lblVreme1.setForeground(new java.awt.Color(255, 255, 255));
+        lblVreme1.setForeground(new java.awt.Color(248, 193, 30));
         lblVreme1.setText("Vreme 1");
         ParkingMesto1.add(lblVreme1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 0, 80, 30));
 
-        btnPlati1.setBackground(new java.awt.Color(204, 204, 204));
-        btnPlati1.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        btnPlati1.setBackground(new java.awt.Color(0, 40, 43));
+        btnPlati1.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
+        btnPlati1.setForeground(new java.awt.Color(248, 193, 30));
         btnPlati1.setText("Plati");
+        btnPlati1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(248, 193, 30)));
         btnPlati1.setFocusPainted(false);
+        btnPlati1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnPlati1MousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnPlati1MouseReleased(evt);
+            }
+        });
         btnPlati1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPlati1ActionPerformed(evt);
@@ -397,7 +406,7 @@ public class MainFrame extends javax.swing.JFrame {
         ParkingMesto2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setFont(new java.awt.Font("Comic Sans MS", 0, 36)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setForeground(new java.awt.Color(248, 193, 30));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("2");
         jLabel3.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
@@ -406,22 +415,24 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel3.setPreferredSize(new java.awt.Dimension(50, 50));
         ParkingMesto2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 230, 30, 40));
 
-        btnPlati2.setBackground(new java.awt.Color(204, 204, 204));
-        btnPlati2.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        btnPlati2.setBackground(new java.awt.Color(0, 40, 43));
+        btnPlati2.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
+        btnPlati2.setForeground(new java.awt.Color(248, 193, 30));
         btnPlati2.setText("Plati");
+        btnPlati2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(248, 193, 30)));
         btnPlati2.setFocusPainted(false);
         btnPlati2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPlati2ActionPerformed(evt);
             }
         });
-        ParkingMesto2.add(btnPlati2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 80, 30));
+        ParkingMesto2.add(btnPlati2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 90, 30));
 
         lblVreme2.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        lblVreme2.setForeground(new java.awt.Color(255, 255, 255));
+        lblVreme2.setForeground(new java.awt.Color(248, 193, 30));
         lblVreme2.setText("Vreme 2");
         ParkingMesto2.add(lblVreme2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 0, 80, 27));
-        ParkingMesto2.add(pkLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 330, 290));
+        ParkingMesto2.add(pkLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 330, 270));
 
         ParkingMesto3.setBackground(new java.awt.Color(0, 40, 43));
         ParkingMesto3.setMaximumSize(new java.awt.Dimension(200, 150));
@@ -430,7 +441,7 @@ public class MainFrame extends javax.swing.JFrame {
         ParkingMesto3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel4.setFont(new java.awt.Font("Comic Sans MS", 0, 36)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setForeground(new java.awt.Color(248, 193, 30));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("3");
         jLabel4.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
@@ -440,20 +451,22 @@ public class MainFrame extends javax.swing.JFrame {
         ParkingMesto3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 230, 30, 40));
 
         lblVreme3.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        lblVreme3.setForeground(new java.awt.Color(255, 255, 255));
+        lblVreme3.setForeground(new java.awt.Color(248, 193, 30));
         lblVreme3.setText("Vreme 3");
         ParkingMesto3.add(lblVreme3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 0, 80, 27));
 
-        btnPlati3.setBackground(new java.awt.Color(204, 204, 204));
-        btnPlati3.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        btnPlati3.setBackground(new java.awt.Color(0, 40, 43));
+        btnPlati3.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
+        btnPlati3.setForeground(new java.awt.Color(248, 193, 30));
         btnPlati3.setText("Plati");
+        btnPlati3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(248, 193, 30)));
         btnPlati3.setFocusPainted(false);
         btnPlati3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPlati3ActionPerformed(evt);
             }
         });
-        ParkingMesto3.add(btnPlati3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 70, 30));
+        ParkingMesto3.add(btnPlati3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 90, 30));
         ParkingMesto3.add(pkLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 340, 270));
 
         ParkingMesto4.setBackground(new java.awt.Color(0, 40, 43));
@@ -463,7 +476,7 @@ public class MainFrame extends javax.swing.JFrame {
         ParkingMesto4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("Comic Sans MS", 0, 36)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setForeground(new java.awt.Color(248, 193, 30));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         jLabel2.setText("4");
         jLabel2.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
@@ -473,20 +486,22 @@ public class MainFrame extends javax.swing.JFrame {
         ParkingMesto4.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 220, 30, 50));
 
         lblVreme4.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        lblVreme4.setForeground(new java.awt.Color(255, 255, 255));
+        lblVreme4.setForeground(new java.awt.Color(248, 193, 30));
         lblVreme4.setText("Vreme 4");
         ParkingMesto4.add(lblVreme4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 0, 80, 27));
 
-        btnPlati4.setBackground(new java.awt.Color(204, 204, 204));
-        btnPlati4.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        btnPlati4.setBackground(new java.awt.Color(0, 40, 43));
+        btnPlati4.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
+        btnPlati4.setForeground(new java.awt.Color(248, 193, 30));
         btnPlati4.setText("Plati");
+        btnPlati4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(248, 193, 30)));
         btnPlati4.setFocusPainted(false);
         btnPlati4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPlati4ActionPerformed(evt);
             }
         });
-        ParkingMesto4.add(btnPlati4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 70, 30));
+        ParkingMesto4.add(btnPlati4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 90, 30));
         ParkingMesto4.add(pkLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 330, 270));
 
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -523,13 +538,6 @@ public class MainFrame extends javax.swing.JFrame {
         pnlTabla.setBackground(new java.awt.Color(0, 40, 43));
         pnlTabla.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel7.setBackground(new java.awt.Color(51, 102, 255));
-        jLabel7.setFont(new java.awt.Font("Comic Sans MS", 0, 20)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(248, 193, 30));
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("Tabla");
-        pnlTabla.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 240, 50));
-
         jLabel8.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(248, 193, 30));
         jLabel8.setText("Radno vreme:");
@@ -549,10 +557,6 @@ public class MainFrame extends javax.swing.JFrame {
         lblBrMesta.setForeground(new java.awt.Color(248, 193, 30));
         pnlTabla.add(lblBrMesta, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 100, 90, 20));
 
-        jSeparator1.setForeground(new java.awt.Color(248, 193, 30));
-        jSeparator1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        pnlTabla.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 340, -1));
-
         jSeparator2.setForeground(new java.awt.Color(248, 193, 30));
         pnlTabla.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 340, 20));
 
@@ -561,26 +565,24 @@ public class MainFrame extends javax.swing.JFrame {
 
         pnlOpcijeGlavni.setBackground(new java.awt.Color(0, 40, 43));
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/parkingsimulator/Views/Slike/Logo 24.png"))); // NOI18N
-
         javax.swing.GroupLayout pnlOpcijeGlavniLayout = new javax.swing.GroupLayout(pnlOpcijeGlavni);
         pnlOpcijeGlavni.setLayout(pnlOpcijeGlavniLayout);
         pnlOpcijeGlavniLayout.setHorizontalGroup(
             pnlOpcijeGlavniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlOpcijeGlavniLayout.createSequentialGroup()
-                .addContainerGap(32, Short.MAX_VALUE)
-                .addComponent(jLabel6)
-                .addGap(27, 27, 27))
+            .addGap(0, 340, Short.MAX_VALUE)
         );
         pnlOpcijeGlavniLayout.setVerticalGroup(
             pnlOpcijeGlavniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlOpcijeGlavniLayout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(jLabel6)
-                .addContainerGap(248, Short.MAX_VALUE))
+            .addGap(0, 450, Short.MAX_VALUE)
         );
 
         pnlTabla.add(pnlOpcijeGlavni, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 340, 450));
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/parkingsimulator/Views/Slike/Untitled-1.png"))); // NOI18N
+        pnlTabla.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 0, 233, 60));
+
+        jSeparator4.setForeground(new java.awt.Color(248, 193, 30));
+        pnlTabla.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 340, -1));
 
         javax.swing.GroupLayout pnlBackgroundLayout = new javax.swing.GroupLayout(pnlBackground);
         pnlBackground.setLayout(pnlBackgroundLayout);
@@ -654,6 +656,16 @@ public class MainFrame extends javax.swing.JFrame {
         p.setVisible(true);
     }//GEN-LAST:event_btnPlati3ActionPerformed
 
+    private void btnPlati1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPlati1MousePressed
+      this.btnPlati1.setForeground(Color.decode("#00282b"));
+      this.btnPlati1.setBackground(Color.decode("#f8c11e"));// TODO add your handling code here:
+    }//GEN-LAST:event_btnPlati1MousePressed
+
+    private void btnPlati1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPlati1MouseReleased
+        this.btnPlati1.setForeground(Color.decode("#f8c11e"));
+      this.btnPlati1.setBackground(Color.decode("#00282b")); // TODO add your handling code here:
+    }//GEN-LAST:event_btnPlati1MouseReleased
+
     /**
      * @param args the command line arguments
      */
@@ -704,12 +716,11 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
     private javax.swing.JPanel jpanComponent;
     private javax.swing.JLabel lblBrMesta;
     private javax.swing.JLabel lblRadnoVreme;
