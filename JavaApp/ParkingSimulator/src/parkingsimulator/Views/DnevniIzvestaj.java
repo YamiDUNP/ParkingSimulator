@@ -138,12 +138,13 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
 
         DnevniizvestajPNL.setBackground(new java.awt.Color(0, 40, 43));
 
-        jButton2.setBackground(new java.awt.Color(0, 40, 43));
-        jButton2.setForeground(new java.awt.Color(248, 193, 30));
-        jButton2.setText("Stampaj");
-        jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(248, 193, 30)));
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-
+        btnPrint.setBackground(new java.awt.Color(0, 40, 43));
+        btnPrint.setForeground(new java.awt.Color(248, 193, 30));
+        btnPrint.setText("Stampaj");
+        btnPrint.setAlignmentY(0.0F);
+        btnPrint.setBorder(null);
+        btnPrint.setBorderPainted(false);
+        btnPrint.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPrintActionPerformed(evt);
             }
@@ -173,18 +174,22 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(248, 193, 30));
         jLabel1.setText("Broj parkiranih vozila u toku dana:");
+        jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(248, 193, 30)));
 
         lblBrojVozilaDanas.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
         lblBrojVozilaDanas.setForeground(new java.awt.Color(248, 193, 30));
         lblBrojVozilaDanas.setText("jLabel2");
+        lblBrojVozilaDanas.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(248, 193, 30)));
 
         jLabel3.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(248, 193, 30));
         jLabel3.setText("Ukupna dnevna zarada:");
+        jLabel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(248, 193, 30)));
 
         lblUkupnaZarada.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
         lblUkupnaZarada.setForeground(new java.awt.Color(248, 193, 30));
         lblUkupnaZarada.setText("jLabel4");
+        lblUkupnaZarada.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(248, 193, 30)));
 
         CBSearch.setBackground(new java.awt.Color(0, 40, 43));
         CBSearch.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
@@ -220,11 +225,20 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
             }
         });
 
+        LBrojVozilaIzabranogDatuma.setForeground(new java.awt.Color(248, 193, 30));
         LBrojVozilaIzabranogDatuma.setText("Broj parkiranih vozila izabranog datuma:");
 
+        LZaradaIzabranogDatuma.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
+        LZaradaIzabranogDatuma.setForeground(new java.awt.Color(248, 193, 30));
         LZaradaIzabranogDatuma.setText("Dnevna zarada izabranog datuma:");
 
-        jLabel2.setText("jLabel2");
+        LBrojVozilaIzabranogDatuma2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(248, 193, 30)));
+
+        LZaradaIzabranogDatuma2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(248, 193, 30)));
+
+        jLabel2.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(248, 193, 30));
+        jLabel2.setText("Izaberite datum uzimanja izveštaja");
 
         javax.swing.GroupLayout DnevniizvestajPNLLayout = new javax.swing.GroupLayout(DnevniizvestajPNL);
         DnevniizvestajPNL.setLayout(DnevniizvestajPNLLayout);
@@ -244,24 +258,20 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
                         .addContainerGap())
                     .addGroup(DnevniizvestajPNLLayout.createSequentialGroup()
                         .addGap(14, 14, 14)
-                        .addGroup(DnevniizvestajPNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(LZaradaIzabranogDatuma)
-                            .addComponent(LBrojVozilaIzabranogDatuma))
+                        .addGroup(DnevniizvestajPNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(LBrojVozilaIzabranogDatuma)
+                            .addComponent(LZaradaIzabranogDatuma))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(DnevniizvestajPNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(DnevniizvestajPNLLayout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(btnPrint)
-                                .addGap(88, 88, 88))
-                            .addGroup(DnevniizvestajPNLLayout.createSequentialGroup()
-                                .addGroup(DnevniizvestajPNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(LBrojVozilaIzabranogDatuma2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(LZaradaIzabranogDatuma2, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                            .addComponent(LBrojVozilaIzabranogDatuma2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(LZaradaIzabranogDatuma2, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnPrint, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(88, 88, 88))
                     .addGroup(DnevniizvestajPNLLayout.createSequentialGroup()
-                        .addGroup(DnevniizvestajPNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE))
+                        .addGroup(DnevniizvestajPNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(DnevniizvestajPNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel3)
@@ -290,23 +300,23 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
                         .addGroup(DnevniizvestajPNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblBrojVozilaDanas, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
                         .addComponent(btnPrint, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28))
+                        .addGap(39, 39, 39))
                     .addGroup(DnevniizvestajPNLLayout.createSequentialGroup()
                         .addGap(11, 11, 11)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(38, 38, 38)
-                        .addGroup(DnevniizvestajPNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(DnevniizvestajPNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(LZaradaIzabranogDatuma2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(LZaradaIzabranogDatuma, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(DnevniizvestajPNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(LBrojVozilaIzabranogDatuma2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(LBrojVozilaIzabranogDatuma, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(91, Short.MAX_VALUE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 52, Short.MAX_VALUE)))
+                .addGroup(DnevniizvestajPNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(LBrojVozilaIzabranogDatuma2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LBrojVozilaIzabranogDatuma, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(91, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
