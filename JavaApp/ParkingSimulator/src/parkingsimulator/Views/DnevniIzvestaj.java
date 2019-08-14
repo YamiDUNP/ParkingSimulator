@@ -141,6 +141,7 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
         LBrojVozilaIzabranogDatuma2 = new javax.swing.JLabel();
         LZaradaIzabranogDatuma2 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        btnClear = new javax.swing.JButton();
 
         jButton1.setText("jButton1");
 
@@ -208,6 +209,11 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
         CBSearch.setAlignmentX(0.0F);
         CBSearch.setAlignmentY(0.0F);
         CBSearch.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(248, 193, 30)));
+        CBSearch.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                CBSearchItemStateChanged(evt);
+            }
+        });
         CBSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CBSearchActionPerformed(evt);
@@ -218,6 +224,11 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
         TFSearch.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         TFSearch.setForeground(new java.awt.Color(248, 193, 30));
         TFSearch.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(248, 193, 30)));
+        TFSearch.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                TFSearchFocusLost(evt);
+            }
+        });
         TFSearch.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 TFSearchMouseClicked(evt);
@@ -229,7 +240,7 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
             }
         });
 
-        jDateChooser1.setDateFormatString("dd.MM.yyyy,");
+        jDateChooser1.setDateFormatString("dd.MM.yyyy.");
         jDateChooser1.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 jDateChooser1PropertyChange(evt);
@@ -251,6 +262,13 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(248, 193, 30));
         jLabel2.setText("Izaberite dan za izveštaj:");
 
+        btnClear.setText("Clear");
+        btnClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClearActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout DnevniizvestajPNLLayout = new javax.swing.GroupLayout(DnevniizvestajPNL);
         DnevniizvestajPNL.setLayout(DnevniizvestajPNLLayout);
         DnevniizvestajPNLLayout.setHorizontalGroup(
@@ -262,6 +280,8 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
                         .addComponent(CBSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(TFSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(53, 53, 53)
+                        .addComponent(btnClear)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(DnevniizvestajPNLLayout.createSequentialGroup()
                         .addGap(14, 14, 14)
@@ -300,10 +320,15 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
             DnevniizvestajPNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DnevniizvestajPNLLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(DnevniizvestajPNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(CBSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(TFSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(15, 15, 15)
+                .addGroup(DnevniizvestajPNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(DnevniizvestajPNLLayout.createSequentialGroup()
+                        .addGroup(DnevniizvestajPNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(CBSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TFSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(15, 15, 15))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DnevniizvestajPNLLayout.createSequentialGroup()
+                        .addComponent(btnClear)
+                        .addGap(18, 18, 18)))
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(DnevniizvestajPNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -379,9 +404,8 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
     }
     
     private void TFSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TFSearchKeyReleased
-         TFSearch.setForeground(Color.getHSBColor(0, 0, 0));
+        TFSearch.setForeground(Color.getHSBColor(0, 0, 0));
    
-    
             if(CBSearch.getSelectedIndex() == 0){
                 izaberiKolonu(0);
             }
@@ -430,12 +454,57 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
              
                 this.LZaradaIzabranogDatuma2.setText(String.valueOf(UkupnaZarada)+" din");
         
-        
-        String aasda=this.jDateChooser1.getDate().toString();
-        System.out.println(aasda);
         }
-        
     }//GEN-LAST:event_jDateChooser1PropertyChange
+
+    private void TFSearchFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TFSearchFocusLost
+            if(this.TFSearch.getText().equals("")){
+                String pamtiOznaceni = "Trazite po "+CBSearch.getSelectedItem().toString();
+                TFSearch.setText(pamtiOznaceni);
+                TFSearch.setForeground(Color.getHSBColor(200, 200, 200));
+    
+            }
+    }//GEN-LAST:event_TFSearchFocusLost
+
+    private void CBSearchItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_CBSearchItemStateChanged
+              this.TFSearch.setText(""); 
+            if(CBSearch.getSelectedIndex() == 0){
+                izaberiKolonu(0);
+            }
+            else if(CBSearch.getSelectedIndex() == 1){
+                izaberiKolonu(1);
+            }
+            else if(CBSearch.getSelectedIndex() == 2){
+                izaberiKolonu(2);
+            }
+            else if(CBSearch.getSelectedIndex() == 3){
+                izaberiKolonu(3);
+            }
+            
+    }//GEN-LAST:event_CBSearchItemStateChanged
+
+    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
+        this.TFSearch.setText("");
+            if(CBSearch.getSelectedIndex() == 0){
+                izaberiKolonu(0);
+            }
+            else if(CBSearch.getSelectedIndex() == 1){
+                izaberiKolonu(1);
+            }
+            else if(CBSearch.getSelectedIndex() == 2){
+                izaberiKolonu(2);
+            }
+            else if(CBSearch.getSelectedIndex() == 3){
+                izaberiKolonu(3);
+            }
+            
+                String pamtiOznaceni = "Trazite po "+CBSearch.getSelectedItem().toString();
+                TFSearch.setText(pamtiOznaceni);
+                TFSearch.setForeground(Color.getHSBColor(200, 200, 200));
+                this.jDateChooser1.setDate(null);
+                this.LBrojVozilaIzabranogDatuma2.setText("0");
+                this.LZaradaIzabranogDatuma2.setText("0.0 din");
+    }//GEN-LAST:event_btnClearActionPerformed
 
     /**
      * @param args the command line arguments
@@ -489,6 +558,7 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
     private javax.swing.JLabel LZaradaIzabranogDatuma2;
     private javax.swing.JTextField TFSearch;
     private javax.swing.JTable TableDnevni;
+    private javax.swing.JButton btnClear;
     private javax.swing.JButton btnPrint;
     private javax.swing.JButton jButton1;
     private com.toedter.calendar.JDateChooser jDateChooser1;
