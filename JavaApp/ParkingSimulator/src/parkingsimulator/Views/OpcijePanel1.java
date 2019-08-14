@@ -7,6 +7,7 @@ package parkingsimulator.Views;
 
 import java.awt.BorderLayout;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JPanel;
@@ -120,7 +121,11 @@ public class OpcijePanel1 extends javax.swing.JPanel {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         DnevniIzvestaj di=null;
         try {
-            di = new DnevniIzvestaj();
+            try {
+                di = new DnevniIzvestaj();
+            } catch (ParseException ex) {
+                Logger.getLogger(OpcijePanel1.class.getName()).log(Level.SEVERE, null, ex);
+            }
         } catch (SQLException ex) {
             Logger.getLogger(OpcijePanel1.class.getName()).log(Level.SEVERE, null, ex);
         }
