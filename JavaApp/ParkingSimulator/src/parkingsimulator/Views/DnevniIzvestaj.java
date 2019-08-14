@@ -33,6 +33,7 @@ import parkingsimulator.Models.DBController;
 import parkingsimulator.Models.Parkirani;
 import java.text.*;
 import java.awt.print.*;
+import java.util.Locale;
 /**
  *
  * @author Amar
@@ -43,10 +44,19 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
      * Creates new form DnevniIzvestaj
      */
     ArrayList<Parkirani> listaParkiranih;
-    public DnevniIzvestaj() throws SQLException {
+    public DnevniIzvestaj() throws SQLException, ParseException {
         listaParkiranih=DBController.require().getKorisnike();    
         initComponents();
+
         
+        //ZA PRVI PUT DA DISPLAYA PLACEHOLDER
+        String pamtiOznaceni = "Trazite po "+CBSearch.getSelectedItem().toString();
+        TFSearch.setText(pamtiOznaceni);
+        TFSearch.setForeground(Color.getHSBColor(200, 200, 200));
+//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+//        String d = sdf.format(jDateChooser1.getDate());
+        
+        //IZMENJENA TABELA , DA BUDU BOJE NA CIK CAK 
         TableDnevni.setDefaultRenderer(Object.class, new TableCellRenderer(){
             private DefaultTableCellRenderer DEFAULT_RENDERER =  new DefaultTableCellRenderer();
             public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
@@ -69,8 +79,6 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
 
             }
 
- 
-
         });
         
         TableModel myModel = this.TableDnevni.getModel();
@@ -78,28 +86,30 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
                 
         float ukupnazarada=0;
         int DBV=0;
-        for(int i=0;i<listaParkiranih.size();i++){
-            
-            String j="";
-            String a="";
-            LocalDate date = LocalDate.now();    
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-                a=date.format(formatter);
-                j=listaParkiranih.get(i).getVreme_odlaska().substring(0, 10);
-                    if(a.equals(j)){
-                    DBV++;
-                    ukupnazarada=ukupnazarada+Float.parseFloat(listaParkiranih.get(i).getPlaceno());
-        }}
         
+        //ISPIS DNEVNE ZARADE I BROJA PARKIRANIH VOZILA U TOKU DANA
+            for(int i=0;i<listaParkiranih.size();i++){
+                String j="";
+                String a="";
+                LocalDate date = LocalDate.now();    
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                    a=date.format(formatter);
+                    j=listaParkiranih.get(i).getVreme_odlaska().substring(0, 10);
+                    if(a.equals(j)){
+                        DBV++;
+                        ukupnazarada=ukupnazarada+Float.parseFloat(listaParkiranih.get(i).getPlaceno());
+                    }
+            }
         this.lblBrojVozilaDanas.setText(Integer.toString(DBV));
         this.lblUkupnaZarada.setText(Float.toString(ukupnazarada)+" din");
         
         for(int i=0; i<listaParkiranih.size(); i++){
-         Object[] row = {listaParkiranih.get(i).getID_vozila(), listaParkiranih.get(i).getVreme_dolaska().substring(0, 10),listaParkiranih.get(i).getVreme_odlaska(),listaParkiranih.get(i).getPlaceno()};
-               ((DefaultTableModel) TableDnevni.getModel()).insertRow(i, row);
-               
-                   
-               
+                String datum=listaParkiranih.get(i).getVreme_dolaska().substring(0, 19);
+                SimpleDateFormat dt = new SimpleDateFormat("yyyyy-MM-dd hh:mm:ss");
+                Date date = dt.parse(datum);
+                SimpleDateFormat dt1 = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
+         Object[] row = {listaParkiranih.get(i).getID_vozila(), dt1.format(date).substring(0, 19),listaParkiranih.get(i).getVreme_odlaska().substring(0, 19),listaParkiranih.get(i).getPlaceno()};
+               ((DefaultTableModel) TableDnevni.getModel()).insertRow(i, row);  
         }
            
          this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -123,7 +133,7 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
         lblBrojVozilaDanas = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         lblUkupnaZarada = new javax.swing.JLabel();
-        CBSearch = new javax.swing.JComboBox<String>();
+        CBSearch = new javax.swing.JComboBox<>();
         TFSearch = new javax.swing.JTextField();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
         LBrojVozilaIzabranogDatuma = new javax.swing.JLabel();
@@ -138,19 +148,17 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
 
         DnevniizvestajPNL.setBackground(new java.awt.Color(0, 40, 43));
 
-        jButton2.setBackground(new java.awt.Color(0, 40, 43));
-        jButton2.setForeground(new java.awt.Color(248, 193, 30));
-        jButton2.setText("Stampaj");
-        jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(248, 193, 30)));
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-
+        btnPrint.setBackground(new java.awt.Color(0, 40, 43));
+        btnPrint.setForeground(new java.awt.Color(248, 193, 30));
+        btnPrint.setText("Štampaj");
+        btnPrint.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(248, 193, 30)));
+        btnPrint.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPrintActionPerformed(evt);
             }
         });
 
         TableDnevni.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
-        TableDnevni.setForeground(new java.awt.Color(248, 193, 30));
         TableDnevni.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -162,9 +170,16 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
             Class[] types = new Class [] {
                 java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
+            boolean[] canEdit = new boolean [] {
+                true, true, false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         TableDnevni.setGridColor(new java.awt.Color(255, 255, 255));
@@ -176,7 +191,7 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
 
         lblBrojVozilaDanas.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
         lblBrojVozilaDanas.setForeground(new java.awt.Color(248, 193, 30));
-        lblBrojVozilaDanas.setText("jLabel2");
+        lblBrojVozilaDanas.setText("0");
 
         jLabel3.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(248, 193, 30));
@@ -184,12 +199,12 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
 
         lblUkupnaZarada.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
         lblUkupnaZarada.setForeground(new java.awt.Color(248, 193, 30));
-        lblUkupnaZarada.setText("jLabel4");
+        lblUkupnaZarada.setText("0.0 din");
 
         CBSearch.setBackground(new java.awt.Color(0, 40, 43));
         CBSearch.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
         CBSearch.setForeground(new java.awt.Color(248, 193, 30));
-        CBSearch.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ID vozila", "Vreme dolaska", "Vreme odlaska", "Uplata" }));
+        CBSearch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID vozila", "Vreme dolaska", "Vreme odlaska", "Uplata" }));
         CBSearch.setAlignmentX(0.0F);
         CBSearch.setAlignmentY(0.0F);
         CBSearch.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(248, 193, 30)));
@@ -214,17 +229,27 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
             }
         });
 
+        jDateChooser1.setDateFormatString("dd.MM.yyyy");
         jDateChooser1.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 jDateChooser1PropertyChange(evt);
             }
         });
 
+        LBrojVozilaIzabranogDatuma.setForeground(new java.awt.Color(248, 193, 30));
         LBrojVozilaIzabranogDatuma.setText("Broj parkiranih vozila izabranog datuma:");
 
+        LZaradaIzabranogDatuma.setForeground(new java.awt.Color(248, 193, 30));
         LZaradaIzabranogDatuma.setText("Dnevna zarada izabranog datuma:");
 
-        jLabel2.setText("jLabel2");
+        LBrojVozilaIzabranogDatuma2.setForeground(new java.awt.Color(248, 193, 30));
+        LBrojVozilaIzabranogDatuma2.setText("0");
+
+        LZaradaIzabranogDatuma2.setForeground(new java.awt.Color(248, 193, 30));
+        LZaradaIzabranogDatuma2.setText("0.0 din");
+
+        jLabel2.setForeground(new java.awt.Color(248, 193, 30));
+        jLabel2.setText("Izaberite dan za izveštaj:");
 
         javax.swing.GroupLayout DnevniizvestajPNLLayout = new javax.swing.GroupLayout(DnevniizvestajPNL);
         DnevniizvestajPNL.setLayout(DnevniizvestajPNLLayout);
@@ -236,12 +261,8 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
                     .addGroup(DnevniizvestajPNLLayout.createSequentialGroup()
                         .addComponent(CBSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(TFSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(TFSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DnevniizvestajPNLLayout.createSequentialGroup()
-                        .addGap(0, 7, Short.MAX_VALUE)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 726, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
                     .addGroup(DnevniizvestajPNLLayout.createSequentialGroup()
                         .addGap(14, 14, 14)
                         .addGroup(DnevniizvestajPNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -249,15 +270,9 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
                             .addComponent(LBrojVozilaIzabranogDatuma))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(DnevniizvestajPNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(DnevniizvestajPNLLayout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(btnPrint)
-                                .addGap(88, 88, 88))
-                            .addGroup(DnevniizvestajPNLLayout.createSequentialGroup()
-                                .addGroup(DnevniizvestajPNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(LBrojVozilaIzabranogDatuma2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(LZaradaIzabranogDatuma2, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                            .addComponent(LBrojVozilaIzabranogDatuma2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(LZaradaIzabranogDatuma2, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(DnevniizvestajPNLLayout.createSequentialGroup()
                         .addGroup(DnevniizvestajPNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -268,9 +283,18 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
                             .addComponent(jLabel1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(DnevniizvestajPNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblUkupnaZarada, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblBrojVozilaDanas, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(134, 134, 134))))
+                            .addComponent(lblBrojVozilaDanas, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblUkupnaZarada, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(112, 112, 112))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DnevniizvestajPNLLayout.createSequentialGroup()
+                        .addGap(0, 7, Short.MAX_VALUE)
+                        .addGroup(DnevniizvestajPNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DnevniizvestajPNLLayout.createSequentialGroup()
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 726, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap())
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DnevniizvestajPNLLayout.createSequentialGroup()
+                                .addComponent(btnPrint, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(88, 88, 88))))))
         );
         DnevniizvestajPNLLayout.setVerticalGroup(
             DnevniizvestajPNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -294,9 +318,9 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
                         .addComponent(btnPrint, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(28, 28, 28))
                     .addGroup(DnevniizvestajPNLLayout.createSequentialGroup()
-                        .addGap(11, 11, 11)
+                        .addGap(17, 17, 17)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(38, 38, 38)
                         .addGroup(DnevniizvestajPNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -329,7 +353,6 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
     private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
         
         MessageFormat header = new MessageFormat("Report Print");
-        
         MessageFormat footer = new MessageFormat("Page{0,number,ingter}");
         
         try{
@@ -353,7 +376,7 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
                     TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(table);
                     TableDnevni.setRowSorter(tr);
                     tr.setRowFilter(RowFilter.regexFilter(search, brojKolone));
-            }
+    }
     
     private void TFSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TFSearchKeyReleased
          TFSearch.setForeground(Color.getHSBColor(0, 0, 0));
@@ -383,7 +406,7 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
     private void jDateChooser1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jDateChooser1PropertyChange
         if(this.jDateChooser1.getDate()!=null){
             Date oDate = this.jDateChooser1.getDate();
-            DateFormat oDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            DateFormat oDateFormat = new SimpleDateFormat("dd-MM-yyyy");
             String szDate = oDateFormat.format(oDate);
             
             
@@ -397,17 +420,21 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
                 this.LBrojVozilaIzabranogDatuma2.setText(Integer.toString(this.TableDnevni.getRowCount()));
                 
                 Object CellValue=null;
-                int UkupnaZarada=0;
+                float UkupnaZarada=0;
                 for(int i=0;i<table.getRowCount();i++){
                     CellValue=table.getValueAt(i, 3);
-                    int a=Integer.valueOf(CellValue.toString());
-                    if(table.getValueAt(i, 1).toString().equals(szDate))
+                    float a=Float.valueOf(CellValue.toString());
+                    if(table.getValueAt(i, 1).toString().substring(0, 10).equals(szDate))
                     UkupnaZarada=UkupnaZarada+a;
                     }
              
-                this.LZaradaIzabranogDatuma2.setText(String.valueOf(UkupnaZarada));
+                this.LZaradaIzabranogDatuma2.setText(String.valueOf(UkupnaZarada)+" din");
+        
+        
+        String aasda=this.jDateChooser1.getDate().toString();
+        System.out.println(aasda);
         }
-            
+        
     }//GEN-LAST:event_jDateChooser1PropertyChange
 
     /**
@@ -441,7 +468,11 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new DnevniIzvestaj().setVisible(true);
+                    try {
+                        new DnevniIzvestaj().setVisible(true);
+                    } catch (ParseException ex) {
+                        Logger.getLogger(DnevniIzvestaj.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 } catch (SQLException ex) {
                     Logger.getLogger(DnevniIzvestaj.class.getName()).log(Level.SEVERE, null, ex);
                 }

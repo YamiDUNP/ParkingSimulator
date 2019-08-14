@@ -101,7 +101,7 @@ public class DBController {
     public void setParkirani(String id , float placeno){
         try {
             Date d=new Date();
-            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             String stringDate = dateFormat.format(d);
             statement = (Statement) connection.createStatement();  
             statement.executeUpdate("insert into PARKIRANI(ID_vozila, Vreme_dolaska, Vreme_odlaska, Placeno) Values('"+id+"' , #"+stringDate+"# , #"+stringDate+"# , "+placeno+" );");
@@ -162,6 +162,7 @@ public class DBController {
         try {
             statement = (Statement) connection.createStatement();  
             resultSet = statement.executeQuery("select * from parkirani");
+            
             while(resultSet.next()){
                 lista.add(new Parkirani(
                     resultSet.getString("ID_VOZILA"),

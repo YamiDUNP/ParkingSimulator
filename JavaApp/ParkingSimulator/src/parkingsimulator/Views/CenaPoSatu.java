@@ -5,6 +5,7 @@
  */
 package parkingsimulator.Views;
 
+import com.sun.glass.events.KeyEvent;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -68,9 +69,9 @@ public class CenaPoSatu extends javax.swing.JFrame {
 
         txtCena.setBackground(new java.awt.Color(0, 40, 43));
         txtCena.setForeground(new java.awt.Color(248, 193, 30));
-        txtCena.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCenaActionPerformed(evt);
+        txtCena.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCenaKeyTyped(evt);
             }
         });
 
@@ -116,10 +117,6 @@ public class CenaPoSatu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtCenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCenaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCenaActionPerformed
-
     private void btnSacuvajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSacuvajActionPerformed
         float vrednost=Float.parseFloat(txtCena.getText());
         
@@ -132,6 +129,14 @@ public class CenaPoSatu extends javax.swing.JFrame {
              System.out.println(""+ex);
         }
     }//GEN-LAST:event_btnSacuvajActionPerformed
+
+    private void txtCenaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCenaKeyTyped
+        char c= evt.getKeyChar();
+        if(!(Character.isDigit(c) || (c==KeyEvent.VK_BACKSPACE) || c==KeyEvent.VK_DELETE || c==KeyEvent.VK_PERIOD))
+//        this.txtCena.setText("");
+            evt.consume();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCenaKeyTyped
 
     /**
      * @param args the command line arguments
