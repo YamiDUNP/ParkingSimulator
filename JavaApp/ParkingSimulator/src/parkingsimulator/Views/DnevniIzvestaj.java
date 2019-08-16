@@ -33,6 +33,7 @@ import parkingsimulator.Models.DBController;
 import parkingsimulator.Models.Parkirani;
 import java.text.*;
 import java.awt.print.*;
+import java.util.Comparator;
 import java.util.Locale;
 /**
  *
@@ -56,11 +57,40 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
 //        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
 //        String d = sdf.format(jDateChooser1.getDate());
         
+
+
+        TableModel myModel = this.TableDnevni.getModel();
+        TableRowSorter trs = new TableRowSorter(myModel);
+        class FloatComparator implements Comparator{
+
+            @Override
+            public int compare(Object o1, Object o2) {
+                  Float float1 = (Float)o1;
+                Float float2 = (Float)o2;
+                return float1.compareTo(float2);
+            }
+            public boolean equals(Object o2) {
+                return this.equals(o2);
+            }
+        }
+
+        trs.setComparator(3, new FloatComparator());
+
+        TableDnevni.setRowSorter(trs);
+       // TableDnevni.setAutoCreateRowSorter(true);
         //IZMENJENA TABELA , DA BUDU BOJE NA CIK CAK 
         TableDnevni.setDefaultRenderer(Object.class, new TableCellRenderer(){
             private DefaultTableCellRenderer DEFAULT_RENDERER =  new DefaultTableCellRenderer();
             public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-
+                
+                
+                System.out.println(table);
+                System.out.println(value);
+                System.out.println(isSelected);
+                System.out.println(hasFocus);
+                System.out.println(row);
+                System.out.println(column);
+                
                 Component c = DEFAULT_RENDERER.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 
                 if (row%2 == 0){
@@ -81,9 +111,7 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
 
         });
         
-        TableModel myModel = this.TableDnevni.getModel();
-        TableDnevni.setRowSorter(new TableRowSorter(myModel));
-                
+        
         float ukupnazarada=0;
         int DBV=0;
         
@@ -97,7 +125,7 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
                     j=listaParkiranih.get(i).getVreme_odlaska().substring(0, 10);
                     if(a.equals(j)){
                         DBV++;
-                        ukupnazarada=ukupnazarada+Float.parseFloat(listaParkiranih.get(i).getPlaceno());
+                        ukupnazarada=ukupnazarada+listaParkiranih.get(i).getPlaceno();
                     }
             }
         this.lblBrojVozilaDanas.setText(Integer.toString(DBV));
@@ -108,7 +136,7 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
                 SimpleDateFormat dt = new SimpleDateFormat("yyyyy-MM-dd hh:mm:ss");
                 Date date = dt.parse(datum);
                 SimpleDateFormat dt1 = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
-         Object[] row = {listaParkiranih.get(i).getID_vozila(), dt1.format(date).substring(0, 19),listaParkiranih.get(i).getVreme_odlaska().substring(0, 19),listaParkiranih.get(i).getPlaceno()};
+         Object[] row = {listaParkiranih.get(i).getID_vozila(), dt1.format(date).substring(0, 19),listaParkiranih.get(i).getVreme_odlaska().substring(0, 19),new Float(listaParkiranih.get(i).getPlaceno())};
                ((DefaultTableModel) TableDnevni.getModel()).insertRow(i, row);  
         }
            
@@ -169,10 +197,10 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                true, true, false, false
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {

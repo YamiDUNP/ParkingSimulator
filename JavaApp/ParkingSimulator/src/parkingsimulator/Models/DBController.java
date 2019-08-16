@@ -168,7 +168,7 @@ public class DBController {
                     resultSet.getString("ID_VOZILA"),
                     resultSet.getString("vreme_dolaska"),
                     resultSet.getString("vreme_odlaska"),
-                    resultSet.getString("placeno")
+                    resultSet.getFloat("placeno")
                 ));
             }
         }

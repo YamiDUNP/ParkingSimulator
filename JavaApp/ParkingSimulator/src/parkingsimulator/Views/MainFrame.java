@@ -91,10 +91,10 @@ public class MainFrame extends javax.swing.JFrame {
                                         
                             else{
                                //KOM ParkingMesto1.setBackground(Color.red); 
-                                 try{
-                             BufferedImage myPicture = ImageIO.read(new File(path+"\\MestoZauzeto.png"));
-                              pkLabel0.setIcon(new ImageIcon(myPicture));
-                            }catch(Exception ect){
+                                try{
+                                    BufferedImage myPicture = ImageIO.read(new File(path+"\\MestoZauzeto.png"));
+                                    pkLabel0.setIcon(new ImageIcon(myPicture));
+                                }catch(Exception ect){
                                 ect.printStackTrace();
                             }
                             }
@@ -282,7 +282,7 @@ public class MainFrame extends javax.swing.JFrame {
                     prethodne_poruke=poruke;
                     lblBrMesta.setText(String.valueOf(br_mesta));
                     try {
-                        Thread.sleep(5000);
+                        Thread.sleep(1000);
                     } catch (InterruptedException ex) {
                         Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
                     }
