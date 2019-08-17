@@ -8,6 +8,7 @@ package parkingsimulator.Views;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Desktop;
+import java.awt.Font;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.MessageFormat;
@@ -35,6 +36,8 @@ import java.text.*;
 import java.awt.print.*;
 import java.util.Comparator;
 import java.util.Locale;
+import javax.swing.JScrollPane;
+import javax.swing.table.JTableHeader;
 /**
  *
  * @author Amar
@@ -57,7 +60,7 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
 //        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
 //        String d = sdf.format(jDateChooser1.getDate());
         
-
+        
 
         TableModel myModel = this.TableDnevni.getModel();
         TableRowSorter trs = new TableRowSorter(myModel);
@@ -92,22 +95,31 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
                 System.out.println(column);
                 
                 Component c = DEFAULT_RENDERER.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-
+                JTableHeader header=table.getTableHeader();
+                header.setBackground(Color.decode("#dfa907"));
+                header.setForeground(Color.decode("#00282b"));
+                header.setFont(new Font("Comic Sans M S",Font.PLAIN,16));
+               
+                
                 if (row%2 == 0){
 
-                    c.setBackground(Color.WHITE);
-
+                  //  c.setBackground(Color.decode("#00282b
+                    c.setBackground(Color.decode("#fdf1ce"));
+                    c.setForeground(Color.decode("#00282b"));
                 }
 
                 else {
 
-                    c.setBackground(Color.LIGHT_GRAY);
+                   // c.setBackground(Color.decode("#f8c11e"));
+                    c.setBackground(Color.decode("#fbdd83"));
+                    c.setForeground(Color.decode("#00282b"));
 
                 }                       
 
                 return c;
 
             }
+            
 
         });
         
@@ -161,7 +173,7 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
         lblBrojVozilaDanas = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         lblUkupnaZarada = new javax.swing.JLabel();
-        CBSearch = new javax.swing.JComboBox<>();
+        CBSearch = new javax.swing.JComboBox<String>();
         TFSearch = new javax.swing.JTextField();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
         LBrojVozilaIzabranogDatuma = new javax.swing.JLabel();
@@ -178,14 +190,27 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
         DnevniizvestajPNL.setBackground(new java.awt.Color(0, 40, 43));
 
         btnPrint.setBackground(new java.awt.Color(0, 40, 43));
+        btnPrint.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         btnPrint.setForeground(new java.awt.Color(248, 193, 30));
-        btnPrint.setText("Štampaj");
+        btnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/parkingsimulator/Views/Slike/btnStampaj.png"))); // NOI18N
         btnPrint.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(248, 193, 30)));
+        btnPrint.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnPrintMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnPrintMouseReleased(evt);
+            }
+        });
         btnPrint.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPrintActionPerformed(evt);
             }
         });
+
+        jScrollPane2.setBackground(new java.awt.Color(0, 40, 43));
+        jScrollPane2.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
+        jScrollPane2.setOpaque(false);
 
         TableDnevni.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
         TableDnevni.setModel(new javax.swing.table.DefaultTableModel(
@@ -233,7 +258,7 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
         CBSearch.setBackground(new java.awt.Color(0, 40, 43));
         CBSearch.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
         CBSearch.setForeground(new java.awt.Color(248, 193, 30));
-        CBSearch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID vozila", "Vreme dolaska", "Vreme odlaska", "Uplata" }));
+        CBSearch.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ID vozila", "Vreme dolaska", "Vreme odlaska", "Uplata" }));
         CBSearch.setAlignmentX(0.0F);
         CBSearch.setAlignmentY(0.0F);
         CBSearch.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(248, 193, 30)));
@@ -263,34 +288,55 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
             }
         });
         TFSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TFSearchKeyPressed(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 TFSearchKeyReleased(evt);
             }
         });
 
         jDateChooser1.setDateFormatString("dd.MM.yyyy.");
+        jDateChooser1.setFocusable(false);
         jDateChooser1.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 jDateChooser1PropertyChange(evt);
             }
         });
 
+        LBrojVozilaIzabranogDatuma.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         LBrojVozilaIzabranogDatuma.setForeground(new java.awt.Color(248, 193, 30));
         LBrojVozilaIzabranogDatuma.setText("Broj parkiranih vozila izabranog datuma:");
 
+        LZaradaIzabranogDatuma.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         LZaradaIzabranogDatuma.setForeground(new java.awt.Color(248, 193, 30));
         LZaradaIzabranogDatuma.setText("Dnevna zarada izabranog datuma:");
 
+        LBrojVozilaIzabranogDatuma2.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
         LBrojVozilaIzabranogDatuma2.setForeground(new java.awt.Color(248, 193, 30));
         LBrojVozilaIzabranogDatuma2.setText("0");
 
+        LZaradaIzabranogDatuma2.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
         LZaradaIzabranogDatuma2.setForeground(new java.awt.Color(248, 193, 30));
         LZaradaIzabranogDatuma2.setText("0.0 din");
 
         jLabel2.setForeground(new java.awt.Color(248, 193, 30));
         jLabel2.setText("Izaberite dan za izveštaj:");
 
-        btnClear.setText("Clear");
+        btnClear.setBackground(new java.awt.Color(0, 40, 43));
+        btnClear.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        btnClear.setForeground(new java.awt.Color(248, 193, 30));
+        btnClear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/parkingsimulator/Views/Slike/btnClear.png"))); // NOI18N
+        btnClear.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(248, 193, 30)));
+        btnClear.setFocusable(false);
+        btnClear.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnClearMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnClearMouseReleased(evt);
+            }
+        });
         btnClear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnClearActionPerformed(evt);
@@ -305,13 +351,6 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(DnevniizvestajPNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(DnevniizvestajPNLLayout.createSequentialGroup()
-                        .addComponent(CBSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(TFSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(53, 53, 53)
-                        .addComponent(btnClear)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(DnevniizvestajPNLLayout.createSequentialGroup()
                         .addGap(14, 14, 14)
                         .addGroup(DnevniizvestajPNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(LZaradaIzabranogDatuma)
@@ -325,38 +364,44 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
                         .addGroup(DnevniizvestajPNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(DnevniizvestajPNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(DnevniizvestajPNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblBrojVozilaDanas, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblUkupnaZarada, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(112, 112, 112))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DnevniizvestajPNLLayout.createSequentialGroup()
-                        .addGap(0, 7, Short.MAX_VALUE)
+                            .addGroup(DnevniizvestajPNLLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(DnevniizvestajPNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel1))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(DnevniizvestajPNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblBrojVozilaDanas, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblUkupnaZarada, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(112, 112, 112))
+                            .addGroup(DnevniizvestajPNLLayout.createSequentialGroup()
+                                .addGap(384, 384, 384)
+                                .addComponent(btnPrint)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(DnevniizvestajPNLLayout.createSequentialGroup()
                         .addGroup(DnevniizvestajPNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(DnevniizvestajPNLLayout.createSequentialGroup()
+                                .addComponent(CBSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(TFSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(49, 49, 49)
+                                .addComponent(btnClear)
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DnevniizvestajPNLLayout.createSequentialGroup()
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 726, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap())
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DnevniizvestajPNLLayout.createSequentialGroup()
-                                .addComponent(btnPrint, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(88, 88, 88))))))
+                                .addGap(0, 7, Short.MAX_VALUE)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 726, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap())))
         );
         DnevniizvestajPNLLayout.setVerticalGroup(
             DnevniizvestajPNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DnevniizvestajPNLLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(DnevniizvestajPNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(DnevniizvestajPNLLayout.createSequentialGroup()
-                        .addGroup(DnevniizvestajPNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(CBSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(TFSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(15, 15, 15))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DnevniizvestajPNLLayout.createSequentialGroup()
-                        .addComponent(btnClear)
-                        .addGap(18, 18, 18)))
+                .addGroup(DnevniizvestajPNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CBSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TFSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(DnevniizvestajPNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -368,7 +413,7 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblBrojVozilaDanas, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnPrint, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnPrint, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(28, 28, 28))
                     .addGroup(DnevniizvestajPNLLayout.createSequentialGroup()
                         .addGap(17, 17, 17)
@@ -432,7 +477,7 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
     }
     
     private void TFSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TFSearchKeyReleased
-        TFSearch.setForeground(Color.getHSBColor(0, 0, 0));
+        TFSearch.setForeground(Color.decode("#f9c939"));
    
             if(CBSearch.getSelectedIndex() == 0){
                 izaberiKolonu(0);
@@ -533,6 +578,31 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
                 this.LBrojVozilaIzabranogDatuma2.setText("0");
                 this.LZaradaIzabranogDatuma2.setText("0.0 din");
     }//GEN-LAST:event_btnClearActionPerformed
+
+    private void TFSearchKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TFSearchKeyPressed
+       TFSearch.setForeground(Color.decode("#f9c939"));
+    }//GEN-LAST:event_TFSearchKeyPressed
+
+    private void btnClearMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnClearMousePressed
+    btnClear.setBackground(Color.decode("#f9c939"));
+     btnClear.setForeground(Color.decode("#00282b"));
+    }//GEN-LAST:event_btnClearMousePressed
+
+    private void btnClearMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnClearMouseReleased
+        btnClear.setBackground(Color.decode("#00282b"));
+     btnClear.setForeground(Color.decode("#f9c939"));
+    }//GEN-LAST:event_btnClearMouseReleased
+
+    private void btnPrintMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPrintMousePressed
+    btnPrint.setBackground(Color.decode("#f9c939"));
+    btnPrint.setForeground(Color.decode("#00282b"));  
+
+    }//GEN-LAST:event_btnPrintMousePressed
+
+    private void btnPrintMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPrintMouseReleased
+      btnPrint.setBackground(Color.decode("#00282b"));
+    btnPrint .setForeground(Color.decode("#f9c939"));
+    }//GEN-LAST:event_btnPrintMouseReleased
 
     /**
      * @param args the command line arguments
