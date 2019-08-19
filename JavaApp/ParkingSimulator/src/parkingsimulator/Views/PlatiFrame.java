@@ -63,6 +63,8 @@ public class PlatiFrame extends javax.swing.JFrame {
         btnUplati = new javax.swing.JButton();
         lblCena = new javax.swing.JLabel();
         lblCena2 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jSeparator2 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -71,6 +73,13 @@ public class PlatiFrame extends javax.swing.JFrame {
             }
         });
 
+        pnlPlati.setBackground(new java.awt.Color(0, 40, 43));
+        pnlPlati.setForeground(new java.awt.Color(248, 193, 30));
+        pnlPlati.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        slldCena.setBackground(new java.awt.Color(248, 193, 30));
+        slldCena.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        slldCena.setForeground(new java.awt.Color(0, 40, 43));
         slldCena.setMajorTickSpacing(1);
         slldCena.setMaximum(14);
         slldCena.setMinimum(1);
@@ -80,58 +89,40 @@ public class PlatiFrame extends javax.swing.JFrame {
                 slldCenaStateChanged(evt);
             }
         });
+        pnlPlati.add(slldCena, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 105, 266, -1));
 
+        lblIDVozila.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        lblIDVozila.setForeground(new java.awt.Color(248, 193, 30));
         lblIDVozila.setText("ID vozila:");
+        pnlPlati.add(lblIDVozila, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, 27));
 
-        btnUplati.setText("Uplati");
+        lblIDVozila2.setBackground(new java.awt.Color(0, 40, 43));
+        lblIDVozila2.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        lblIDVozila2.setForeground(new java.awt.Color(248, 193, 30));
+        pnlPlati.add(lblIDVozila2, new org.netbeans.lib.awtextra.AbsoluteConstraints(102, 11, 68, 27));
+
+        btnUplati.setIcon(new javax.swing.ImageIcon(getClass().getResource("/parkingsimulator/Views/Slike/btnUplati.png"))); // NOI18N
+        btnUplati.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(248, 193, 30)));
         btnUplati.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUplatiActionPerformed(evt);
             }
         });
+        pnlPlati.add(btnUplati, new org.netbeans.lib.awtextra.AbsoluteConstraints(98, 229, -1, 33));
 
+        lblCena.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        lblCena.setForeground(new java.awt.Color(248, 193, 30));
         lblCena.setText("Vreme zadrzavanja:");
+        pnlPlati.add(lblCena, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 68, -1, 27));
 
-        javax.swing.GroupLayout pnlPlatiLayout = new javax.swing.GroupLayout(pnlPlati);
-        pnlPlati.setLayout(pnlPlatiLayout);
-        pnlPlatiLayout.setHorizontalGroup(
-            pnlPlatiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlPlatiLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnlPlatiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlPlatiLayout.createSequentialGroup()
-                        .addComponent(lblIDVozila, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(pnlPlatiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnlPlatiLayout.createSequentialGroup()
-                                .addGap(31, 31, 31)
-                                .addComponent(lblIDVozila2, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(pnlPlatiLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnUplati, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(pnlPlatiLayout.createSequentialGroup()
-                        .addComponent(slldCena, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(lblCena2, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(lblCena))
-                .addContainerGap(27, Short.MAX_VALUE))
-        );
-        pnlPlatiLayout.setVerticalGroup(
-            pnlPlatiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlPlatiLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnlPlatiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblIDVozila, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblIDVozila2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addComponent(lblCena, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addGroup(pnlPlatiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblCena2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(slldCena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
-                .addComponent(btnUplati, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(58, 58, 58))
-        );
+        lblCena2.setForeground(new java.awt.Color(248, 193, 30));
+        pnlPlati.add(lblCena2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 110, 77, 27));
+
+        jSeparator1.setBackground(new java.awt.Color(248, 193, 30));
+        pnlPlati.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 170, 10));
+
+        jSeparator2.setBackground(new java.awt.Color(248, 193, 30));
+        pnlPlati.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 130, 10));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -143,7 +134,7 @@ public class PlatiFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(pnlPlati, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 0, 0))
         );
 
         pack();
@@ -219,6 +210,8 @@ public static void main(String args[]) {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnUplati;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLabel lblCena;
     private javax.swing.JLabel lblCena2;
     private javax.swing.JLabel lblIDVozila;
