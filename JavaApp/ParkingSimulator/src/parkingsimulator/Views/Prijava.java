@@ -7,10 +7,12 @@ package parkingsimulator.Views;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
@@ -74,9 +76,8 @@ public class Prijava extends javax.swing.JFrame {
         btnPrijava.setBackground(new java.awt.Color(248, 193, 30));
         btnPrijava.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
         btnPrijava.setForeground(new java.awt.Color(255, 255, 255));
-        btnPrijava.setText("Prijava");
-        btnPrijava.setBorder(null);
-        btnPrijava.setBorderPainted(false);
+        btnPrijava.setIcon(new javax.swing.ImageIcon(getClass().getResource("/parkingsimulator/Views/Slike/btnPrijava.png"))); // NOI18N
+        btnPrijava.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(248, 193, 30)));
         btnPrijava.setFocusPainted(false);
         btnPrijava.setFocusable(false);
         btnPrijava.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -92,7 +93,7 @@ public class Prijava extends javax.swing.JFrame {
                 btnPrijavaActionPerformed(evt);
             }
         });
-        jPanel4.add(btnPrijava, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 280, 240, 40));
+        jPanel4.add(btnPrijava, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 280, -1, 40));
 
         txtUsername.setBackground(new java.awt.Color(0, 40, 43));
         txtUsername.setForeground(new java.awt.Color(248, 193, 30));
@@ -196,6 +197,7 @@ public class Prijava extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
@@ -212,11 +214,6 @@ public class Prijava extends javax.swing.JFrame {
         }
        
     }//GEN-LAST:event_btnPrijavaActionPerformed
-
-    private void btnPrijavaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPrijavaMouseEntered
-this.btnPrijava.setBackground(Color.decode("#DCB42F"));
-this.btnPrijava.setForeground(Color.decode("#00282B"));
-    }//GEN-LAST:event_btnPrijavaMouseEntered
 
     private void btnPrijavaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPrijavaMouseExited
 this.btnPrijava.setBackground(Color.decode("#F8C11E"));
@@ -260,6 +257,11 @@ this.btnPrijava.setForeground(Color.decode("#00282B"));
           }
       }
     }//GEN-LAST:event_txtPasswordKeyPressed
+
+    private void btnPrijavaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPrijavaMouseEntered
+        ((JButton)evt.getSource()).setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnPrijavaMouseEntered
     
     /**
      * @param args the command line arguments

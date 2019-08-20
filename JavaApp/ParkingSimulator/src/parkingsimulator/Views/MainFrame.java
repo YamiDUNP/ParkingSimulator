@@ -7,6 +7,7 @@ package parkingsimulator.Views;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
@@ -19,6 +20,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import parkingsimulator.Arduino.ArduinoController;
 import parkingsimulator.Models.DBController;
 
@@ -253,7 +255,7 @@ public class MainFrame extends javax.swing.JFrame {
                             }catch(Exception ecc){
                                 ecc.printStackTrace();
                             }
-                                ParkingMesto4.setBackground(Color.red);    
+                               // ParkingMesto4.setBackground(Color.red);    
                             }
                             br_mesta--;
                             btnPlati4.setEnabled(true);
@@ -372,6 +374,9 @@ public class MainFrame extends javax.swing.JFrame {
         btnPlati1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(248, 193, 30)));
         btnPlati1.setFocusPainted(false);
         btnPlati1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnPlati1MouseEntered(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 btnPlati1MousePressed(evt);
             }
@@ -413,6 +418,11 @@ public class MainFrame extends javax.swing.JFrame {
         btnPlati2.setText("Plati");
         btnPlati2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(248, 193, 30)));
         btnPlati2.setFocusPainted(false);
+        btnPlati2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnPlati2MouseEntered(evt);
+            }
+        });
         btnPlati2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPlati2ActionPerformed(evt);
@@ -453,6 +463,11 @@ public class MainFrame extends javax.swing.JFrame {
         btnPlati3.setText("Plati");
         btnPlati3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(248, 193, 30)));
         btnPlati3.setFocusPainted(false);
+        btnPlati3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnPlati3MouseEntered(evt);
+            }
+        });
         btnPlati3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPlati3ActionPerformed(evt);
@@ -488,6 +503,11 @@ public class MainFrame extends javax.swing.JFrame {
         btnPlati4.setText("Plati");
         btnPlati4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(248, 193, 30)));
         btnPlati4.setFocusPainted(false);
+        btnPlati4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnPlati4MouseEntered(evt);
+            }
+        });
         btnPlati4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPlati4ActionPerformed(evt);
@@ -657,6 +677,26 @@ public class MainFrame extends javax.swing.JFrame {
         this.btnPlati1.setForeground(Color.decode("#f8c11e"));
       this.btnPlati1.setBackground(Color.decode("#00282b")); // TODO add your handling code here:
     }//GEN-LAST:event_btnPlati1MouseReleased
+
+    private void btnPlati3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPlati3MouseEntered
+((JButton)evt.getSource()).setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+// TODO add your handling code here:
+    }//GEN-LAST:event_btnPlati3MouseEntered
+
+    private void btnPlati1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPlati1MouseEntered
+((JButton)evt.getSource()).setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+// TODO add your handling code here:
+    }//GEN-LAST:event_btnPlati1MouseEntered
+
+    private void btnPlati2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPlati2MouseEntered
+((JButton)evt.getSource()).setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+// TODO add your handling code here:
+    }//GEN-LAST:event_btnPlati2MouseEntered
+
+    private void btnPlati4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPlati4MouseEntered
+((JButton)evt.getSource()).setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnPlati4MouseEntered
 
     /**
      * @param args the command line arguments

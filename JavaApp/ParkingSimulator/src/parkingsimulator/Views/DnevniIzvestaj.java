@@ -7,6 +7,7 @@ package parkingsimulator.Views;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Cursor;
 import java.awt.Desktop;
 import java.awt.Font;
 import java.sql.SQLException;
@@ -36,7 +37,9 @@ import java.text.*;
 import java.awt.print.*;
 import java.util.Comparator;
 import java.util.Locale;
+import javax.swing.JButton;
 import javax.swing.JScrollPane;
+import javax.swing.JTextField;
 import javax.swing.table.JTableHeader;
 /**
  *
@@ -182,12 +185,20 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
         LZaradaIzabranogDatuma2 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         btnClear = new javax.swing.JButton();
+        jSeparator4 = new javax.swing.JSeparator();
+        jSeparator5 = new javax.swing.JSeparator();
+        jSeparator6 = new javax.swing.JSeparator();
+        jSeparator7 = new javax.swing.JSeparator();
+        jSeparator9 = new javax.swing.JSeparator();
+        jSeparator8 = new javax.swing.JSeparator();
 
         jButton1.setText("jButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         DnevniizvestajPNL.setBackground(new java.awt.Color(0, 40, 43));
+        DnevniizvestajPNL.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnPrint.setBackground(new java.awt.Color(0, 40, 43));
         btnPrint.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
@@ -195,6 +206,9 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
         btnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/parkingsimulator/Views/Slike/btnStampaj.png"))); // NOI18N
         btnPrint.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(248, 193, 30)));
         btnPrint.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnPrintMouseEntered(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 btnPrintMousePressed(evt);
             }
@@ -207,6 +221,7 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
                 btnPrintActionPerformed(evt);
             }
         });
+        DnevniizvestajPNL.add(btnPrint, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 530, -1, 42));
 
         jScrollPane2.setBackground(new java.awt.Color(0, 40, 43));
         jScrollPane2.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
@@ -237,23 +252,34 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
             }
         });
         TableDnevni.setGridColor(new java.awt.Color(255, 255, 255));
+        TableDnevni.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                TableDnevniMouseEntered(evt);
+            }
+        });
         jScrollPane2.setViewportView(TableDnevni);
+
+        DnevniizvestajPNL.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 990, 228));
 
         jLabel1.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(248, 193, 30));
         jLabel1.setText("Broj parkiranih vozila u toku dana:");
+        DnevniizvestajPNL.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 340, -1, 30));
 
         lblBrojVozilaDanas.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
         lblBrojVozilaDanas.setForeground(new java.awt.Color(248, 193, 30));
         lblBrojVozilaDanas.setText("0");
+        DnevniizvestajPNL.add(lblBrojVozilaDanas, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 340, 80, 36));
 
         jLabel3.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(248, 193, 30));
         jLabel3.setText("Ukupna dnevna zarada:");
+        DnevniizvestajPNL.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 300, -1, 32));
 
         lblUkupnaZarada.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
         lblUkupnaZarada.setForeground(new java.awt.Color(248, 193, 30));
         lblUkupnaZarada.setText("0.0 din");
+        DnevniizvestajPNL.add(lblUkupnaZarada, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 300, 80, 32));
 
         CBSearch.setBackground(new java.awt.Color(0, 40, 43));
         CBSearch.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
@@ -267,11 +293,17 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
                 CBSearchItemStateChanged(evt);
             }
         });
+        CBSearch.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CBSearchMouseEntered(evt);
+            }
+        });
         CBSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CBSearchActionPerformed(evt);
             }
         });
+        DnevniizvestajPNL.add(CBSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 12, 162, 39));
 
         TFSearch.setBackground(new java.awt.Color(0, 40, 43));
         TFSearch.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
@@ -286,6 +318,9 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 TFSearchMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                TFSearchMouseEntered(evt);
+            }
         });
         TFSearch.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -295,33 +330,46 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
                 TFSearchKeyReleased(evt);
             }
         });
+        DnevniizvestajPNL.add(TFSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(178, 11, 200, 39));
 
         jDateChooser1.setDateFormatString("dd.MM.yyyy.");
         jDateChooser1.setFocusable(false);
+        jDateChooser1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jDateChooser1MouseEntered(evt);
+            }
+        });
         jDateChooser1.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 jDateChooser1PropertyChange(evt);
             }
         });
+        DnevniizvestajPNL.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 440, 157, 36));
 
-        LBrojVozilaIzabranogDatuma.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        LBrojVozilaIzabranogDatuma.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
         LBrojVozilaIzabranogDatuma.setForeground(new java.awt.Color(248, 193, 30));
         LBrojVozilaIzabranogDatuma.setText("Broj parkiranih vozila izabranog datuma:");
+        DnevniizvestajPNL.add(LBrojVozilaIzabranogDatuma, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 540, 310, 30));
 
-        LZaradaIzabranogDatuma.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        LZaradaIzabranogDatuma.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
         LZaradaIzabranogDatuma.setForeground(new java.awt.Color(248, 193, 30));
         LZaradaIzabranogDatuma.setText("Dnevna zarada izabranog datuma:");
+        DnevniizvestajPNL.add(LZaradaIzabranogDatuma, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 480, -1, 30));
 
         LBrojVozilaIzabranogDatuma2.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
         LBrojVozilaIzabranogDatuma2.setForeground(new java.awt.Color(248, 193, 30));
         LBrojVozilaIzabranogDatuma2.setText("0");
+        DnevniizvestajPNL.add(LBrojVozilaIzabranogDatuma2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 540, 43, 31));
 
         LZaradaIzabranogDatuma2.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
         LZaradaIzabranogDatuma2.setForeground(new java.awt.Color(248, 193, 30));
         LZaradaIzabranogDatuma2.setText("0.0 din");
+        DnevniizvestajPNL.add(LZaradaIzabranogDatuma2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 480, 80, 30));
 
+        jLabel2.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(248, 193, 30));
         jLabel2.setText("Izaberite dan za izveštaj:");
+        DnevniizvestajPNL.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 390, 210, 30));
 
         btnClear.setBackground(new java.awt.Color(0, 40, 43));
         btnClear.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
@@ -330,6 +378,9 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
         btnClear.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(248, 193, 30)));
         btnClear.setFocusable(false);
         btnClear.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnClearMouseEntered(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 btnClearMousePressed(evt);
             }
@@ -342,103 +393,38 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
                 btnClearActionPerformed(evt);
             }
         });
+        DnevniizvestajPNL.add(btnClear, new org.netbeans.lib.awtextra.AbsoluteConstraints(427, 11, -1, 37));
 
-        javax.swing.GroupLayout DnevniizvestajPNLLayout = new javax.swing.GroupLayout(DnevniizvestajPNL);
-        DnevniizvestajPNL.setLayout(DnevniizvestajPNLLayout);
-        DnevniizvestajPNLLayout.setHorizontalGroup(
-            DnevniizvestajPNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(DnevniizvestajPNLLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(DnevniizvestajPNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(DnevniizvestajPNLLayout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addGroup(DnevniizvestajPNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(LZaradaIzabranogDatuma)
-                            .addComponent(LBrojVozilaIzabranogDatuma))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(DnevniizvestajPNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(LBrojVozilaIzabranogDatuma2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(LZaradaIzabranogDatuma2, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(DnevniizvestajPNLLayout.createSequentialGroup()
-                        .addGroup(DnevniizvestajPNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE))
-                        .addGroup(DnevniizvestajPNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(DnevniizvestajPNLLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(DnevniizvestajPNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel1))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(DnevniizvestajPNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblBrojVozilaDanas, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblUkupnaZarada, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(112, 112, 112))
-                            .addGroup(DnevniizvestajPNLLayout.createSequentialGroup()
-                                .addGap(384, 384, 384)
-                                .addComponent(btnPrint)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                    .addGroup(DnevniizvestajPNLLayout.createSequentialGroup()
-                        .addGroup(DnevniizvestajPNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(DnevniizvestajPNLLayout.createSequentialGroup()
-                                .addComponent(CBSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(TFSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(49, 49, 49)
-                                .addComponent(btnClear)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DnevniizvestajPNLLayout.createSequentialGroup()
-                                .addGap(0, 7, Short.MAX_VALUE)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 726, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap())))
-        );
-        DnevniizvestajPNLLayout.setVerticalGroup(
-            DnevniizvestajPNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DnevniizvestajPNLLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(DnevniizvestajPNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(CBSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(TFSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(DnevniizvestajPNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblUkupnaZarada, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(DnevniizvestajPNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(DnevniizvestajPNLLayout.createSequentialGroup()
-                        .addGroup(DnevniizvestajPNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblBrojVozilaDanas, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnPrint, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28))
-                    .addGroup(DnevniizvestajPNLLayout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(38, 38, 38)
-                        .addGroup(DnevniizvestajPNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(LZaradaIzabranogDatuma2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(LZaradaIzabranogDatuma, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(DnevniizvestajPNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(LBrojVozilaIzabranogDatuma2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(LBrojVozilaIzabranogDatuma, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(91, Short.MAX_VALUE))))
-        );
+        jSeparator4.setBackground(new java.awt.Color(248, 193, 30));
+        jSeparator4.setForeground(new java.awt.Color(248, 193, 30));
+        DnevniizvestajPNL.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 570, 380, 10));
+
+        jSeparator5.setBackground(new java.awt.Color(248, 193, 30));
+        jSeparator5.setForeground(new java.awt.Color(248, 193, 30));
+        DnevniizvestajPNL.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 330, 340, 10));
+
+        jSeparator6.setForeground(new java.awt.Color(248, 193, 30));
+        DnevniizvestajPNL.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 390, 1000, 10));
+
+        jSeparator7.setBackground(new java.awt.Color(248, 193, 30));
+        jSeparator7.setForeground(new java.awt.Color(248, 193, 30));
+        DnevniizvestajPNL.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 420, 190, 10));
+
+        jSeparator9.setBackground(new java.awt.Color(248, 193, 30));
+        jSeparator9.setForeground(new java.awt.Color(248, 193, 30));
+        DnevniizvestajPNL.add(jSeparator9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 510, 380, 10));
+
+        jSeparator8.setBackground(new java.awt.Color(248, 193, 30));
+        jSeparator8.setForeground(new java.awt.Color(248, 193, 30));
+        DnevniizvestajPNL.add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 370, 340, 10));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(DnevniizvestajPNL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(0, 0, 0)
+                .addComponent(DnevniizvestajPNL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -446,6 +432,7 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
@@ -604,6 +591,36 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
     btnPrint .setForeground(Color.decode("#f9c939"));
     }//GEN-LAST:event_btnPrintMouseReleased
 
+    private void btnClearMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnClearMouseEntered
+        ((JButton)evt.getSource()).setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+// TODO add your handling code here:
+    }//GEN-LAST:event_btnClearMouseEntered
+
+    private void btnPrintMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPrintMouseEntered
+        // TODO add your handling code here:
+        ((JButton)evt.getSource()).setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_btnPrintMouseEntered
+
+    private void jDateChooser1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jDateChooser1MouseEntered
+        // TODO add your handling code here:
+        ((JButton)evt.getSource()).setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_jDateChooser1MouseEntered
+
+    private void CBSearchMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CBSearchMouseEntered
+      ((JComboBox)evt.getSource()).setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CBSearchMouseEntered
+
+    private void TFSearchMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TFSearchMouseEntered
+        ((JTextField)evt.getSource()).setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TFSearchMouseEntered
+
+    private void TableDnevniMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableDnevniMouseEntered
+        ((JTable)evt.getSource()).setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TableDnevniMouseEntered
+
     /**
      * @param args the command line arguments
      */
@@ -664,6 +681,12 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JSeparator jSeparator6;
+    private javax.swing.JSeparator jSeparator7;
+    private javax.swing.JSeparator jSeparator8;
+    private javax.swing.JSeparator jSeparator9;
     private javax.swing.JLabel lblBrojVozilaDanas;
     private javax.swing.JLabel lblUkupnaZarada;
     // End of variables declaration//GEN-END:variables
