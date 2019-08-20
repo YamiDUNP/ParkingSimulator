@@ -6,6 +6,7 @@
 package parkingsimulator.Views;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.JButton;
@@ -18,6 +19,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JSlider;
 import parkingsimulator.Models.DBController;
 
 /**
@@ -37,6 +39,7 @@ public class PlatiFrame extends javax.swing.JFrame {
     public PlatiFrame(){initComponents();}
     public PlatiFrame(ArrayList<String> poruke1,ArrayList<StringBuffer> boje1,JPanel panelKojiMenjam1,int redniBroj,ArrayList<StringBuffer> ids1) {
         initComponents();
+        
         Random r=new Random();  
         this.lblIDVozila2.setText(ids1.get(redniBroj).toString()); // Saljemo kad se zauzme mesto
         this.slldCena.setValue(1);
@@ -67,6 +70,7 @@ public class PlatiFrame extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
@@ -89,6 +93,11 @@ public class PlatiFrame extends javax.swing.JFrame {
                 slldCenaStateChanged(evt);
             }
         });
+        slldCena.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                slldCenaMouseEntered(evt);
+            }
+        });
         pnlPlati.add(slldCena, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 105, 266, -1));
 
         lblIDVozila.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
@@ -99,16 +108,21 @@ public class PlatiFrame extends javax.swing.JFrame {
         lblIDVozila2.setBackground(new java.awt.Color(0, 40, 43));
         lblIDVozila2.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         lblIDVozila2.setForeground(new java.awt.Color(248, 193, 30));
-        pnlPlati.add(lblIDVozila2, new org.netbeans.lib.awtextra.AbsoluteConstraints(102, 11, 68, 27));
+        pnlPlati.add(lblIDVozila2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 11, 120, 27));
 
         btnUplati.setIcon(new javax.swing.ImageIcon(getClass().getResource("/parkingsimulator/Views/Slike/btnUplati.png"))); // NOI18N
         btnUplati.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(248, 193, 30)));
+        btnUplati.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnUplatiMouseEntered(evt);
+            }
+        });
         btnUplati.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUplatiActionPerformed(evt);
             }
         });
-        pnlPlati.add(btnUplati, new org.netbeans.lib.awtextra.AbsoluteConstraints(98, 229, -1, 33));
+        pnlPlati.add(btnUplati, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 210, 90, 33));
 
         lblCena.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         lblCena.setForeground(new java.awt.Color(248, 193, 30));
@@ -116,13 +130,13 @@ public class PlatiFrame extends javax.swing.JFrame {
         pnlPlati.add(lblCena, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 68, -1, 27));
 
         lblCena2.setForeground(new java.awt.Color(248, 193, 30));
-        pnlPlati.add(lblCena2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 110, 77, 27));
+        pnlPlati.add(lblCena2, new org.netbeans.lib.awtextra.AbsoluteConstraints(287, 110, 70, 27));
 
         jSeparator1.setBackground(new java.awt.Color(248, 193, 30));
-        pnlPlati.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 170, 10));
+        pnlPlati.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 200, 10));
 
         jSeparator2.setBackground(new java.awt.Color(248, 193, 30));
-        pnlPlati.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 130, 10));
+        pnlPlati.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 190, 10));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -133,11 +147,12 @@ public class PlatiFrame extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(pnlPlati, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0))
+                .addComponent(pnlPlati, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
@@ -169,12 +184,20 @@ public class PlatiFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Uspesno ste uplatili!");
             this.setVisible(false);
             this.dispose();
+        }
     }//GEN-LAST:event_btnUplatiActionPerformed
 
-    }
-    
-        
+    private void btnUplatiMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUplatiMouseEntered
+      ((JButton)evt.getSource()).setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnUplatiMouseEntered
 
+    private void slldCenaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_slldCenaMouseEntered
+       ((JSlider)evt.getSource()).setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        // TODO add your handling code here:
+    }//GEN-LAST:event_slldCenaMouseEntered
+
+      
 public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

@@ -6,6 +6,8 @@
 package parkingsimulator.Views;
 
 import java.awt.Color;
+import java.awt.Cursor;
+import javax.swing.JButton;
 import javax.swing.JPanel;
 
 /**
@@ -49,6 +51,9 @@ public class OpcijePanelPreLogina extends javax.swing.JPanel {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnPrijavaMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnPrijavaMouseEntered(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 btnPrijavaMousePressed(evt);
             }
@@ -74,10 +79,10 @@ public class OpcijePanelPreLogina extends javax.swing.JPanel {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(106, Short.MAX_VALUE)
-                .addComponent(btnPrijava, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(105, 105, 105))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(131, 131, 131)
+                .addComponent(btnPrijava, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(132, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -133,6 +138,11 @@ public class OpcijePanelPreLogina extends javax.swing.JPanel {
                
 
     }//GEN-LAST:event_btnPrijavaMouseClicked
+
+    private void btnPrijavaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPrijavaMouseEntered
+((JButton)evt.getSource()).setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+// TODO add your handling code here:
+    }//GEN-LAST:event_btnPrijavaMouseEntered
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -7,6 +7,7 @@ package parkingsimulator.Views;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Cursor;
 import java.awt.Desktop;
 import java.awt.Font;
 import java.sql.SQLException;
@@ -36,7 +37,9 @@ import java.text.*;
 import java.awt.print.*;
 import java.util.Comparator;
 import java.util.Locale;
+import javax.swing.JButton;
 import javax.swing.JScrollPane;
+import javax.swing.JTextField;
 import javax.swing.table.JTableHeader;
 /**
  *
@@ -192,6 +195,7 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
         jButton1.setText("jButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         DnevniizvestajPNL.setBackground(new java.awt.Color(0, 40, 43));
         DnevniizvestajPNL.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -202,6 +206,9 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
         btnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/parkingsimulator/Views/Slike/btnStampaj.png"))); // NOI18N
         btnPrint.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(248, 193, 30)));
         btnPrint.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnPrintMouseEntered(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 btnPrintMousePressed(evt);
             }
@@ -245,6 +252,11 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
             }
         });
         TableDnevni.setGridColor(new java.awt.Color(255, 255, 255));
+        TableDnevni.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                TableDnevniMouseEntered(evt);
+            }
+        });
         jScrollPane2.setViewportView(TableDnevni);
 
         DnevniizvestajPNL.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 990, 228));
@@ -252,22 +264,22 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(248, 193, 30));
         jLabel1.setText("Broj parkiranih vozila u toku dana:");
-        DnevniizvestajPNL.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 340, -1, 30));
+        DnevniizvestajPNL.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 340, -1, 30));
 
         lblBrojVozilaDanas.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
         lblBrojVozilaDanas.setForeground(new java.awt.Color(248, 193, 30));
         lblBrojVozilaDanas.setText("0");
-        DnevniizvestajPNL.add(lblBrojVozilaDanas, new org.netbeans.lib.awtextra.AbsoluteConstraints(804, 335, 53, 36));
+        DnevniizvestajPNL.add(lblBrojVozilaDanas, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 340, 80, 36));
 
         jLabel3.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(248, 193, 30));
         jLabel3.setText("Ukupna dnevna zarada:");
-        DnevniizvestajPNL.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 300, -1, 32));
+        DnevniizvestajPNL.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 300, -1, 32));
 
         lblUkupnaZarada.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
         lblUkupnaZarada.setForeground(new java.awt.Color(248, 193, 30));
         lblUkupnaZarada.setText("0.0 din");
-        DnevniizvestajPNL.add(lblUkupnaZarada, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 300, 80, 32));
+        DnevniizvestajPNL.add(lblUkupnaZarada, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 300, 80, 32));
 
         CBSearch.setBackground(new java.awt.Color(0, 40, 43));
         CBSearch.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
@@ -279,6 +291,11 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
         CBSearch.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 CBSearchItemStateChanged(evt);
+            }
+        });
+        CBSearch.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CBSearchMouseEntered(evt);
             }
         });
         CBSearch.addActionListener(new java.awt.event.ActionListener() {
@@ -301,6 +318,9 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 TFSearchMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                TFSearchMouseEntered(evt);
+            }
         });
         TFSearch.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -314,6 +334,11 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
 
         jDateChooser1.setDateFormatString("dd.MM.yyyy.");
         jDateChooser1.setFocusable(false);
+        jDateChooser1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jDateChooser1MouseEntered(evt);
+            }
+        });
         jDateChooser1.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 jDateChooser1PropertyChange(evt);
@@ -321,12 +346,12 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
         });
         DnevniizvestajPNL.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 440, 157, 36));
 
-        LBrojVozilaIzabranogDatuma.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        LBrojVozilaIzabranogDatuma.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
         LBrojVozilaIzabranogDatuma.setForeground(new java.awt.Color(248, 193, 30));
         LBrojVozilaIzabranogDatuma.setText("Broj parkiranih vozila izabranog datuma:");
-        DnevniizvestajPNL.add(LBrojVozilaIzabranogDatuma, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 540, -1, 30));
+        DnevniizvestajPNL.add(LBrojVozilaIzabranogDatuma, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 540, 310, 30));
 
-        LZaradaIzabranogDatuma.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        LZaradaIzabranogDatuma.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
         LZaradaIzabranogDatuma.setForeground(new java.awt.Color(248, 193, 30));
         LZaradaIzabranogDatuma.setText("Dnevna zarada izabranog datuma:");
         DnevniizvestajPNL.add(LZaradaIzabranogDatuma, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 480, -1, 30));
@@ -334,17 +359,17 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
         LBrojVozilaIzabranogDatuma2.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
         LBrojVozilaIzabranogDatuma2.setForeground(new java.awt.Color(248, 193, 30));
         LBrojVozilaIzabranogDatuma2.setText("0");
-        DnevniizvestajPNL.add(LBrojVozilaIzabranogDatuma2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 540, 43, 31));
+        DnevniizvestajPNL.add(LBrojVozilaIzabranogDatuma2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 540, 43, 31));
 
         LZaradaIzabranogDatuma2.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
         LZaradaIzabranogDatuma2.setForeground(new java.awt.Color(248, 193, 30));
         LZaradaIzabranogDatuma2.setText("0.0 din");
-        DnevniizvestajPNL.add(LZaradaIzabranogDatuma2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 480, 88, 30));
+        DnevniizvestajPNL.add(LZaradaIzabranogDatuma2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 480, 80, 30));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(248, 193, 30));
         jLabel2.setText("Izaberite dan za izveštaj:");
-        DnevniizvestajPNL.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 390, 157, 30));
+        DnevniizvestajPNL.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 390, 210, 30));
 
         btnClear.setBackground(new java.awt.Color(0, 40, 43));
         btnClear.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
@@ -353,6 +378,9 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
         btnClear.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(248, 193, 30)));
         btnClear.setFocusable(false);
         btnClear.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnClearMouseEntered(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 btnClearMousePressed(evt);
             }
@@ -369,26 +397,26 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
 
         jSeparator4.setBackground(new java.awt.Color(248, 193, 30));
         jSeparator4.setForeground(new java.awt.Color(248, 193, 30));
-        DnevniizvestajPNL.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 570, 300, 10));
+        DnevniizvestajPNL.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 570, 380, 10));
 
         jSeparator5.setBackground(new java.awt.Color(248, 193, 30));
         jSeparator5.setForeground(new java.awt.Color(248, 193, 30));
-        DnevniizvestajPNL.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 330, 300, 10));
+        DnevniizvestajPNL.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 330, 340, 10));
 
         jSeparator6.setForeground(new java.awt.Color(248, 193, 30));
         DnevniizvestajPNL.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 390, 1000, 10));
 
         jSeparator7.setBackground(new java.awt.Color(248, 193, 30));
         jSeparator7.setForeground(new java.awt.Color(248, 193, 30));
-        DnevniizvestajPNL.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 420, 150, 10));
+        DnevniizvestajPNL.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 420, 190, 10));
 
         jSeparator9.setBackground(new java.awt.Color(248, 193, 30));
         jSeparator9.setForeground(new java.awt.Color(248, 193, 30));
-        DnevniizvestajPNL.add(jSeparator9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 510, 300, 10));
+        DnevniizvestajPNL.add(jSeparator9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 510, 380, 10));
 
         jSeparator8.setBackground(new java.awt.Color(248, 193, 30));
         jSeparator8.setForeground(new java.awt.Color(248, 193, 30));
-        DnevniizvestajPNL.add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 370, 300, 10));
+        DnevniizvestajPNL.add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 370, 340, 10));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -404,6 +432,7 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
@@ -561,6 +590,36 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
       btnPrint.setBackground(Color.decode("#00282b"));
     btnPrint .setForeground(Color.decode("#f9c939"));
     }//GEN-LAST:event_btnPrintMouseReleased
+
+    private void btnClearMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnClearMouseEntered
+        ((JButton)evt.getSource()).setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+// TODO add your handling code here:
+    }//GEN-LAST:event_btnClearMouseEntered
+
+    private void btnPrintMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPrintMouseEntered
+        // TODO add your handling code here:
+        ((JButton)evt.getSource()).setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_btnPrintMouseEntered
+
+    private void jDateChooser1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jDateChooser1MouseEntered
+        // TODO add your handling code here:
+        ((JButton)evt.getSource()).setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_jDateChooser1MouseEntered
+
+    private void CBSearchMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CBSearchMouseEntered
+      ((JComboBox)evt.getSource()).setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CBSearchMouseEntered
+
+    private void TFSearchMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TFSearchMouseEntered
+        ((JTextField)evt.getSource()).setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TFSearchMouseEntered
+
+    private void TableDnevniMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableDnevniMouseEntered
+        ((JTable)evt.getSource()).setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TableDnevniMouseEntered
 
     /**
      * @param args the command line arguments

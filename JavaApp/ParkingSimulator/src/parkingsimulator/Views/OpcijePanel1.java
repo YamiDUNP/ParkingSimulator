@@ -6,10 +6,13 @@
 package parkingsimulator.Views;
 
 import java.awt.BorderLayout;
+import java.awt.Button;
+import java.awt.Cursor;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JButton;
 import javax.swing.JPanel;
 
 /**
@@ -52,6 +55,11 @@ public class OpcijePanel1 extends javax.swing.JPanel {
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/parkingsimulator/Views/Slike/btnDnevniIzvestaj.png"))); // NOI18N
         jButton3.setAlignmentY(0.0F);
         jButton3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(248, 193, 30)));
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton3MouseEntered(evt);
+            }
+        });
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -61,6 +69,11 @@ public class OpcijePanel1 extends javax.swing.JPanel {
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/parkingsimulator/Views/Slike/btnIzmenaCene.png"))); // NOI18N
         jButton2.setAlignmentY(0.0F);
         jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(248, 193, 30)));
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton2MouseEntered(evt);
+            }
+        });
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -70,6 +83,11 @@ public class OpcijePanel1 extends javax.swing.JPanel {
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/parkingsimulator/Views/Slike/btnOdjava.png"))); // NOI18N
         jButton1.setAlignmentY(0.0F);
         jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(248, 193, 30)));
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton1MouseEntered(evt);
+            }
+        });
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -144,6 +162,21 @@ public class OpcijePanel1 extends javax.swing.JPanel {
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseEntered
+        ((JButton)evt.getSource()).setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+// TODO add your handling code here:
+    }//GEN-LAST:event_jButton3MouseEntered
+
+    private void jButton2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseEntered
+((JButton)evt.getSource()).setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+// TODO add your handling code here:
+    }//GEN-LAST:event_jButton2MouseEntered
+
+    private void jButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseEntered
+((JButton)evt.getSource()).setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1MouseEntered
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
