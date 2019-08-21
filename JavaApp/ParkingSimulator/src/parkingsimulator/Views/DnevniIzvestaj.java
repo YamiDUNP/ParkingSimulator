@@ -51,11 +51,16 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
      * Creates new form DnevniIzvestaj
      */
     ArrayList<Parkirani> listaParkiranih;
+    TableModel myModel;
+    TableRowSorter trs;
+        
+        
     public DnevniIzvestaj() throws SQLException, ParseException {
         listaParkiranih=DBController.require().getKorisnike();    
         initComponents();
-
-        
+        myModel = this.TableDnevni.getModel();
+        trs = new TableRowSorter(myModel);
+            
         //ZA PRVI PUT DA DISPLAYA PLACEHOLDER
         String pamtiOznaceni = "Trazite po "+CBSearch.getSelectedItem().toString();
         TFSearch.setText(pamtiOznaceni);
@@ -65,8 +70,6 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
         
         
 
-        TableModel myModel = this.TableDnevni.getModel();
-        TableRowSorter trs = new TableRowSorter(myModel);
         class FloatComparator implements Comparator{
 
             @Override
@@ -176,7 +179,7 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
         lblBrojVozilaDanas = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         lblUkupnaZarada = new javax.swing.JLabel();
-        CBSearch = new javax.swing.JComboBox<String>();
+        CBSearch = new javax.swing.JComboBox<>();
         TFSearch = new javax.swing.JTextField();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
         LBrojVozilaIzabranogDatuma = new javax.swing.JLabel();
@@ -284,7 +287,7 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
         CBSearch.setBackground(new java.awt.Color(0, 40, 43));
         CBSearch.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
         CBSearch.setForeground(new java.awt.Color(248, 193, 30));
-        CBSearch.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ID vozila", "Vreme dolaska", "Vreme odlaska", "Uplata" }));
+        CBSearch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID vozila", "Vreme dolaska", "Vreme odlaska", "Uplata" }));
         CBSearch.setAlignmentX(0.0F);
         CBSearch.setAlignmentY(0.0F);
         CBSearch.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(248, 193, 30)));
@@ -320,6 +323,11 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 TFSearchMouseEntered(evt);
+            }
+        });
+        TFSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TFSearchActionPerformed(evt);
             }
         });
         TFSearch.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -438,10 +446,10 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
     private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
         
         MessageFormat header = new MessageFormat("Report Print");
-        MessageFormat footer = new MessageFormat("Page{0,number,ingter}");
+        MessageFormat footer = new MessageFormat("Page{0,number,ingnr}");
         
         try{
-            TableDnevni.print(JTable.PrintMode.NORMAL, header, footer);
+            TableDnevni.print();
         }catch(java.awt.print.PrinterException e){
             System.err.format("Cannot priint %s%n", e.getMessage());
         }
@@ -456,11 +464,11 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
     }//GEN-LAST:event_CBSearchActionPerformed
 
     private void izaberiKolonu(int brojKolone){
-                    DefaultTableModel table = (DefaultTableModel)TableDnevni.getModel();
-                    String search = TFSearch.getText().toUpperCase();
-                    TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(table);
-                    TableDnevni.setRowSorter(tr);
-                    tr.setRowFilter(RowFilter.regexFilter(search, brojKolone));
+        //DefaultTableModel table = (DefaultTableModel)TableDnevni.getModel();
+        String search = TFSearch.getText().toUpperCase();
+        //TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(table);
+        //TableDnevni.setRowSorter(tr);
+        trs.setRowFilter(RowFilter.regexFilter(search, brojKolone));
     }
     
     private void TFSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TFSearchKeyReleased
@@ -497,9 +505,9 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
                     //ZA SORTIRANJE TABELE PO IZABRANOM DATUMU IZ KALENDARA
                     DefaultTableModel table = (DefaultTableModel)TableDnevni.getModel();
                     String search = szDate;
-                    TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(table);
-                    TableDnevni.setRowSorter(tr);
-                    tr.setRowFilter(RowFilter.regexFilter(search, 1));
+                   // TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(table);
+                   // TableDnevni.setRowSorter(tr);
+                    trs.setRowFilter(RowFilter.regexFilter(search, 1));
                    
                 this.LBrojVozilaIzabranogDatuma2.setText(Integer.toString(this.TableDnevni.getRowCount()));
                 
@@ -612,7 +620,7 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
     }//GEN-LAST:event_CBSearchMouseEntered
 
     private void TFSearchMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TFSearchMouseEntered
-        ((JTextField)evt.getSource()).setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+      
         // TODO add your handling code here:
     }//GEN-LAST:event_TFSearchMouseEntered
 
@@ -620,6 +628,10 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
         ((JTable)evt.getSource()).setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         // TODO add your handling code here:
     }//GEN-LAST:event_TableDnevniMouseEntered
+
+    private void TFSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TFSearchActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TFSearchActionPerformed
 
     /**
      * @param args the command line arguments

@@ -29,7 +29,7 @@ public class ArduinoController implements SerialPortEventListener {
                         "/dev/tty.usbserial-A9007UX1", // Mac OS X
                         "/dev/ttyACM0", // Raspberry Pi
                         "/dev/ttyUSB0", // Linux
-                        "COM3", // Windows
+                        "COM2", // Windows
         };
         /**
         * A BufferedReader which will be fed by a InputStreamReader 
@@ -82,7 +82,7 @@ public class ArduinoController implements SerialPortEventListener {
                                             messages.get(i).replace(0, messages.get(i).length(), a>0.5?i+"DA":i+"NE");
                                           //  System.out.println(messages.get(i));
                                         }
-                                        Thread.sleep(2000);   
+                                        Thread.sleep(5000);   
                                     } catch (InterruptedException ex) {
                                         Logger.getLogger(ArduinoController.class.getName()).log(Level.SEVERE, null, ex);
                                     }

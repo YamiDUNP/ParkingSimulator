@@ -12,6 +12,7 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -21,6 +22,7 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import parkingsimulator.Arduino.ArduinoController;
 import parkingsimulator.Models.DBController;
 
@@ -35,9 +37,14 @@ public class MainFrame extends javax.swing.JFrame {
     ArrayList<String> prethodne_poruke=new ArrayList();
     ArrayList<StringBuffer> boje=new ArrayList();
     ArrayList<StringBuffer> ids=new ArrayList();
+    PlatiFrame p1;
+    PlatiFrame p2;
+    PlatiFrame p3;
+    PlatiFrame p4;
     String path = new File("").getAbsolutePath()+"\\src\\parkingsimulator\\Views\\Slike";
     int br_mesta=4;
-    public MainFrame() {
+    public MainFrame() throws SQLException {
+        DBController.require();
         ids.add(new StringBuffer(""));
         ids.add(new StringBuffer(""));
         ids.add(new StringBuffer(""));
@@ -83,30 +90,34 @@ public class MainFrame extends javax.swing.JFrame {
                             else{
                             }
                             if(boje.get(0).charAt(0)=='y')
-                               //KOM ParkingMesto1.setBackground(Color.yellow);
-                                 try{
-                             BufferedImage myPicture = ImageIO.read(new File(path+"\\WoziloJeStiglo.png"));
-                              pkLabel0.setIcon(new ImageIcon(myPicture));
-                            }catch(Exception ecc){
-                                ecc.printStackTrace();
-                            }
-                                        
-                            else{
-                               //KOM ParkingMesto1.setBackground(Color.red); 
+                                try{
+                                    BufferedImage myPicture = ImageIO.read(new File(path+"\\WoziloJeStiglo.png"));
+                                    pkLabel0.setIcon(new ImageIcon(myPicture));
+                                    if(p1==null || !p1.isValid())
+                                        btnPlati1.setEnabled(true);
+                                }catch(Exception ecc){
+                                    ecc.printStackTrace();
+                                }       
+                            else{ 
                                 try{
                                     BufferedImage myPicture = ImageIO.read(new File(path+"\\MestoZauzeto.png"));
                                     pkLabel0.setIcon(new ImageIcon(myPicture));
+                                    btnPlati1.setEnabled(false);
                                 }catch(Exception ect){
                                 ect.printStackTrace();
                             }
                             }
                             br_mesta--;
-                            btnPlati1.setEnabled(true);
                         }
                         else if(e.charAt(1)=='N' && e.charAt(2)=='E'){
                             ids.set(0,new StringBuffer(""));
                             if(prethodne_poruke.get(0).charAt(1)=='D' && prethodne_poruke.get(0).charAt(2)=='A'){
                             //    System.out.println("Upisi u bazu za nulto mest+VREME ODLASKA");
+                                if(p1!=null && p1.isValid()){
+                                    p1.setVisible(false);
+                                    p1.dispose();
+                                    JOptionPane.showMessageDialog(null, "Napustili ste parking pre uplate! Sve najbolje! ");
+                                }
                             }
                             else{
                             
@@ -114,7 +125,6 @@ public class MainFrame extends javax.swing.JFrame {
                             
                             boje.get(0).replace(0, boje.get(0).length(), "y");
                             btnPlati1.setEnabled(false);
-                            System.out.println(path);
                             try{
                              BufferedImage myPicture = ImageIO.read(new File(path+"\\mestoSlobodno.png"));
                               pkLabel0.setIcon(new ImageIcon(myPicture));
@@ -139,8 +149,10 @@ public class MainFrame extends javax.swing.JFrame {
                             }
                             if(boje.get(1).charAt(0)=='y')
                                 try{
-                             BufferedImage myPicture = ImageIO.read(new File(path+"\\WoziloJeStiglo.png"));
-                              pkLabel1.setIcon(new ImageIcon(myPicture));
+                                    BufferedImage myPicture = ImageIO.read(new File(path+"\\WoziloJeStiglo.png"));
+                                    pkLabel1.setIcon(new ImageIcon(myPicture));
+                                    if(p2==null || !p2.isValid())
+                                        btnPlati2.setEnabled(true);
                             }catch(Exception ecc){
                                 ecc.printStackTrace();
                             }
@@ -149,18 +161,23 @@ public class MainFrame extends javax.swing.JFrame {
                                 try{
                              BufferedImage myPicture = ImageIO.read(new File(path+"\\MestoZauzeto.png"));
                               pkLabel1.setIcon(new ImageIcon(myPicture));
+                              btnPlati2.setEnabled(false);
                             }catch(Exception ecc){
                                 ecc.printStackTrace();
                             }
                                 //ParkingMesto2.setBackground(Color.red);    
                             }
                                 br_mesta--;
-                                btnPlati2.setEnabled(true);
                         }
                         else if(e.charAt(1)=='N' && e.charAt(2)=='E'){
                             ids.set(1,new StringBuffer(""));
                             if(prethodne_poruke.get(1).charAt(1)=='D' && prethodne_poruke.get(1).charAt(2)=='A'){
-                             //   System.out.println("Upisi u bazu za nulto mest+VREME ODLASKA");
+                                //   System.out.println("Upisi u bazu za nulto mest+VREME ODLASKA");
+                                if(p2!=null && p2.isValid()){
+                                    p2.setVisible(false);
+                                    p2.dispose();
+                                    JOptionPane.showMessageDialog(null, "Napustili ste parking pre uplate! Sve najbolje! ");
+                                }
                             }
                             else{
                             }
@@ -192,6 +209,8 @@ public class MainFrame extends javax.swing.JFrame {
                            try{
                              BufferedImage myPicture = ImageIO.read(new File(path+"\\WoziloJeStiglo.png"));
                               pkLabel2.setIcon(new ImageIcon(myPicture));
+                           if(p3==null || !p3.isValid())
+                               btnPlati3.setEnabled(true);
                             }catch(Exception ecc){
                                 ecc.printStackTrace();
                             }   
@@ -200,18 +219,23 @@ public class MainFrame extends javax.swing.JFrame {
                                 try{
                              BufferedImage myPicture = ImageIO.read(new File(path+"\\MestoZauzeto.png"));
                               pkLabel2.setIcon(new ImageIcon(myPicture));
+                              btnPlati3.setEnabled(false);
                             }catch(Exception ecc){
                                 ecc.printStackTrace();
                             }
                                // ParkingMesto3.setBackground(Color.red);    
                             }
                             br_mesta--;
-                            btnPlati3.setEnabled(true);
                         }
                         else if(e.charAt(1)=='N' && e.charAt(2)=='E'){
                             ids.set(2,new StringBuffer(""));
                             if(prethodne_poruke.get(2).charAt(1)=='D' && prethodne_poruke.get(2).charAt(2)=='A'){
                              //   System.out.println("Upisi u bazu za nulto mest+VREME ODLASKA");
+                                if(p3!=null && p3.isValid()){
+                                    p3.setVisible(false);
+                                    p3.dispose();
+                                    JOptionPane.showMessageDialog(null, "Napustili ste parking pre uplate! Sve najbolje! ");
+                                }
                             }
                             else{
                             }
@@ -244,6 +268,8 @@ public class MainFrame extends javax.swing.JFrame {
                                 try{
                              BufferedImage myPicture = ImageIO.read(new File(path+"\\WoziloJeStiglo.png"));
                               pkLabel3.setIcon(new ImageIcon(myPicture));
+                              if(p4==null || !p4.isValid())
+                                btnPlati4.setEnabled(true);
                             }catch(Exception ecc){
                                 ecc.printStackTrace();
                             }
@@ -252,18 +278,23 @@ public class MainFrame extends javax.swing.JFrame {
                                 try{
                              BufferedImage myPicture = ImageIO.read(new File(path+"\\MestoZauzeto.png"));
                               pkLabel3.setIcon(new ImageIcon(myPicture));
+                              btnPlati4.setEnabled(false);
                             }catch(Exception ecc){
                                 ecc.printStackTrace();
                             }
                                // ParkingMesto4.setBackground(Color.red);    
                             }
                             br_mesta--;
-                            btnPlati4.setEnabled(true);
                         }
                         else if(e.charAt(1)=='N' && e.charAt(2)=='E'){
                             ids.set(3,new StringBuffer(""));
                             if(prethodne_poruke.get(3).charAt(1)=='D' && prethodne_poruke.get(3).charAt(2)=='A'){
                              //   System.out.println("Upisi u bazu za nulto mest+VREME ODLASKA");
+                                if(p4!=null && p4.isValid()){
+                                    p4.setVisible(false);
+                                    p4.dispose();
+                                    JOptionPane.showMessageDialog(null, "Napustili ste parking pre uplate! Sve najbolje! ");
+                                }
                             }
                             else{
                             }
@@ -284,7 +315,7 @@ public class MainFrame extends javax.swing.JFrame {
                     prethodne_poruke=poruke;
                     lblBrMesta.setText(String.valueOf(br_mesta));
                     try {
-                        Thread.sleep(1000);
+                        Thread.sleep(100);
                     } catch (InterruptedException ex) {
                         Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -636,8 +667,9 @@ public class MainFrame extends javax.swing.JFrame {
             System.out.println("KLIKNUT BUTTON : "+boje.get(0));
             ParkingMesto1.setBackground(Color.red);
         }*/
-        PlatiFrame p=new PlatiFrame(this.poruke,this.boje,this.ParkingMesto1,0,this.ids);
-        p.setVisible(true);
+         p1=new PlatiFrame(this.poruke,this.boje,this.ParkingMesto1,0,this.ids, (JButton)evt.getSource());
+        p1.setVisible(true);
+        ((JButton)(evt.getSource())).setEnabled(false);
     }//GEN-LAST:event_btnPlati1ActionPerformed
 
     private void btnPlati2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlati2ActionPerformed
@@ -645,8 +677,9 @@ public class MainFrame extends javax.swing.JFrame {
 //            this.boje.get(1).replace(0, boje.get(1).length(), "r");
 //            ParkingMesto2.setBackground(Color.red);
 //        }
-        PlatiFrame p=new PlatiFrame(this.poruke,this.boje,this.ParkingMesto2,1,this.ids);
-        p.setVisible(true);
+         p2=new PlatiFrame(this.poruke,this.boje,this.ParkingMesto2,1,this.ids,(JButton)evt.getSource());
+        p2.setVisible(true);
+        ((JButton)(evt.getSource())).setEnabled(false);
          
     }//GEN-LAST:event_btnPlati2ActionPerformed
     private void btnPlati4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlati4ActionPerformed
@@ -654,8 +687,9 @@ public class MainFrame extends javax.swing.JFrame {
 //            this.boje.get(3).replace(0, boje.get(3).length(), "r");
 //            ParkingMesto4.setBackground(Color.red);
 //        }
-        PlatiFrame p=new PlatiFrame(this.poruke,this.boje,this.ParkingMesto4,3,this.ids);
-        p.setVisible(true);
+         p4=new PlatiFrame(this.poruke,this.boje,this.ParkingMesto4,3,this.ids,(JButton)evt.getSource());
+        p4.setVisible(true);
+        ((JButton)(evt.getSource())).setEnabled(false);
     }//GEN-LAST:event_btnPlati4ActionPerformed
 
     private void btnPlati3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlati3ActionPerformed
@@ -664,8 +698,9 @@ public class MainFrame extends javax.swing.JFrame {
 //            ParkingMesto3.setBackground(Color.red);
 //        }
 //        
-        PlatiFrame p=new PlatiFrame(this.poruke,this.boje,this.ParkingMesto3,2,this.ids);
-        p.setVisible(true);
+        ((JButton)(evt.getSource())).setEnabled(false);
+         p4=new PlatiFrame(this.poruke,this.boje,this.ParkingMesto3,2,this.ids,(JButton)evt.getSource());
+        p4.setVisible(true);
     }//GEN-LAST:event_btnPlati3ActionPerformed
 
     private void btnPlati1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPlati1MousePressed
@@ -728,7 +763,11 @@ public class MainFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainFrame().setVisible(true);
+                try {
+                    new MainFrame().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

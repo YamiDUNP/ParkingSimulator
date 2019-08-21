@@ -170,8 +170,7 @@ public class CenaPoSatu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSacuvajMouseEntered
 
     private void txtCenaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCenaMouseEntered
-        ((JButton)evt.getSource()).setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        // TODO add your handling code here:
+      
     }//GEN-LAST:event_txtCenaMouseEntered
 
     /**
