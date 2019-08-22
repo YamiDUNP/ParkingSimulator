@@ -13,6 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 import static net.ucanaccess.converters.Functions.string;
 import parkingsimulator.Models.DBController;
@@ -170,7 +171,7 @@ public class CenaPoSatu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSacuvajMouseEntered
 
     private void txtCenaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCenaMouseEntered
-        ((JButton)evt.getSource()).setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        ((JTextField)evt.getSource()).setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCenaMouseEntered
 
