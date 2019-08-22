@@ -1,3 +1,4 @@
+﻿
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -13,7 +14,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 import static net.ucanaccess.converters.Functions.string;
 import parkingsimulator.Models.DBController;
@@ -171,8 +171,7 @@ public class CenaPoSatu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSacuvajMouseEntered
 
     private void txtCenaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCenaMouseEntered
-        ((JTextField)evt.getSource()).setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        // TODO add your handling code here:
+      
     }//GEN-LAST:event_txtCenaMouseEntered
 
     /**
@@ -222,4 +221,4 @@ public class CenaPoSatu extends javax.swing.JFrame {
     private javax.swing.JTextField txtCena;
     // End of variables declaration//GEN-END:variables
 
-}
+}d

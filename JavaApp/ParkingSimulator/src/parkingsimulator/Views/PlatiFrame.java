@@ -36,8 +36,9 @@ public class PlatiFrame extends javax.swing.JFrame {
     private JPanel panelKojiMenjam;
     private int redniBroj;
     float naplatnaCena;
+    JButton callBackButton;
     public PlatiFrame(){initComponents();}
-    public PlatiFrame(ArrayList<String> poruke1,ArrayList<StringBuffer> boje1,JPanel panelKojiMenjam1,int redniBroj,ArrayList<StringBuffer> ids1) {
+    public PlatiFrame(ArrayList<String> poruke1,ArrayList<StringBuffer> boje1,JPanel panelKojiMenjam1,int redniBroj,ArrayList<StringBuffer> ids1,JButton b) {
         initComponents();
         
         Random r=new Random();  
@@ -48,7 +49,10 @@ public class PlatiFrame extends javax.swing.JFrame {
         this.boje=boje1;
         this.panelKojiMenjam=panelKojiMenjam1;
         this.redniBroj=redniBroj;
+        this.callBackButton = b;
+        
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
