@@ -5,6 +5,7 @@
  */
 package parkingsimulator;
 
+import java.sql.SQLException;
 import parkingsimulator.Arduino.ArduinoController;
 import parkingsimulator.Views.MainFrame;
 
@@ -17,7 +18,7 @@ public class ParkingSimulator {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         ArduinoController ac=new ArduinoController();
         ac.initialize();
         Thread t=new Thread(){

@@ -14,6 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import parkingsimulator.Models.Upravnik;
 
 /**
  *
@@ -25,11 +26,13 @@ public class OpcijePanel1 extends javax.swing.JPanel {
      * Creates new form OpcijePanel
      */
     JPanel main;
+    Upravnik upravnik;
     public OpcijePanel1() {
         initComponents();
     }
-    public OpcijePanel1(JPanel p) {
+    public OpcijePanel1(JPanel p,Upravnik u) {
         main=p;
+        upravnik = u;
         initComponents();
     }
 
@@ -154,7 +157,7 @@ public class OpcijePanel1 extends javax.swing.JPanel {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         CenaPoSatu cps=null;
         try {
-            cps = new CenaPoSatu();
+            cps = new CenaPoSatu(upravnik);
         } catch (SQLException ex) {
             Logger.getLogger(OpcijePanel1.class.getName()).log(Level.SEVERE, null, ex);
         }

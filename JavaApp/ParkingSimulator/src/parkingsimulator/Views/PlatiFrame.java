@@ -40,7 +40,7 @@ public class PlatiFrame extends javax.swing.JFrame {
     public PlatiFrame(){initComponents();}
     public PlatiFrame(ArrayList<String> poruke1,ArrayList<StringBuffer> boje1,JPanel panelKojiMenjam1,int redniBroj,ArrayList<StringBuffer> ids1,JButton b) {
         initComponents();
-        
+        this.setTitle("Uplata");
         Random r=new Random();  
         this.lblIDVozila2.setText(ids1.get(redniBroj).toString()); // Saljemo kad se zauzme mesto
         this.slldCena.setValue(1);
@@ -176,10 +176,9 @@ public class PlatiFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_slldCenaStateChanged
 
     private void btnUplatiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUplatiActionPerformed
-        String idvozila=lblIDVozila2.getText();
         if(poruke.get(redniBroj).charAt(1)=='D' && poruke.get(redniBroj).charAt(2)=='A'){
             try {
-                DBController.require().setParkirani(idvozila , naplatnaCena);
+                DBController.require().uplati(lblIDVozila2.getText(),naplatnaCena);
             } catch (SQLException ex) {
                 Logger.getLogger(PlatiFrame.class.getName()).log(Level.SEVERE, null, ex);
             }

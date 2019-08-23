@@ -44,6 +44,7 @@ public class MainFrame extends javax.swing.JFrame {
     String path = new File("").getAbsolutePath()+"\\src\\parkingsimulator\\Views\\Slike";
     int br_mesta=4;
     public MainFrame() throws SQLException {
+        this.setTitle("ParkingSimulator");
         DBController.require();
         ids.add(new StringBuffer(""));
         ids.add(new StringBuffer(""));
@@ -85,7 +86,11 @@ public class MainFrame extends javax.swing.JFrame {
                             if(ids.get(0).toString().equals(""))
                                 ids.set(0,new StringBuffer(String.valueOf("NP-"+r.nextInt(9)+r.nextInt(9)+r.nextInt(9)+"-"+prvoSlovo+drugoSlovo)) );
                             if(prethodne_poruke.get(0).charAt(1)=='N' && prethodne_poruke.get(0).charAt(2)=='E'){
-                          //      System.out.println("Upisi u bazu za nulto mesto+vreme zauzimanja");
+                                try {
+                                    DBController.require().setParkirani(ids.get(0).toString(),"1");
+                                } catch (SQLException ex) {
+                                    Logger.getLogger(PlatiFrame.class.getName()).log(Level.SEVERE, null, ex);
+                                }
                             }
                             else{
                             }
@@ -112,7 +117,11 @@ public class MainFrame extends javax.swing.JFrame {
                         else if(e.charAt(1)=='N' && e.charAt(2)=='E'){
                             ids.set(0,new StringBuffer(""));
                             if(prethodne_poruke.get(0).charAt(1)=='D' && prethodne_poruke.get(0).charAt(2)=='A'){
-                            //    System.out.println("Upisi u bazu za nulto mest+VREME ODLASKA");
+                                try {       
+                                    DBController.require().setVremeOdlaska(ids.get(0).toString());
+                                } catch (SQLException ex) {
+                                    Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+                                }
                                 if(p1!=null && p1.isValid()){
                                     p1.setVisible(false);
                                     p1.dispose();
@@ -143,7 +152,11 @@ public class MainFrame extends javax.swing.JFrame {
                                 ids.set(1,new StringBuffer(String.valueOf("NP-"+r.nextInt(9)+r.nextInt(9)+r.nextInt(9)+"-"+prvoSlovo+drugoSlovo)) );
                             
                             if(prethodne_poruke.get(1).charAt(1)=='N' && prethodne_poruke.get(1).charAt(2)=='E'){
-                              //  System.out.println("Upisi u bazu za nulto mesto+vreme zauzimanja");
+                              try {
+                                    DBController.require().setParkirani(ids.get(1).toString(),"2");
+                                } catch (SQLException ex) {
+                                    Logger.getLogger(PlatiFrame.class.getName()).log(Level.SEVERE, null, ex);
+                                }
                             }
                             else{
                             }
@@ -172,7 +185,11 @@ public class MainFrame extends javax.swing.JFrame {
                         else if(e.charAt(1)=='N' && e.charAt(2)=='E'){
                             ids.set(1,new StringBuffer(""));
                             if(prethodne_poruke.get(1).charAt(1)=='D' && prethodne_poruke.get(1).charAt(2)=='A'){
-                                //   System.out.println("Upisi u bazu za nulto mest+VREME ODLASKA");
+                                try {       
+                                    DBController.require().setVremeOdlaska(ids.get(0).toString());
+                                } catch (SQLException ex) {
+                                    Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+                                }
                                 if(p2!=null && p2.isValid()){
                                     p2.setVisible(false);
                                     p2.dispose();
@@ -201,7 +218,11 @@ public class MainFrame extends javax.swing.JFrame {
                                 ids.set(2,new StringBuffer(String.valueOf("NP-"+r.nextInt(9)+r.nextInt(9)+r.nextInt(9)+"-"+prvoSlovo+drugoSlovo)) );
                             
                             if(prethodne_poruke.get(2).charAt(1)=='N' && prethodne_poruke.get(2).charAt(2)=='E'){
-                            //    System.out.println("Upisi u bazu za nulto mesto+vreme zauzimanja");
+                                try {
+                                    DBController.require().setParkirani(ids.get(2).toString(),"3");
+                                } catch (SQLException ex) {
+                                    Logger.getLogger(PlatiFrame.class.getName()).log(Level.SEVERE, null, ex);
+                                }
                             }
                             else{
                             }
@@ -230,7 +251,11 @@ public class MainFrame extends javax.swing.JFrame {
                         else if(e.charAt(1)=='N' && e.charAt(2)=='E'){
                             ids.set(2,new StringBuffer(""));
                             if(prethodne_poruke.get(2).charAt(1)=='D' && prethodne_poruke.get(2).charAt(2)=='A'){
-                             //   System.out.println("Upisi u bazu za nulto mest+VREME ODLASKA");
+                                try {       
+                                    DBController.require().setVremeOdlaska(ids.get(0).toString());
+                                } catch (SQLException ex) {
+                                    Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+                                }
                                 if(p3!=null && p3.isValid()){
                                     p3.setVisible(false);
                                     p3.dispose();
@@ -260,7 +285,11 @@ public class MainFrame extends javax.swing.JFrame {
                                 ids.set(3,new StringBuffer(String.valueOf("NP-"+r.nextInt(9)+r.nextInt(9)+r.nextInt(9)+"-"+prvoSlovo+drugoSlovo)) );
                             
                             if(prethodne_poruke.get(3).charAt(1)=='N' && prethodne_poruke.get(3).charAt(2)=='E'){
-                            //    System.out.println("Upisi u bazu za nulto mesto+vreme zauzimanja");
+                                 try {
+                                    DBController.require().setParkirani(ids.get(3).toString(),"4");
+                                } catch (SQLException ex) {
+                                    Logger.getLogger(PlatiFrame.class.getName()).log(Level.SEVERE, null, ex);
+                                }
                             }
                             else{
                             }
@@ -289,7 +318,11 @@ public class MainFrame extends javax.swing.JFrame {
                         else if(e.charAt(1)=='N' && e.charAt(2)=='E'){
                             ids.set(3,new StringBuffer(""));
                             if(prethodne_poruke.get(3).charAt(1)=='D' && prethodne_poruke.get(3).charAt(2)=='A'){
-                             //   System.out.println("Upisi u bazu za nulto mest+VREME ODLASKA");
+                                try {       
+                                    DBController.require().setVremeOdlaska(ids.get(0).toString());
+                                } catch (SQLException ex) {
+                                    Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+                                }
                                 if(p4!=null && p4.isValid()){
                                     p4.setVisible(false);
                                     p4.dispose();

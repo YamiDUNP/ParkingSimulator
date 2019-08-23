@@ -11,9 +11,9 @@ package parkingsimulator.Models;
  */
 public class Upravnik {
     private String username;
-    private int JMBG;
+    private String JMBG;
 
-    public Upravnik(String username, int JMBG) {
+    public Upravnik(String username, String JMBG) {
         this.username = username;
         this.JMBG = JMBG;
     }
@@ -22,7 +22,7 @@ public class Upravnik {
         return username;
     }
 
-    public int getJMBG() {
+    public String getJMBG() {
         return JMBG;
     }
 
@@ -30,7 +30,7 @@ public class Upravnik {
         this.username = username;
     }
 
-    public void setJMBG(int JMBG) {
+    public void setJMBG(String JMBG) {
         this.JMBG = JMBG;
     }
     

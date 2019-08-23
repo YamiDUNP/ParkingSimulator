@@ -53,16 +53,19 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
     ArrayList<Parkirani> listaParkiranih;
     TableModel myModel;
     TableRowSorter trs;
-        
+    String buffer;
         
     public DnevniIzvestaj() throws SQLException, ParseException {
+        this.setTitle("Izveštaj");
         listaParkiranih=DBController.require().getKorisnike();    
         initComponents();
+        buffer="";
         myModel = this.TableDnevni.getModel();
         trs = new TableRowSorter(myModel);
             
         //ZA PRVI PUT DA DISPLAYA PLACEHOLDER
         String pamtiOznaceni = "Trazite po "+CBSearch.getSelectedItem().toString();
+        System.out.println(pamtiOznaceni);
         TFSearch.setText(pamtiOznaceni);
         TFSearch.setForeground(Color.getHSBColor(200, 200, 200));
 //        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
@@ -91,14 +94,6 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
         TableDnevni.setDefaultRenderer(Object.class, new TableCellRenderer(){
             private DefaultTableCellRenderer DEFAULT_RENDERER =  new DefaultTableCellRenderer();
             public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-                
-                
-                System.out.println(table);
-                System.out.println(value);
-                System.out.println(isSelected);
-                System.out.println(hasFocus);
-                System.out.println(row);
-                System.out.println(column);
                 
                 Component c = DEFAULT_RENDERER.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
                 JTableHeader header=table.getTableHeader();
@@ -313,6 +308,9 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
         TFSearch.setForeground(new java.awt.Color(248, 193, 30));
         TFSearch.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(248, 193, 30)));
         TFSearch.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                TFSearchFocusGained(evt);
+            }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 TFSearchFocusLost(evt);
             }
@@ -341,8 +339,20 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
         DnevniizvestajPNL.add(TFSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(178, 11, 200, 39));
 
         jDateChooser1.setDateFormatString("dd.MM.yyyy.");
-        jDateChooser1.setFocusable(false);
+        jDateChooser1.addContainerListener(new java.awt.event.ContainerAdapter() {
+            public void componentAdded(java.awt.event.ContainerEvent evt) {
+                jDateChooser1ComponentAdded(evt);
+            }
+        });
+        jDateChooser1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jDateChooser1FocusGained(evt);
+            }
+        });
         jDateChooser1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jDateChooser1MouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jDateChooser1MouseEntered(evt);
             }
@@ -492,10 +502,11 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
     private void TFSearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TFSearchMouseClicked
         
         if(TFSearch.getText().equals("Trazite po "+CBSearch.getSelectedItem().toString()))
-            TFSearch.setText(null);
+            TFSearch.setText("");
     }//GEN-LAST:event_TFSearchMouseClicked
 
     private void jDateChooser1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jDateChooser1PropertyChange
+        
         if(this.jDateChooser1.getDate()!=null){
             Date oDate = this.jDateChooser1.getDate();
             DateFormat oDateFormat = new SimpleDateFormat("dd-MM-yyyy");
@@ -572,15 +583,32 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
                 this.jDateChooser1.setDate(null);
                 this.LBrojVozilaIzabranogDatuma2.setText("0");
                 this.LZaradaIzabranogDatuma2.setText("0.0 din");
+                buffer="";
     }//GEN-LAST:event_btnClearActionPerformed
 
     private void TFSearchKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TFSearchKeyPressed
-       TFSearch.setForeground(Color.decode("#f9c939"));
+        if(buffer=="")
+            ((JTextField)(evt.getSource())).setText("");
+        TFSearch.setForeground(Color.decode("#f9c939"));
+        this.jDateChooser1.setDate(null);
+        this.LBrojVozilaIzabranogDatuma2.setText("0");
+        this.LZaradaIzabranogDatuma2.setText("0.0 din");
+        if(evt.getKeyCode()==8){
+            if(buffer.length()==0)
+                buffer="";
+            else{
+                String s=buffer.substring(0, buffer.length()-1);
+                buffer = s;
+            }
+        }else
+            buffer+=evt.getKeyChar();
+        
+    
     }//GEN-LAST:event_TFSearchKeyPressed
 
     private void btnClearMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnClearMousePressed
-    btnClear.setBackground(Color.decode("#f9c939"));
-     btnClear.setForeground(Color.decode("#00282b"));
+        btnClear.setBackground(Color.decode("#f9c939"));
+        btnClear.setForeground(Color.decode("#00282b"));
     }//GEN-LAST:event_btnClearMousePressed
 
     private void btnClearMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnClearMouseReleased
@@ -632,6 +660,29 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
     private void TFSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TFSearchActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TFSearchActionPerformed
+
+    private void jDateChooser1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jDateChooser1MouseClicked
+System.out.println("kljiknu me ti kljiknu");
+        
+    }//GEN-LAST:event_jDateChooser1MouseClicked
+
+    private void jDateChooser1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jDateChooser1FocusGained
+        buffer="";
+        System.out.println("GAINEDF FOCUS");
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jDateChooser1FocusGained
+
+    private void jDateChooser1ComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_jDateChooser1ComponentAdded
+        buffer="";
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jDateChooser1ComponentAdded
+
+    private void TFSearchFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TFSearchFocusGained
+        if(!TFSearch.getText().equals("") && !buffer.equals(TFSearch.getText())){
+            System.out.println("ocistcen");
+            buffer="";
+        }
+    }//GEN-LAST:event_TFSearchFocusGained
 
     /**
      * @param args the command line arguments

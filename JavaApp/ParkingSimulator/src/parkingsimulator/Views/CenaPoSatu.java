@@ -1,10 +1,11 @@
-﻿
+package parkingsimulator.Views;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package parkingsimulator.Views;
+
 
 import com.sun.glass.events.KeyEvent;
 import java.awt.Cursor;
@@ -17,6 +18,7 @@ import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
 import static net.ucanaccess.converters.Functions.string;
 import parkingsimulator.Models.DBController;
+import parkingsimulator.Models.Upravnik;
 
 
 /**
@@ -28,9 +30,19 @@ public class CenaPoSatu extends javax.swing.JFrame {
     /**
      * Creates new form CenaPoSatu
      */
-        
+        Upravnik upravnik;
     public CenaPoSatu() throws SQLException {
         
+        this.setTitle("Izmena cene");
+        initComponents();
+         
+        this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+    
+    }
+    public CenaPoSatu(Upravnik u) throws SQLException {
+        
+        this.setTitle("Izmena cene");
+        upravnik = u;
         initComponents();
          
         this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -148,7 +160,7 @@ public class CenaPoSatu extends javax.swing.JFrame {
             float vrednost=Float.parseFloat(txtCena.getText());
 
             try{
-                DBController.require().setCena(vrednost);
+                DBController.require().setCena(vrednost,upravnik.getJMBG());
                 JOptionPane.showMessageDialog(null, "Uspešno ste promenili cenu po satu.");
                 this.dispose();
             }catch(Exception ex){
@@ -221,4 +233,4 @@ public class CenaPoSatu extends javax.swing.JFrame {
     private javax.swing.JTextField txtCena;
     // End of variables declaration//GEN-END:variables
 
-}d
+}

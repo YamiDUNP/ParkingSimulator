@@ -27,6 +27,7 @@ public class Prijava extends javax.swing.JFrame {
 
     JPanel main;
     public Prijava(JPanel m){
+        this.setTitle("Prijava");
         main=m;
         initComponents();
         this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -316,8 +317,9 @@ this.btnPrijava.setForeground(Color.decode("#00282B"));
 
     private void handleLogin() throws SQLException {
         Upravnik tr=DBController.require().loginValid(this.txtUsername.getText(),this.txtPassword.getText());
+        System.out.println(tr.getJMBG());
         if(tr!=null){
-            OpcijePanel1 opc=new OpcijePanel1(main);
+            OpcijePanel1 opc=new OpcijePanel1(main,tr);
            // MainFrame af= new MainFrame("Admin");
             main.removeAll();
             main.revalidate();

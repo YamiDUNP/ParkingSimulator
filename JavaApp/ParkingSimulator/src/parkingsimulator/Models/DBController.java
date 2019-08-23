@@ -49,13 +49,13 @@ public class DBController {
         return instance;
     }
     
-    public void setCena(float cena){
+    public void setCena(float cena,String jmbg){
         try {
             Date d=new Date();
             DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             String stringDate = dateFormat.format(d);
             statement = (Statement) connection.createStatement();  
-            statement.executeUpdate("insert into CENA(Datum, vrednost) Values(#"+stringDate+"# , "+cena+"   );");
+            statement.executeUpdate("insert into CENA(Datum, vrednost,JMBG_upravnika) Values(#"+stringDate+"# , "+cena+",'"+jmbg+"'   );");
         }
         catch(Exception E){
             System.out.println(E);
@@ -98,13 +98,13 @@ public class DBController {
     }
     
     
-    public void setParkirani(String id , float placeno){
+    public void setParkirani(String id,String id_mesta){
         try {
             Date d=new Date();
             DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             String stringDate = dateFormat.format(d);
             statement = (Statement) connection.createStatement();  
-            statement.executeUpdate("insert into PARKIRANI(ID_vozila, Vreme_dolaska, Vreme_odlaska, Placeno) Values('"+id+"' , #"+stringDate+"# , #"+stringDate+"# , "+placeno+" );");
+            statement.executeUpdate("insert into PARKIRANI(ID_vozila, Vreme_dolaska,ID_mesta) Values('"+id+"' , #"+stringDate+"#,'"+id_mesta+"');");
         }
         catch(Exception E){
             System.out.println(E);
@@ -148,7 +148,7 @@ public class DBController {
 
         try {
             if(resultSet.next())
-                return new Upravnik(resultSet.getString("username"),resultSet.getInt("JMBG"));                  
+                return new Upravnik(resultSet.getString("username"),resultSet.getString("JMBG"));                  
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
@@ -204,5 +204,51 @@ private static String getMD5(String a){
         throw new RuntimeException(e);
     }
 }
+
+    public void uplati(String id, float naplatnaCena) {
+        try {
+            Date d=new Date();
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String stringDate = dateFormat.format(d);
+            statement = (Statement) connection.createStatement();  
+            statement.executeUpdate("update parkirani set placeno = "+ naplatnaCena +" where ID_vozila='"+id+"';");
+        }
+        catch(Exception E){
+            System.out.println(E);
+        }
+        finally {
+            try {
+                if(null != connection) {
+                    statement.close();
+                }
+            }
+            catch (SQLException sqlex) {
+                sqlex.printStackTrace();
+            }
+        }
+    }
+
+    public void setVremeOdlaska(String id) {
+        try {
+            Date d=new Date();
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String stringDate = dateFormat.format(d);
+            statement = (Statement) connection.createStatement();  
+            statement.executeUpdate("update parkirani set vreme_odlaska = #"+ stringDate +"# where ID_vozila='"+id+"';");
+        }
+        catch(Exception E){
+            System.out.println(E);
+        }
+        finally {
+            try {
+                if(null != connection) {
+                    statement.close();
+                }
+            }
+            catch (SQLException sqlex) {
+                sqlex.printStackTrace();
+            }
+        }
+    }
 }
 

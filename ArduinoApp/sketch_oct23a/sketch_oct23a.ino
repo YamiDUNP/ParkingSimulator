@@ -1,12 +1,12 @@
-int trigPin=11;
-int echoPin=12;
+int trigPin3=11;
+int echoPin3=12;
 
 int trigPin1=5;
 int echoPin1=6;
-int trigPin2=7;
-int echoPin2=8;
-int trigPin3=9;
-int echoPin3=10;
+int trigPin=7;
+int echoPin=8;
+int trigPin2=9;
+int echoPin2=10;
 
 
 long duration,cm;
