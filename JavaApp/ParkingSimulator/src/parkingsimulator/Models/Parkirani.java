@@ -10,13 +10,30 @@ public class Parkirani {
     private String Vreme_dolaska;
     private String Vreme_odlaska;
     private float Placeno;
+    private String id_mesta;
 
-    public Parkirani(String ID_vozila, String Vreme_dolaska, String Vreme_odlaska, float Placeno) {
+    public String getId_mesta() {
+        return id_mesta;
+    }
+    public void setId_mesta(String s){
+        this.id_mesta=s;
+    }
+
+    public Parkirani(String ID_vozila, String Vreme_dolaska, String Vreme_odlaska, float Placeno, String id_mesta) {
         this.ID_vozila = ID_vozila;
         this.Vreme_dolaska = Vreme_dolaska;
         this.Vreme_odlaska = Vreme_odlaska;
         this.Placeno = Placeno;
+        this.id_mesta = id_mesta;
     }
+    public Parkirani(){
+        ID_vozila="";
+        Vreme_dolaska="";
+        Vreme_odlaska="";
+        Placeno=0;
+        id_mesta="";
+    }
+    
 
     public String getID_vozila() {
         return ID_vozila;

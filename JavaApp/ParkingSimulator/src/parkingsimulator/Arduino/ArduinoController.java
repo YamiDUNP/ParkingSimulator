@@ -188,9 +188,6 @@ public class ArduinoController implements SerialPortEventListener {
                                     default:
                                         break;
                                 }
-                                messages.forEach(e->{
-                                    System.out.println("Poruka: "+e);
-                                });
                             }
                             } catch (Exception e) {
                                   

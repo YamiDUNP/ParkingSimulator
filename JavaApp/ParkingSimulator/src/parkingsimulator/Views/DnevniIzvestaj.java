@@ -135,7 +135,7 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
                 LocalDate date = LocalDate.now();    
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
                     a=date.format(formatter);
-                    j=listaParkiranih.get(i).getVreme_odlaska().substring(0, 10);
+                    j=listaParkiranih.get(i).getVreme_dolaska().substring(0, 10);
                     if(a.equals(j)){
                         DBV++;
                         ukupnazarada=ukupnazarada+listaParkiranih.get(i).getPlaceno();
