@@ -229,13 +229,14 @@ private static String getMD5(String a){
         }
     }
 
-    public void setVremeOdlaska(String id) {
+    public void setVremeOdlaska(Parkirani p) {
         try {
             Date d=new Date();
             DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             String stringDate = dateFormat.format(d);
             statement = (Statement) connection.createStatement();  
-            statement.executeUpdate("update parkirani set vreme_odlaska = #"+ stringDate +"# where ID_vozila='"+id+"';");
+            
+            statement.executeUpdate("insert into PARKIRANI(ID_vozila, Vreme_dolaska, Vreme_odlaska,Placeno,ID_mesta) Values('"+p.getID_vozila()+"' , #"+p.getVreme_dolaska()+"#, #"+stringDate+"#,"+p.getPlaceno()+",'"+p.getId_mesta()+"');");
         }
         catch(Exception E){
             System.out.println(E);

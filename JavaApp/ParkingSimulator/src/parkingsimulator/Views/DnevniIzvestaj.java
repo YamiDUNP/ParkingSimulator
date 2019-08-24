@@ -149,7 +149,10 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
                 SimpleDateFormat dt = new SimpleDateFormat("yyyyy-MM-dd hh:mm:ss");
                 Date date = dt.parse(datum);
                 SimpleDateFormat dt1 = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
-         Object[] row = {listaParkiranih.get(i).getID_vozila(), dt1.format(date).substring(0, 19),listaParkiranih.get(i).getVreme_odlaska().substring(0, 19),new Float(listaParkiranih.get(i).getPlaceno())};
+                
+                String datumOdlaska = listaParkiranih.get(i).getVreme_odlaska().substring(0, 19);
+                Date date2 = dt.parse(datumOdlaska);
+         Object[] row = {listaParkiranih.get(i).getID_vozila(), dt1.format(date).substring(0, 19),dt1.format(date2).substring(0,19),new Float(listaParkiranih.get(i).getPlaceno()), listaParkiranih.get(i).getId_mesta()};
                ((DefaultTableModel) TableDnevni.getModel()).insertRow(i, row);  
         }
            
@@ -231,14 +234,14 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID vozila", "Vreme dolaska", "Vreme odlaska", "Uplata"
+                "ID vozila", "Vreme dolaska", "Vreme odlaska", "Uplata", "Parking mesto"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {

@@ -21,6 +21,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JSlider;
 import parkingsimulator.Models.DBController;
+import parkingsimulator.Models.Parkirani;
 
 /**
  *
@@ -36,10 +37,12 @@ public class PlatiFrame extends javax.swing.JFrame {
     private JPanel panelKojiMenjam;
     private int redniBroj;
     float naplatnaCena;
+    Parkirani pOsoba;
     JButton callBackButton;
     public PlatiFrame(){initComponents();}
-    public PlatiFrame(ArrayList<String> poruke1,ArrayList<StringBuffer> boje1,JPanel panelKojiMenjam1,int redniBroj,ArrayList<StringBuffer> ids1,JButton b) {
+    public PlatiFrame(ArrayList<String> poruke1,ArrayList<StringBuffer> boje1,JPanel panelKojiMenjam1,int redniBroj,ArrayList<StringBuffer> ids1,JButton b, Parkirani p) {
         initComponents();
+        this.pOsoba=p;
         this.setTitle("Uplata");
         Random r=new Random();  
         this.lblIDVozila2.setText(ids1.get(redniBroj).toString()); // Saljemo kad se zauzme mesto
@@ -177,11 +180,12 @@ public class PlatiFrame extends javax.swing.JFrame {
 
     private void btnUplatiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUplatiActionPerformed
         if(poruke.get(redniBroj).charAt(1)=='D' && poruke.get(redniBroj).charAt(2)=='A'){
-            try {
-                DBController.require().uplati(lblIDVozila2.getText(),naplatnaCena);
-            } catch (SQLException ex) {
-                Logger.getLogger(PlatiFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
+//            try {
+//                DBController.require().uplati(lblIDVozila2.getText(),naplatnaCena);
+//            } catch (SQLException ex) {
+//                Logger.getLogger(PlatiFrame.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+            pOsoba.setPlaceno(naplatnaCena);
             this.boje.get(redniBroj).replace(0, boje.get(redniBroj).length(), "r");
             //panelKojiMenjam.setBackground(Color.red);
             JOptionPane.showMessageDialog(null, "Uspesno ste uplatili!");

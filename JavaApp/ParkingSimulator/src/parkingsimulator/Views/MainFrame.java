@@ -13,6 +13,7 @@ import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.sql.SQLException;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -25,6 +26,7 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import parkingsimulator.Arduino.ArduinoController;
 import parkingsimulator.Models.DBController;
+import parkingsimulator.Models.Parkirani;
 
 /**
  *
@@ -41,11 +43,16 @@ public class MainFrame extends javax.swing.JFrame {
     PlatiFrame p2;
     PlatiFrame p3;
     PlatiFrame p4;
+    ArrayList<Parkirani> parkirani = new ArrayList();
     String path = new File("").getAbsolutePath()+"\\src\\parkingsimulator\\Views\\Slike";
     int br_mesta=4;
     public MainFrame() throws SQLException {
         this.setTitle("ParkingSimulator");
         DBController.require();
+        parkirani.add(new Parkirani());
+        parkirani.add(new Parkirani());
+        parkirani.add(new Parkirani());
+        parkirani.add(new Parkirani());
         ids.add(new StringBuffer(""));
         ids.add(new StringBuffer(""));
         ids.add(new StringBuffer(""));
@@ -83,14 +90,22 @@ public class MainFrame extends javax.swing.JFrame {
                             Random randomSlovo = new Random();
                             char prvoSlovo = (char)(randomSlovo.nextInt(26) + 'A');
                             char drugoSlovo = (char)(randomSlovo.nextInt(26) + 'A');
-                            if(ids.get(0).toString().equals(""))
+                            if(ids.get(0).toString().equals("")){
                                 ids.set(0,new StringBuffer(String.valueOf("NP-"+r.nextInt(9)+r.nextInt(9)+r.nextInt(9)+"-"+prvoSlovo+drugoSlovo)) );
+                                parkirani.set(0, new Parkirani());
+                            }
                             if(prethodne_poruke.get(0).charAt(1)=='N' && prethodne_poruke.get(0).charAt(2)=='E'){
-                                try {
-                                    DBController.require().setParkirani(ids.get(0).toString(),"1");
-                                } catch (SQLException ex) {
-                                    Logger.getLogger(PlatiFrame.class.getName()).log(Level.SEVERE, null, ex);
-                                }
+//                                try {
+//                                    DBController.require().setParkirani(ids.get(0).toString(),"1");
+//                                } catch (SQLException ex) {
+//                                    Logger.getLogger(PlatiFrame.class.getName()).log(Level.SEVERE, null, ex);
+//                                }
+                                parkirani.get(0).setID_vozila(ids.get(0).toString());
+                                Date d=new Date();
+                                DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                                String stringDate = dateFormat.format(d);
+                                parkirani.get(0).setVreme_dolaska(stringDate);
+                                parkirani.get(0).setId_mesta("1");
                             }
                             else{
                             }
@@ -118,7 +133,7 @@ public class MainFrame extends javax.swing.JFrame {
                             ids.set(0,new StringBuffer(""));
                             if(prethodne_poruke.get(0).charAt(1)=='D' && prethodne_poruke.get(0).charAt(2)=='A'){
                                 try {       
-                                    DBController.require().setVremeOdlaska(ids.get(0).toString());
+                                    DBController.require().setVremeOdlaska(parkirani.get(0));
                                 } catch (SQLException ex) {
                                     Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
                                 }
@@ -148,15 +163,18 @@ public class MainFrame extends javax.swing.JFrame {
                             Random randomSlovo = new Random();
                             char prvoSlovo = (char)(randomSlovo.nextInt(26) + 'A');
                             char drugoSlovo = (char)(randomSlovo.nextInt(26) + 'A');
-                            if(ids.get(1).toString().equals(""))
+                            if(ids.get(1).toString().equals("")){
                                 ids.set(1,new StringBuffer(String.valueOf("NP-"+r.nextInt(9)+r.nextInt(9)+r.nextInt(9)+"-"+prvoSlovo+drugoSlovo)) );
-                            
+                                parkirani.set(1, new Parkirani());
+                            }
                             if(prethodne_poruke.get(1).charAt(1)=='N' && prethodne_poruke.get(1).charAt(2)=='E'){
-                              try {
-                                    DBController.require().setParkirani(ids.get(1).toString(),"2");
-                                } catch (SQLException ex) {
-                                    Logger.getLogger(PlatiFrame.class.getName()).log(Level.SEVERE, null, ex);
-                                }
+                                parkirani.get(1).setID_vozila(ids.get(1).toString());
+                                Date d=new Date();
+                                DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                                String stringDate = dateFormat.format(d);
+                                parkirani.get(1).setVreme_dolaska(stringDate);
+                                parkirani.get(1).setId_mesta("2");
+                            
                             }
                             else{
                             }
@@ -186,7 +204,7 @@ public class MainFrame extends javax.swing.JFrame {
                             ids.set(1,new StringBuffer(""));
                             if(prethodne_poruke.get(1).charAt(1)=='D' && prethodne_poruke.get(1).charAt(2)=='A'){
                                 try {       
-                                    DBController.require().setVremeOdlaska(ids.get(0).toString());
+                                    DBController.require().setVremeOdlaska(parkirani.get(1));
                                 } catch (SQLException ex) {
                                     Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
                                 }
@@ -214,15 +232,18 @@ public class MainFrame extends javax.swing.JFrame {
                             Random randomSlovo = new Random();
                             char prvoSlovo = (char)(randomSlovo.nextInt(26) + 'A');
                             char drugoSlovo = (char)(randomSlovo.nextInt(26) + 'A');
-                            if(ids.get(2).toString().equals(""))
+                            if(ids.get(2).toString().equals("")){
                                 ids.set(2,new StringBuffer(String.valueOf("NP-"+r.nextInt(9)+r.nextInt(9)+r.nextInt(9)+"-"+prvoSlovo+drugoSlovo)) );
-                            
+                                parkirani.set(2, new Parkirani());
+                            }
                             if(prethodne_poruke.get(2).charAt(1)=='N' && prethodne_poruke.get(2).charAt(2)=='E'){
-                                try {
-                                    DBController.require().setParkirani(ids.get(2).toString(),"3");
-                                } catch (SQLException ex) {
-                                    Logger.getLogger(PlatiFrame.class.getName()).log(Level.SEVERE, null, ex);
-                                }
+                                parkirani.get(2).setID_vozila(ids.get(2).toString());
+                                Date d=new Date();
+                                DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                                String stringDate = dateFormat.format(d);
+                                parkirani.get(2).setVreme_dolaska(stringDate);
+                                parkirani.get(2).setId_mesta("3");
+                            
                             }
                             else{
                             }
@@ -252,7 +273,7 @@ public class MainFrame extends javax.swing.JFrame {
                             ids.set(2,new StringBuffer(""));
                             if(prethodne_poruke.get(2).charAt(1)=='D' && prethodne_poruke.get(2).charAt(2)=='A'){
                                 try {       
-                                    DBController.require().setVremeOdlaska(ids.get(0).toString());
+                                    DBController.require().setVremeOdlaska(parkirani.get(2));
                                 } catch (SQLException ex) {
                                     Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
                                 }
@@ -281,15 +302,17 @@ public class MainFrame extends javax.swing.JFrame {
                             Random randomSlovo = new Random();
                             char prvoSlovo = (char)(randomSlovo.nextInt(26) + 'A');
                             char drugoSlovo = (char)(randomSlovo.nextInt(26) + 'A');
-                            if(ids.get(3).toString().equals(""))
+                            if(ids.get(3).toString().equals("")){
                                 ids.set(3,new StringBuffer(String.valueOf("NP-"+r.nextInt(9)+r.nextInt(9)+r.nextInt(9)+"-"+prvoSlovo+drugoSlovo)) );
-                            
+                                parkirani.set(3, new Parkirani());
+                            }
                             if(prethodne_poruke.get(3).charAt(1)=='N' && prethodne_poruke.get(3).charAt(2)=='E'){
-                                 try {
-                                    DBController.require().setParkirani(ids.get(3).toString(),"4");
-                                } catch (SQLException ex) {
-                                    Logger.getLogger(PlatiFrame.class.getName()).log(Level.SEVERE, null, ex);
-                                }
+                                 parkirani.get(3).setID_vozila(ids.get(3).toString());
+                                Date d=new Date();
+                                DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                                String stringDate = dateFormat.format(d);
+                                parkirani.get(3).setVreme_dolaska(stringDate);
+                                parkirani.get(3).setId_mesta("4");
                             }
                             else{
                             }
@@ -319,7 +342,7 @@ public class MainFrame extends javax.swing.JFrame {
                             ids.set(3,new StringBuffer(""));
                             if(prethodne_poruke.get(3).charAt(1)=='D' && prethodne_poruke.get(3).charAt(2)=='A'){
                                 try {       
-                                    DBController.require().setVremeOdlaska(ids.get(0).toString());
+                                    DBController.require().setVremeOdlaska(parkirani.get(3));
                                 } catch (SQLException ex) {
                                     Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
                                 }
@@ -626,7 +649,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         lblRadnoVreme.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         lblRadnoVreme.setForeground(new java.awt.Color(248, 193, 30));
-        lblRadnoVreme.setText("get Radnog ");
+        lblRadnoVreme.setText("09:00 - 21:00");
         pnlTabla.add(lblRadnoVreme, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 150, 90, 20));
 
         lblBrMesta.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
@@ -667,7 +690,7 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(pnlBackgroundLayout.createSequentialGroup()
                 .addComponent(pnlTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jpanComponent, javax.swing.GroupLayout.DEFAULT_SIZE, 716, Short.MAX_VALUE))
+                .addComponent(jpanComponent, javax.swing.GroupLayout.DEFAULT_SIZE, 715, Short.MAX_VALUE))
         );
         pnlBackgroundLayout.setVerticalGroup(
             pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -700,7 +723,7 @@ public class MainFrame extends javax.swing.JFrame {
             System.out.println("KLIKNUT BUTTON : "+boje.get(0));
             ParkingMesto1.setBackground(Color.red);
         }*/
-         p1=new PlatiFrame(this.poruke,this.boje,this.ParkingMesto1,0,this.ids, (JButton)evt.getSource());
+         p1=new PlatiFrame(this.poruke,this.boje,this.ParkingMesto1,0,this.ids, (JButton)evt.getSource(),this.parkirani.get(0));
         p1.setVisible(true);
         ((JButton)(evt.getSource())).setEnabled(false);
     }//GEN-LAST:event_btnPlati1ActionPerformed
@@ -710,7 +733,7 @@ public class MainFrame extends javax.swing.JFrame {
 //            this.boje.get(1).replace(0, boje.get(1).length(), "r");
 //            ParkingMesto2.setBackground(Color.red);
 //        }
-         p2=new PlatiFrame(this.poruke,this.boje,this.ParkingMesto2,1,this.ids,(JButton)evt.getSource());
+         p2=new PlatiFrame(this.poruke,this.boje,this.ParkingMesto2,1,this.ids,(JButton)evt.getSource(),this.parkirani.get(1));
         p2.setVisible(true);
         ((JButton)(evt.getSource())).setEnabled(false);
          
@@ -720,7 +743,7 @@ public class MainFrame extends javax.swing.JFrame {
 //            this.boje.get(3).replace(0, boje.get(3).length(), "r");
 //            ParkingMesto4.setBackground(Color.red);
 //        }
-         p4=new PlatiFrame(this.poruke,this.boje,this.ParkingMesto4,3,this.ids,(JButton)evt.getSource());
+         p4=new PlatiFrame(this.poruke,this.boje,this.ParkingMesto4,3,this.ids,(JButton)evt.getSource(),this.parkirani.get(3));
         p4.setVisible(true);
         ((JButton)(evt.getSource())).setEnabled(false);
     }//GEN-LAST:event_btnPlati4ActionPerformed
@@ -732,8 +755,8 @@ public class MainFrame extends javax.swing.JFrame {
 //        }
 //        
         ((JButton)(evt.getSource())).setEnabled(false);
-         p4=new PlatiFrame(this.poruke,this.boje,this.ParkingMesto3,2,this.ids,(JButton)evt.getSource());
-        p4.setVisible(true);
+         p3=new PlatiFrame(this.poruke,this.boje,this.ParkingMesto3,2,this.ids,(JButton)evt.getSource(),this.parkirani.get(2));
+        p3.setVisible(true);
     }//GEN-LAST:event_btnPlati3ActionPerformed
 
     private void btnPlati1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPlati1MousePressed
