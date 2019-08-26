@@ -65,7 +65,7 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
             
         //ZA PRVI PUT DA DISPLAYA PLACEHOLDER
         String pamtiOznaceni = "Trazite po "+CBSearch.getSelectedItem().toString();
-        System.out.println(pamtiOznaceni);
+        
         TFSearch.setText(pamtiOznaceni);
         TFSearch.setForeground(Color.getHSBColor(200, 200, 200));
 //        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
@@ -665,13 +665,12 @@ public class DnevniIzvestaj extends javax.swing.JFrame {
     }//GEN-LAST:event_TFSearchActionPerformed
 
     private void jDateChooser1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jDateChooser1MouseClicked
-System.out.println("kljiknu me ti kljiknu");
+
         
     }//GEN-LAST:event_jDateChooser1MouseClicked
 
     private void jDateChooser1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jDateChooser1FocusGained
         buffer="";
-        System.out.println("GAINEDF FOCUS");
         // TODO add your handling code here:
     }//GEN-LAST:event_jDateChooser1FocusGained
 
@@ -682,7 +681,7 @@ System.out.println("kljiknu me ti kljiknu");
 
     private void TFSearchFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TFSearchFocusGained
         if(!TFSearch.getText().equals("") && !buffer.equals(TFSearch.getText())){
-            System.out.println("ocistcen");
+            
             buffer="";
         }
     }//GEN-LAST:event_TFSearchFocusGained

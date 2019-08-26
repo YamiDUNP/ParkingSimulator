@@ -39,6 +39,7 @@ public class MainFrame extends javax.swing.JFrame {
     ArrayList<String> prethodne_poruke=new ArrayList();
     ArrayList<StringBuffer> boje=new ArrayList();
     ArrayList<StringBuffer> ids=new ArrayList();
+    ArrayList<Integer> timeWait=new ArrayList();
     PlatiFrame p1;
     PlatiFrame p2;
     PlatiFrame p3;
@@ -47,6 +48,10 @@ public class MainFrame extends javax.swing.JFrame {
     String path = new File("").getAbsolutePath()+"\\src\\parkingsimulator\\Views\\Slike";
     int br_mesta=4;
     public MainFrame() throws SQLException {
+        timeWait.add(new Integer(0));
+        timeWait.add(new Integer(0));
+        timeWait.add(new Integer(0));
+        timeWait.add(new Integer(0));
         this.setTitle("ParkingSimulator");
         DBController.require();
         parkirani.add(new Parkirani());
@@ -91,6 +96,8 @@ public class MainFrame extends javax.swing.JFrame {
                             char prvoSlovo = (char)(randomSlovo.nextInt(26) + 'A');
                             char drugoSlovo = (char)(randomSlovo.nextInt(26) + 'A');
                             if(ids.get(0).toString().equals("")){
+                                
+                                    timeWait.set(0, 0);
                                 ids.set(0,new StringBuffer(String.valueOf("NP-"+r.nextInt(9)+r.nextInt(9)+r.nextInt(9)+"-"+prvoSlovo+drugoSlovo)) );
                                 parkirani.set(0, new Parkirani());
                             }
@@ -133,6 +140,7 @@ public class MainFrame extends javax.swing.JFrame {
                             ids.set(0,new StringBuffer(""));
                             if(prethodne_poruke.get(0).charAt(1)=='D' && prethodne_poruke.get(0).charAt(2)=='A'){
                                 try {       
+                                    if(timeWait.get(0).intValue()>4900)
                                     DBController.require().setVremeOdlaska(parkirani.get(0));
                                 } catch (SQLException ex) {
                                     Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
@@ -164,6 +172,7 @@ public class MainFrame extends javax.swing.JFrame {
                             char prvoSlovo = (char)(randomSlovo.nextInt(26) + 'A');
                             char drugoSlovo = (char)(randomSlovo.nextInt(26) + 'A');
                             if(ids.get(1).toString().equals("")){
+                                timeWait.set(1, 0);
                                 ids.set(1,new StringBuffer(String.valueOf("NP-"+r.nextInt(9)+r.nextInt(9)+r.nextInt(9)+"-"+prvoSlovo+drugoSlovo)) );
                                 parkirani.set(1, new Parkirani());
                             }
@@ -204,6 +213,7 @@ public class MainFrame extends javax.swing.JFrame {
                             ids.set(1,new StringBuffer(""));
                             if(prethodne_poruke.get(1).charAt(1)=='D' && prethodne_poruke.get(1).charAt(2)=='A'){
                                 try {       
+                                    if(timeWait.get(1).intValue()>4900)
                                     DBController.require().setVremeOdlaska(parkirani.get(1));
                                 } catch (SQLException ex) {
                                     Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
@@ -233,6 +243,7 @@ public class MainFrame extends javax.swing.JFrame {
                             char prvoSlovo = (char)(randomSlovo.nextInt(26) + 'A');
                             char drugoSlovo = (char)(randomSlovo.nextInt(26) + 'A');
                             if(ids.get(2).toString().equals("")){
+                                timeWait.set(2, 0);
                                 ids.set(2,new StringBuffer(String.valueOf("NP-"+r.nextInt(9)+r.nextInt(9)+r.nextInt(9)+"-"+prvoSlovo+drugoSlovo)) );
                                 parkirani.set(2, new Parkirani());
                             }
@@ -250,6 +261,7 @@ public class MainFrame extends javax.swing.JFrame {
                             if(boje.get(2).charAt(0)=='y')
                            try{
                              BufferedImage myPicture = ImageIO.read(new File(path+"\\WoziloJeStiglo.png"));
+                             
                               pkLabel2.setIcon(new ImageIcon(myPicture));
                            if(p3==null || !p3.isValid())
                                btnPlati3.setEnabled(true);
@@ -272,7 +284,7 @@ public class MainFrame extends javax.swing.JFrame {
                         else if(e.charAt(1)=='N' && e.charAt(2)=='E'){
                             ids.set(2,new StringBuffer(""));
                             if(prethodne_poruke.get(2).charAt(1)=='D' && prethodne_poruke.get(2).charAt(2)=='A'){
-                                try {       
+                                try {       if(timeWait.get(2).intValue()>4900)
                                     DBController.require().setVremeOdlaska(parkirani.get(2));
                                 } catch (SQLException ex) {
                                     Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
@@ -303,6 +315,7 @@ public class MainFrame extends javax.swing.JFrame {
                             char prvoSlovo = (char)(randomSlovo.nextInt(26) + 'A');
                             char drugoSlovo = (char)(randomSlovo.nextInt(26) + 'A');
                             if(ids.get(3).toString().equals("")){
+                                 timeWait.set(3, 0);
                                 ids.set(3,new StringBuffer(String.valueOf("NP-"+r.nextInt(9)+r.nextInt(9)+r.nextInt(9)+"-"+prvoSlovo+drugoSlovo)) );
                                 parkirani.set(3, new Parkirani());
                             }
@@ -319,6 +332,7 @@ public class MainFrame extends javax.swing.JFrame {
                             if(boje.get(3).charAt(0)=='y')
                                 try{
                              BufferedImage myPicture = ImageIO.read(new File(path+"\\WoziloJeStiglo.png"));
+                            
                               pkLabel3.setIcon(new ImageIcon(myPicture));
                               if(p4==null || !p4.isValid())
                                 btnPlati4.setEnabled(true);
@@ -342,7 +356,8 @@ public class MainFrame extends javax.swing.JFrame {
                             ids.set(3,new StringBuffer(""));
                             if(prethodne_poruke.get(3).charAt(1)=='D' && prethodne_poruke.get(3).charAt(2)=='A'){
                                 try {       
-                                    DBController.require().setVremeOdlaska(parkirani.get(3));
+                                    if(timeWait.get(3).intValue()>4900)
+                                        DBController.require().setVremeOdlaska(parkirani.get(3));
                                 } catch (SQLException ex) {
                                     Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
                                 }
@@ -371,6 +386,10 @@ public class MainFrame extends javax.swing.JFrame {
                     prethodne_poruke=poruke;
                     lblBrMesta.setText(String.valueOf(br_mesta));
                     try {
+                        for(int i=0;i<4;i++){
+                            if(!ids.get(i).toString().equals(""))
+                                timeWait.set(i,timeWait.get(i)+100);
+                        }
                         Thread.sleep(100);
                     } catch (InterruptedException ex) {
                         Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);

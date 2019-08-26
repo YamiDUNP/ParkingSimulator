@@ -317,7 +317,7 @@ this.btnPrijava.setForeground(Color.decode("#00282B"));
 
     private void handleLogin() throws SQLException {
         Upravnik tr=DBController.require().loginValid(this.txtUsername.getText(),this.txtPassword.getText());
-        System.out.println(tr.getJMBG());
+        
         if(tr!=null){
             OpcijePanel1 opc=new OpcijePanel1(main,tr);
            // MainFrame af= new MainFrame("Admin");

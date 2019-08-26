@@ -133,7 +133,7 @@ public class PlatiFrame extends javax.swing.JFrame {
 
         lblCena.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         lblCena.setForeground(new java.awt.Color(248, 193, 30));
-        lblCena.setText("Vreme zadrzavanja:");
+        lblCena.setText("Vreme zadrzavanja(h):");
         pnlPlati.add(lblCena, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 68, -1, 27));
 
         lblCena2.setForeground(new java.awt.Color(248, 193, 30));
